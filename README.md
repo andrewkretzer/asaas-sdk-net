@@ -1,16 +1,11 @@
-# asaas-sdk-net
-
-<p align="center"> 
-<img src="https://avatars3.githubusercontent.com/u/11193992?s=200&v=4" style="max-height: 100px;">
-</p>
+# AWS SDK for .NET
 
 <p align="center">
 <img src="https://img.shields.io/badge/Platform-.NET-lightgrey.svg" style="max-height: 300px;" alt="Platform: iOS">
 <img src="https://img.shields.io/badge/.NETCore-3.0-ff69b4.svg" style="max-height: 300px;">
 </p>
 
-## About
-AsaasClient is a powerful C# library that allows for interaction with various Asaas services.
+The Asaas SDK for .NET enables .NET developers to easily work with Asaas services.
 
 https://asaasv3.docs.apiary.io
 
