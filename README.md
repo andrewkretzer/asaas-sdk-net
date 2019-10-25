@@ -1,13 +1,11 @@
-# AWS SDK for .NET
+# Asaas SDK for .NET
 
 <p align="center">
 <img src="https://img.shields.io/badge/Platform-.NET-lightgrey.svg" style="max-height: 300px;" alt="Platform: iOS">
 <img src="https://img.shields.io/badge/.NETCore-3.0-ff69b4.svg" style="max-height: 300px;">
 </p>
 
-The Asaas SDK for .NET enables .NET developers to easily work with Asaas services.
-
-https://asaasv3.docs.apiary.io
+The **Asaas SDK for .NET** enables .NET developers to easily work with [Asaas](https://asaasv3.docs.apiary.io) services.
 
 ## Documentation
 	
