@@ -39,7 +39,6 @@ and via Package Manager, simply search:
 ```
 AsaasSDK
 ```
-You are also more than welcome to clone/fork this repo and build the library yourself!
 
 ## Contributors
  * Douglas Giovanella [Github](https://github.com/DouglasGiovanella)
