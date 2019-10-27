@@ -20,6 +20,14 @@ namespace AsaasClient.Core
             keyValuePairList.Add(keyValuePair);
         }
 
+        public void Add(string key, List<string> valueList)
+        {
+            foreach (var value in valueList)
+            {
+                Add(key, value);
+            }
+        }
+
         public KeyValuePair<string, object> Get(int index)
         {
             return keyValuePairList[index];
