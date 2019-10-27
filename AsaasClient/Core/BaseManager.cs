@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,14 +16,14 @@ namespace AsaasClient.Core
             _settings = settings;
         }
 
-        protected async Task<HttpResponseMessage> PostAsync(string resource, object payload)
+        protected async Task<HttpResponseMessage> PostAsync(string resource, object payload = null)
         {
             using var httpClient = new HttpClient();
             AddAccessTokenRequestHeader(httpClient);
 
             using var content = new StringContent(
-                JsonConvert.SerializeObject(payload),
-                Encoding.UTF8,
+                payload != null ? JsonConvert.SerializeObject(payload) : "",
+                Encoding.Default,
                 "application/json");
 
             var url = BuildResourceUrl(resource);
@@ -37,6 +36,21 @@ namespace AsaasClient.Core
         {
             using var httpClient = new HttpClient();
             AddAccessTokenRequestHeader(httpClient);
+
+            var url = BuildResourceUrl(resource, queryMap);
+            var response = await httpClient.GetAsync(url);
+
+            return response;
+        }
+
+        protected async Task<HttpResponseMessage> GetListAsync(string resource, int offset, int limit, Map queryMap = null)
+        {
+            using var httpClient = new HttpClient();
+            AddAccessTokenRequestHeader(httpClient);
+
+            if (queryMap == null) queryMap = new Map();
+            queryMap.Add("offset", offset);
+            queryMap.Add("limit", limit);
 
             var url = BuildResourceUrl(resource, queryMap);
             var response = await httpClient.GetAsync(url);
@@ -60,23 +74,23 @@ namespace AsaasClient.Core
             httpClient.DefaultRequestHeaders.TryAddWithoutValidation("access_token", _settings.AccessToken);
         }
 
-        private string BuildResourceUrl(string resource, Map queryParams = null)
+        private string BuildResourceUrl(string resource, Map queryMap = null)
         {
             var url = BuildBaseAddress();
             url += resource;
 
-            if (queryParams != null)
+            if (queryMap != null)
             {
-                for (int i = 0; i < queryParams.Count; i++)
+                for (int i = 0; i < queryMap.Count; i++)
                 {
 
                     if (i == 0)
                     {
-                        url += $"?{queryParams.Get(i).Key}={Uri.EscapeDataString(queryParams.Get(i).Value.ToString())}";
+                        url += $"?{queryMap.Get(i).Key}={Uri.EscapeDataString(queryMap.Get(i).Value.ToString())}";
                     }
                     else
                     {
-                        url += $"&{queryParams.Get(i).Key}={Uri.EscapeDataString(queryParams.Get(i).Value.ToString())}";
+                        url += $"&{queryMap.Get(i).Key}={Uri.EscapeDataString(queryMap.Get(i).Value.ToString())}";
                     }
                 }
             }
