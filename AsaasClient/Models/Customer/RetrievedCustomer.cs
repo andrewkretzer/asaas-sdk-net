@@ -2,7 +2,7 @@
 
 namespace AsaasClient.Models.Customer
 {
-    public class CreatedCustomer : BaseCustomerResponse
+    public class RetrievedCustomer : BaseCustomerResponse
     {
 
     }
