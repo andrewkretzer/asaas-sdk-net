@@ -1,4 +1,6 @@
-﻿namespace AsaasClient.Core
+﻿using AsaasClient.Models.Enums;
+
+namespace AsaasClient.Core
 {
     public class ApiSettings
     {

@@ -1,26 +1,25 @@
 ﻿using System;
 using AsaasClient.Core;
 using AsaasClient.Manager;
+using AsaasClient.Models.Enums;
 
 namespace AsaasClient
 {
     public class AsaasClient
     {
-        public ApiSettings Settings { get; }
-
         #region Endpoints
         public Lazy<CustomerManager> Customer { get; }
         #endregion
 
         public AsaasClient(string accessToken, AsaasEnvironment asaasEnvironment)
         {
-            Settings = new ApiSettings
+            var settings = new ApiSettings
             {
                 AccessToken = accessToken,
                 AsaasEnvironment = asaasEnvironment
             };
 
-            Customer = new Lazy<CustomerManager>(() => { return new CustomerManager(Settings); }, true);
+            Customer = new Lazy<CustomerManager>(() => { return new CustomerManager(settings); }, true);
         }
     }
 }
