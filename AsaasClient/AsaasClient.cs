@@ -9,6 +9,8 @@ namespace AsaasClient
     {
         #region Endpoints
         public Lazy<CustomerManager> Customer { get; }
+
+        public Lazy<PaymentManager> Payment { get; }
         #endregion
 
         public AsaasClient(string accessToken, AsaasEnvironment asaasEnvironment)
@@ -20,6 +22,7 @@ namespace AsaasClient
             };
 
             Customer = new Lazy<CustomerManager>(() => { return new CustomerManager(settings); }, true);
+            Payment = new Lazy<PaymentManager>(() => { return new PaymentManager(settings); }, true);
         }
     }
 }

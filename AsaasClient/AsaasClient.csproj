@@ -17,5 +17,7 @@
     <Folder Include="Response\" />
     <Folder Include="Models\Customer\" />
     <Folder Include="Models\Enums\" />
+    <Folder Include="Models\Payment\" />
+    <Folder Include="Models\Common\" />
   </ItemGroup>
 </Project>
