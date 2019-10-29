@@ -1,6 +1,8 @@
-﻿using AsaasClient.Models.Common;
+﻿using System;
+using AsaasClient.Models.Common;
 using AsaasClient.Models.Enums;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace AsaasClient.Core
 {
@@ -10,19 +12,19 @@ namespace AsaasClient.Core
         public string Id { get; set; }
 
         [JsonProperty(PropertyName = "dateCreated")]
-        public string DateCreated { get; set; }
+        public DateTime DateCreated { get; set; }
 
         [JsonProperty(PropertyName = "customer")]
-        public string Customer { get; set; }
+        public string CustomerId { get; set; }
 
         [JsonProperty(PropertyName = "subscription")]
-        public string Subscription { get; set; }
+        public string SubscriptionId { get; set; }
 
         [JsonProperty(PropertyName = "installment")]
-        public string Installment { get; set; }
+        public string InstallmentId { get; set; }
 
         [JsonProperty(PropertyName = "dueDate")]
-        public string DueDate { get; set; }
+        public DateTime DueDate { get; set; }
 
         [JsonProperty(PropertyName = "value")]
         public decimal Value { get; set; }
@@ -40,9 +42,11 @@ namespace AsaasClient.Core
         public Fine Fine { get; set; }
 
         [JsonProperty(PropertyName = "billingType")]
+        [JsonConverter(typeof(StringEnumConverter))]
         public BillingType BillingType { get; set; }
 
         [JsonProperty(PropertyName = "status")]
+        [JsonConverter(typeof(StringEnumConverter))]
         public PaymentStatus Status { get; set; }
 
         [JsonProperty(PropertyName = "description")]
@@ -52,7 +56,7 @@ namespace AsaasClient.Core
         public string ExternalReference { get; set; }
 
         [JsonProperty(PropertyName = "originalDueDate")]
-        public string OriginalDueDate { get; set; }
+        public DateTime OriginalDueDate { get; set; }
 
         [JsonProperty(PropertyName = "originalValue")]
         public decimal OriginalValue { get; set; }
@@ -61,13 +65,13 @@ namespace AsaasClient.Core
         public decimal InterestValue { get; set; }
 
         [JsonProperty(PropertyName = "confirmedDate")]
-        public string ConfirmedDate { get; set; }
+        public DateTime ConfirmedDate { get; set; }
 
         [JsonProperty(PropertyName = "paymentDate")]
-        public string PaymentDate { get; set; }
+        public DateTime PaymentDate { get; set; }
 
         [JsonProperty(PropertyName = "clientPaymentDate")]
-        public string ClientPaymentDate { get; set; }
+        public DateTime ClientPaymentDate { get; set; }
 
         [JsonProperty(PropertyName = "invoiceUrl")]
         public string InvoiceUrl { get; set; }
