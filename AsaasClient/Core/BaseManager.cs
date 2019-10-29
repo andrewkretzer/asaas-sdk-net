@@ -19,7 +19,7 @@ namespace AsaasClient.Core
 
         protected async Task<HttpResponseMessage> PostAsync(string resource, object payload = null)
         {
-            using var httpClient = BuildHttpClient()
+            using var httpClient = BuildHttpClient();
 
             using var content = new StringContent(
                 payload != null ? JsonConvert.SerializeObject(payload) : "",
