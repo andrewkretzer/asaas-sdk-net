@@ -1,9 +1,10 @@
-﻿using System;
+﻿using AsaasClient.Models.Enums;
+using Newtonsoft.Json;
+using System;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using AsaasClient.Models.Enums;
-using Newtonsoft.Json;
 
 namespace AsaasClient.Core
 {
@@ -18,8 +19,7 @@ namespace AsaasClient.Core
 
         protected async Task<HttpResponseMessage> PostAsync(string resource, object payload = null)
         {
-            using var httpClient = new HttpClient();
-            AddAccessTokenRequestHeader(httpClient);
+            using var httpClient = BuildHttpClient();
 
             using var content = new StringContent(
                 payload != null ? JsonConvert.SerializeObject(payload) : "",
@@ -34,8 +34,7 @@ namespace AsaasClient.Core
 
         protected async Task<HttpResponseMessage> GetAsync(string resource, Map queryMap = null)
         {
-            using var httpClient = new HttpClient();
-            AddAccessTokenRequestHeader(httpClient);
+            using var httpClient = BuildHttpClient();
 
             var url = BuildResourceUrl(resource, queryMap);
             var response = await httpClient.GetAsync(url);
@@ -45,8 +44,7 @@ namespace AsaasClient.Core
 
         protected async Task<HttpResponseMessage> GetListAsync(string resource, int offset, int limit, Map queryMap = null)
         {
-            using var httpClient = new HttpClient();
-            AddAccessTokenRequestHeader(httpClient);
+            using var httpClient = BuildHttpClient();
 
             if (queryMap == null) queryMap = new Map();
             queryMap.Add("offset", offset);
@@ -60,8 +58,7 @@ namespace AsaasClient.Core
 
         protected async Task<HttpResponseMessage> DeleteAsync(string resource, Map queryMap = null)
         {
-            using var httpClient = new HttpClient();
-            AddAccessTokenRequestHeader(httpClient);
+            using var httpClient = BuildHttpClient();
 
             var url = BuildResourceUrl(resource, queryMap);
             var response = await httpClient.GetAsync(url);
@@ -69,9 +66,12 @@ namespace AsaasClient.Core
             return response;
         }
 
-        private void AddAccessTokenRequestHeader(HttpClient httpClient)
+        private HttpClient BuildHttpClient()
         {
+            HttpClient httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.TryAddWithoutValidation("access_token", _settings.AccessToken);
+
+            return httpClient;
         }
 
         private string BuildResourceUrl(string resource, Map queryMap = null)
@@ -79,19 +79,20 @@ namespace AsaasClient.Core
             var url = BuildBaseAddress();
             url += resource;
 
-            if (queryMap != null)
+            if (queryMap == null || queryMap.Count == 0)
             {
-                for (int i = 0; i < queryMap.Count; i++)
-                {
+                return url;
+            }
 
-                    if (i == 0)
-                    {
-                        url += $"?{queryMap.Get(i).Key}={Uri.EscapeDataString(queryMap.Get(i).Value.ToString())}";
-                    }
-                    else
-                    {
-                        url += $"&{queryMap.Get(i).Key}={Uri.EscapeDataString(queryMap.Get(i).Value.ToString())}";
-                    }
+            url += "?";
+
+            foreach (var key in queryMap.Keys)
+            {
+                url += $"{key}={Uri.EscapeDataString(queryMap[key])}";
+
+                if (key != queryMap.Keys.Last())
+                {
+                    url += "&";
                 }
             }
 
