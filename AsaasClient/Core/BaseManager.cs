@@ -72,6 +72,7 @@ namespace AsaasClient.Core
             HttpClient httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.TryAddWithoutValidation("access_token", _settings.AccessToken);
             httpClient.BaseAddress = BuildBaseAddress();
+            httpClient.Timeout = _settings.TimeOut;
 
             return httpClient;
         }
