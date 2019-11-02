@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Net;
 
-namespace AsaasClient.Response
+namespace AsaasClient.Core.Response
 {
     public class ResponseObject<T> : BaseResponse
     {

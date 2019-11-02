@@ -1,7 +1,6 @@
-﻿using System;
-using AsaasClient.Core;
-using AsaasClient.Manager;
-using AsaasClient.Models.Enums;
+﻿using AsaasClient.Core;
+using AsaasClient.Managers;
+using System;
 
 namespace AsaasClient
 {

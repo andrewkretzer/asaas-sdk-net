@@ -1,4 +1,4 @@
-﻿namespace AsaasClient.Models.Enums
+﻿namespace AsaasClient.Core
 {
     public enum AsaasEnvironment
     {

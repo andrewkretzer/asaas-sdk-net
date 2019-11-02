@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace AsaasClient.Core
+namespace AsaasClient.Core.Extension
 {
     public static class IEnumerableExtension
     {

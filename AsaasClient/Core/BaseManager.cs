@@ -1,5 +1,4 @@
-﻿using AsaasClient.Models.Enums;
-using AsaasClient.Response;
+﻿using AsaasClient.Core.Response;
 using Newtonsoft.Json;
 using System;
 using System.Linq;

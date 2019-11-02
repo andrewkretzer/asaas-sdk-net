@@ -1,4 +1,4 @@
-﻿using AsaasClient.Core;
+﻿using AsaasClient.Models.Customer.Base;
 
 namespace AsaasClient.Models.Customer
 {

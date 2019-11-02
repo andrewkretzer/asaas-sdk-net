@@ -1,4 +1,4 @@
-﻿namespace AsaasClient.Models.Enums
+﻿namespace AsaasClient.Models.Payment.Enums
 {
     public enum PaymentStatus
     {

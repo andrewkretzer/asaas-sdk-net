@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace AsaasClient.Core
+namespace AsaasClient.Models.Customer.Base
 {
     public abstract class BaseCustomerResponse
     {

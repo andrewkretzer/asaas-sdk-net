@@ -1,4 +1,4 @@
-﻿using AsaasClient.Core;
+﻿using AsaasClient.Models.Payment.Base;
 
 namespace AsaasClient.Models.Payment
 {
