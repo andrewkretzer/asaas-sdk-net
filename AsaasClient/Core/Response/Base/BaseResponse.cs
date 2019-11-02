@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 
-namespace AsaasClient.Core.Response
+namespace AsaasClient.Core.Response.Base
 {
     public abstract class BaseResponse
     {

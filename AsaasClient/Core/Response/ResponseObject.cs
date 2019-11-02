@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using AsaasClient.Core.Response.Base;
+using Newtonsoft.Json;
 using System.Net;
 
 namespace AsaasClient.Core.Response
