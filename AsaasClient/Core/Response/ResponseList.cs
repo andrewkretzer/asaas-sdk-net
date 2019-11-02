@@ -1,9 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using AsaasClient.Core.Response.Base;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Net;
 
-namespace AsaasClient.Response
+namespace AsaasClient.Core.Response
 {
     public class ResponseList<T> : BaseResponse
     {

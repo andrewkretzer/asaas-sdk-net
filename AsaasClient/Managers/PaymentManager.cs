@@ -1,9 +1,9 @@
 ﻿using AsaasClient.Core;
+using AsaasClient.Core.Response;
 using AsaasClient.Models.Payment;
-using AsaasClient.Response;
 using System.Threading.Tasks;
 
-namespace AsaasClient.Manager
+namespace AsaasClient.Managers
 {
     public class PaymentManager : BaseManager
     {

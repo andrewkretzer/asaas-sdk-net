@@ -1,10 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
-using AsaasClient.Core;
+﻿using AsaasClient.Core;
+using AsaasClient.Core.Extension;
+using AsaasClient.Core.Response;
 using AsaasClient.Models.Customer;
-using AsaasClient.Response;
+using System;
+using System.Threading.Tasks;
 
-namespace AsaasClient.Manager
+namespace AsaasClient.Managers
 {
     public class CustomerManager : BaseManager
     {

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Net;
 
-namespace AsaasClient.Response
+namespace AsaasClient.Core.Response.Base
 {
-    public class BaseResponse
+    public abstract class BaseResponse
     {
         public HttpStatusCode StatusCode { get; private set; }
 

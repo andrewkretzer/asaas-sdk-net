@@ -1,10 +1,11 @@
-﻿using System;
-using AsaasClient.Models.Common;
+﻿using AsaasClient.Models.Common;
 using AsaasClient.Models.Enums;
+using AsaasClient.Models.Payment.Enums;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System;
 
-namespace AsaasClient.Core
+namespace AsaasClient.Models.Payment.Base
 {
     public class BasePaymentResponse
     {

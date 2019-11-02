@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace AsaasClient.Response
+namespace AsaasClient.Core.Response
 {
     public class Error
     {
