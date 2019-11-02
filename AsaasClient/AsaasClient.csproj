@@ -14,7 +14,6 @@
     <Folder Include="Models\" />
     <Folder Include="Manager\" />
     <Folder Include="Core\" />
-    <Folder Include="Response\" />
     <Folder Include="Models\Customer\" />
     <Folder Include="Models\Enums\" />
     <Folder Include="Models\Payment\" />

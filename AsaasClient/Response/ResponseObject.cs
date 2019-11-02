@@ -1,6 +1,5 @@
-﻿using System.Net;
-using System.Net.Http;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System.Net;
 
 namespace AsaasClient.Response
 {
@@ -8,16 +7,10 @@ namespace AsaasClient.Response
     {
         public T Data { get; private set; }
 
-        public ResponseObject(HttpResponseMessage httpResponseMessage) : base(httpResponseMessage)
+        public ResponseObject(HttpStatusCode httpStatusCode, string content) : base(httpStatusCode, content)
         {
-            BuildData(httpResponseMessage);
-        }
+            if (httpStatusCode != HttpStatusCode.OK) return;
 
-        private void BuildData(HttpResponseMessage httpResponseMessage)
-        {
-            if (httpResponseMessage.StatusCode != HttpStatusCode.OK) return;
-
-            var content = httpResponseMessage.Content.ReadAsStringAsync().Result;
             Data = JsonConvert.DeserializeObject<T>(content);
         }
     }

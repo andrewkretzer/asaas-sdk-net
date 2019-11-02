@@ -1,8 +1,10 @@
 ﻿using AsaasClient.Models.Enums;
+using AsaasClient.Response;
 using Newtonsoft.Json;
 using System;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,32 +19,31 @@ namespace AsaasClient.Core
             _settings = settings;
         }
 
-        protected async Task<HttpResponseMessage> PostAsync(string resource, object payload = null)
+        protected async Task<ResponseObject<T>> PostAsync<T>(string resource, object payload)
         {
             using var httpClient = BuildHttpClient();
 
             using var content = new StringContent(
-                payload != null ? JsonConvert.SerializeObject(payload) : "",
-                Encoding.Default,
-                "application/json");
+                JsonConvert.SerializeObject(payload),
+                Encoding.UTF8,
+                MediaTypeNames.Application.Json);
 
-            var url = BuildResourceUrl(resource);
-            var response = await httpClient.PostAsync(url, content);
+            var response = await httpClient.PostAsync(resource, content);
 
-            return response;
+            return await BuildResponseObject<T>(response);
         }
 
-        protected async Task<HttpResponseMessage> GetAsync(string resource, Map queryMap = null)
+        protected async Task<ResponseObject<T>> GetAsync<T>(string resource, string id)
         {
             using var httpClient = BuildHttpClient();
 
-            var url = BuildResourceUrl(resource, queryMap);
-            var response = await httpClient.GetAsync(url);
+            resource += $"/{id}";
+            var response = await httpClient.GetAsync(resource);
 
-            return response;
+            return await BuildResponseObject<T>(response);
         }
 
-        protected async Task<HttpResponseMessage> GetListAsync(string resource, int offset, int limit, Map queryMap = null)
+        protected async Task<ResponseList<T>> GetListAsync<T>(string resource, int offset, int limit, Map queryMap = null)
         {
             using var httpClient = BuildHttpClient();
 
@@ -50,69 +51,78 @@ namespace AsaasClient.Core
             queryMap.Add("offset", offset);
             queryMap.Add("limit", limit);
 
-            var url = BuildResourceUrl(resource, queryMap);
-            var response = await httpClient.GetAsync(url);
+            resource += BuildParameters(queryMap);
+            var response = await httpClient.GetAsync(resource);
 
-            return response;
+            return await BuildResponseList<T>(response);
         }
 
-        protected async Task<HttpResponseMessage> DeleteAsync(string resource, Map queryMap = null)
+        protected async Task<ResponseObject<T>> DeleteAsync<T>(string resource, string id)
         {
             using var httpClient = BuildHttpClient();
 
-            var url = BuildResourceUrl(resource, queryMap);
-            var response = await httpClient.GetAsync(url);
+            resource += $"/{id}";
+            var response = await httpClient.GetAsync(resource);
 
-            return response;
+            return await BuildResponseObject<T>(response);
         }
 
         private HttpClient BuildHttpClient()
         {
             HttpClient httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.TryAddWithoutValidation("access_token", _settings.AccessToken);
+            httpClient.BaseAddress = BuildBaseAddress();
 
             return httpClient;
         }
 
-        private string BuildResourceUrl(string resource, Map queryMap = null)
+        private string BuildParameters(Map queryMap = null)
         {
-            var url = BuildBaseAddress();
-            url += resource;
+            if (queryMap == null || queryMap.Count == 0) return string.Empty;
 
-            if (queryMap == null || queryMap.Count == 0)
-            {
-                return url;
-            }
-
-            url += "?";
+            string parameters = "?";
 
             foreach (var key in queryMap.Keys)
             {
-                url += $"{key}={Uri.EscapeDataString(queryMap[key])}";
+                parameters += $"{key}={Uri.EscapeDataString(queryMap[key])}";
 
                 if (key != queryMap.Keys.Last())
                 {
-                    url += "&";
+                    parameters += "&";
                 }
             }
 
-            return url;
+            return parameters;
         }
 
-        private string BuildBaseAddress()
+        private Uri BuildBaseAddress()
         {
             if (_settings.AsaasEnvironment.IsProduction())
             {
-                return "https://www.asaas.com/api/v3";
+                return new Uri("https://www.asaas.com/api/v3");
             }
 
             if (_settings.AsaasEnvironment.IsSandbox())
             {
-                return "https://sandbox.asaas.com/v3";
+                return new Uri("https://sandbox.asaas.com/v3");
             }
 
             // Create custom exception ? AsaasEnvironmentNotSupportedException ?
             throw new InvalidOperationException("AsaasEnvironment not supported");
+        }
+
+        private async Task<ResponseObject<T>> BuildResponseObject<T>(HttpResponseMessage httpResponseMessage)
+        {
+            string payload = await httpResponseMessage.Content.ReadAsStringAsync();
+
+            return new ResponseObject<T>(httpResponseMessage.StatusCode, payload);
+        }
+
+        private async Task<ResponseList<T>> BuildResponseList<T>(HttpResponseMessage httpResponseMessage)
+        {
+            string payload = await httpResponseMessage.Content.ReadAsStringAsync();
+
+            return new ResponseList<T>(httpResponseMessage.StatusCode, payload);
         }
     }
 }

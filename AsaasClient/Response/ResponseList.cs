@@ -1,38 +1,33 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 using System.Net;
-using System.Net.Http;
-using Newtonsoft.Json;
 
 namespace AsaasClient.Response
 {
     public class ResponseList<T> : BaseResponse
     {
-        [JsonProperty(PropertyName = "hasMore")]
         public bool HasMore { get; private set; }
 
-        [JsonProperty(PropertyName = "totalCount")]
         public int TotalCount { get; private set; }
 
-        [JsonProperty(PropertyName = "limit")]
         public int Limit { get; private set; }
 
-        [JsonProperty(PropertyName = "offset")]
         public int Offset { get; private set; }
 
-        [JsonProperty(PropertyName = "data")]
         public List<T> Data { get; private set; }
 
-        public ResponseList(HttpResponseMessage httpResponseMessage) : base(httpResponseMessage)
+        public ResponseList(HttpStatusCode httpStatusCode, string content) : base(httpStatusCode, content)
         {
-            BuildData(httpResponseMessage);
-        }
+            if (httpStatusCode != HttpStatusCode.OK) return;
 
-        private void BuildData(HttpResponseMessage httpResponseMessage)
-        {
-            if (httpResponseMessage.StatusCode != HttpStatusCode.OK) return;
+            JObject listObject = new JObject(content);
 
-            var content = httpResponseMessage.Content.ReadAsStringAsync().Result;
-            Data = JsonConvert.DeserializeObject<List<T>>(content);
+            HasMore = listObject.GetValue("hasMore").ToObject<bool>();
+            TotalCount = listObject.GetValue("totalCount").ToObject<int>();
+            Limit = listObject.GetValue("limit").ToObject<int>();
+            Offset = listObject.GetValue("offset").ToObject<int>();
+            Data = JsonConvert.DeserializeObject<List<T>>(listObject.GetValue("data").ToString());
         }
     }
 }

@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Net;
-using System.Net.Http;
-using Newtonsoft.Json;
 
 namespace AsaasClient.Response
 {
@@ -11,17 +10,16 @@ namespace AsaasClient.Response
 
         public List<Error> Errors { get; private set; } = new List<Error>();
 
-        public BaseResponse(HttpResponseMessage httpResponseMessage)
+        public BaseResponse(HttpStatusCode httpStatusCode, string content)
         {
-            StatusCode = httpResponseMessage.StatusCode;
-            BuildErrors(httpResponseMessage);
+            StatusCode = httpStatusCode;
+            BuildErrors(content);
         }
 
-        private void BuildErrors(HttpResponseMessage httpResponseMessage)
+        private void BuildErrors(string content)
         {
-            if (httpResponseMessage.StatusCode != HttpStatusCode.BadRequest) return;
+            if (StatusCode != HttpStatusCode.BadRequest) return;
 
-            var content = httpResponseMessage.Content.ReadAsStringAsync().Result;
             Errors = JsonConvert.DeserializeObject<List<Error>>(content);
         }
     }

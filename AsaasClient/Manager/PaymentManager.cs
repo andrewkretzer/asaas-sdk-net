@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-using AsaasClient.Core;
+﻿using AsaasClient.Core;
 using AsaasClient.Models.Payment;
 using AsaasClient.Response;
+using System.Threading.Tasks;
 
 namespace AsaasClient.Manager
 {
@@ -13,9 +13,8 @@ namespace AsaasClient.Manager
 
         public async Task<ResponseObject<CreatedPayment>> Create(CreatePaymentRequest requestObj)
         {
-            using var httpResponseMessage = await PostAsync(PAYMENTS_URL, requestObj);
+            var responseObject = await PostAsync<CreatedPayment>(PAYMENTS_URL, requestObj);
 
-            var responseObject = new ResponseObject<CreatedPayment>(httpResponseMessage);
             return responseObject;
         }
     }
