@@ -6,11 +6,13 @@ namespace AsaasClient
 {
     public class AsaasClient
     {
-        #region Endpoints
+        #region Lazy
         private Lazy<CustomerManager> LazyCustomer { get; }
-        public CustomerManager Customer => LazyCustomer.Value;
-
         private Lazy<PaymentManager> LazyPayment { get; }
+        #endregion
+
+        #region Managers
+        public CustomerManager Customer => LazyCustomer.Value;
         public PaymentManager Payment => LazyPayment.Value;
         #endregion
 
