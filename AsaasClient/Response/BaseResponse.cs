@@ -10,17 +10,20 @@ namespace AsaasClient.Response
 
         public List<Error> Errors { get; private set; } = new List<Error>();
 
+        public string AsaasResponse { get; private set; }
+
         public BaseResponse(HttpStatusCode httpStatusCode, string content)
         {
             StatusCode = httpStatusCode;
-            BuildErrors(content);
+            AsaasResponse = content;
+            BuildErrors();
         }
 
-        private void BuildErrors(string content)
+        private void BuildErrors()
         {
             if (StatusCode != HttpStatusCode.BadRequest) return;
 
-            Errors = JsonConvert.DeserializeObject<List<Error>>(content);
+            Errors = JsonConvert.DeserializeObject<List<Error>>(AsaasResponse);
         }
     }
 }
