@@ -5,9 +5,9 @@ namespace AsaasClient.Core.Response
     public class Error
     {
         [JsonProperty(PropertyName = "code")]
-        public string Code { get; }
+        public string Code { get; internal set; }
 
         [JsonProperty(PropertyName = "description")]
-        public string Description { get; set; }
+        public string Description { get; internal set; }
     }
 }

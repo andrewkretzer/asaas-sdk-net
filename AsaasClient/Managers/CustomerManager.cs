@@ -20,7 +20,7 @@ namespace AsaasClient.Managers
             return responseObject;
         }
 
-        public async Task<ResponseObject<RetrievedCustomer>> FindById(string customerId)
+        public async Task<ResponseObject<RetrievedCustomer>> Find(string customerId)
         {
             if (string.IsNullOrWhiteSpace(customerId)) throw new ArgumentException("customerId is required");
 
