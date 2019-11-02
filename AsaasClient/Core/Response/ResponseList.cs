@@ -16,7 +16,7 @@ namespace AsaasClient.Core.Response
 
         public int Offset { get; private set; }
 
-        public List<T> Data { get; set; }
+        public List<T> Data { get; private set; }
 
         public ResponseList(HttpStatusCode httpStatusCode, string content) : base(httpStatusCode, content)
         {
