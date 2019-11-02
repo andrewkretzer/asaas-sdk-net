@@ -14,9 +14,8 @@ namespace AsaasClient.Manager
 
         public async Task<ResponseObject<CreatedCustomer>> Create(CreateCustomerRequest requestObj)
         {
-            using var httpResponseMessage = await PostAsync(CUSTOMERS_URL, requestObj);
+            var responseObject = await PostAsync<CreatedCustomer>(CUSTOMERS_URL, requestObj);
 
-            var responseObject = new ResponseObject<CreatedCustomer>(httpResponseMessage);
             return responseObject;
         }
 
@@ -24,10 +23,8 @@ namespace AsaasClient.Manager
         {
             if (string.IsNullOrWhiteSpace(customerId)) throw new ArgumentException("customerId is required");
 
-            var url = $"{CUSTOMERS_URL}/{customerId}";
-            using var httpResponseMessage = await GetAsync(url);
+            var responseObject = await GetAsync<RetrievedCustomer>(CUSTOMERS_URL, customerId);
 
-            var responseObject = new ResponseObject<RetrievedCustomer>(httpResponseMessage);
             return responseObject;
         }
 
@@ -43,9 +40,8 @@ namespace AsaasClient.Manager
                 if (filter.ExternalReferences.IsNullOrEmpty()) queryMap.Add("externalReference", filter.ExternalReferences);
             }
 
-            using var httpResponseMessage = await GetListAsync(CUSTOMERS_URL, offset, limit, queryMap);
+            var responseList = await GetListAsync<RetrievedCustomer>(CUSTOMERS_URL, offset, limit, queryMap);
 
-            var responseList = new ResponseList<RetrievedCustomer>(httpResponseMessage);
             return responseList;
         }
 
@@ -54,9 +50,8 @@ namespace AsaasClient.Manager
             if (string.IsNullOrWhiteSpace(customerId)) throw new ArgumentException("customerId is required");
 
             var url = $"{CUSTOMERS_URL}/{customerId}";
-            using var httpResponseMessage = await PostAsync(url, requestObj);
+            var responseObject = await PostAsync<UpdatedCustomer>(url, requestObj);
 
-            var responseObject = new ResponseObject<UpdatedCustomer>(httpResponseMessage);
             return responseObject;
         }
 
@@ -64,10 +59,8 @@ namespace AsaasClient.Manager
         {
             if (string.IsNullOrWhiteSpace(customerId)) throw new ArgumentException("customerId is required");
 
-            var url = $"{CUSTOMERS_URL}/{customerId}";
-            using var httpResponseMessage = await DeleteAsync(url);
+            var responseObject = await DeleteAsync<DeletedCustomer>(CUSTOMERS_URL, customerId);
 
-            var responseObject = new ResponseObject<DeletedCustomer>(httpResponseMessage);
             return responseObject;
         }
 
@@ -76,9 +69,8 @@ namespace AsaasClient.Manager
             if (string.IsNullOrWhiteSpace(customerId)) throw new ArgumentException("customerId is required");
 
             var url = $"{CUSTOMERS_URL}/{customerId}/restore";
-            using var httpResponseMessage = await PostAsync(url);
+            var responseObject = await PostAsync<RestoredCustomer>(url, new object());
 
-            var responseObject = new ResponseObject<RestoredCustomer>(httpResponseMessage);
             return responseObject;
         }
     }
