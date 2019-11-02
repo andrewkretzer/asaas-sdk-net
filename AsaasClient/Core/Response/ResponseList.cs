@@ -22,8 +22,8 @@ namespace AsaasClient.Core.Response
         {
             if (httpStatusCode != HttpStatusCode.OK) return;
 
-            JObject listObject = new JObject(content);
-
+            JObject listObject = JObject.Parse(content);
+            
             HasMore = listObject.GetValue("hasMore").ToObject<bool>();
             TotalCount = listObject.GetValue("totalCount").ToObject<int>();
             Limit = listObject.GetValue("limit").ToObject<int>();

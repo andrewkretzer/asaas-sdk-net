@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
-
-namespace AsaasClient.Models.Customer
+﻿namespace AsaasClient.Models.Customer
 {
     public class CustomerListFilter
     {
-        public List<string> Names { get; set; }
-        public List<string> Emails { get; set; }
-        public List<string> CpfCnpjs { get; set; }
-        public List<string> ExternalReferences { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string CpfCnpj { get; set; }
+        public string ExternalReference { get; set; }
     }
 }

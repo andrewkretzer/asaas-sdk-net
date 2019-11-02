@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Net;
 
@@ -23,7 +24,9 @@ namespace AsaasClient.Core.Response.Base
         {
             if (StatusCode != HttpStatusCode.BadRequest) return;
 
-            Errors = JsonConvert.DeserializeObject<List<Error>>(AsaasResponse);
+            JObject jObject = JObject.Parse(AsaasResponse);
+
+            Errors = JsonConvert.DeserializeObject<List<Error>>(jObject.GetValue("errors").ToString());
         }
     }
 }
