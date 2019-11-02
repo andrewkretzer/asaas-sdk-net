@@ -1,6 +1,6 @@
 ﻿using System;
 using AsaasClient.Models.Common;
-using AsaasClient.Models.Enums;
+using AsaasClient.Models.Common.Enums;
 using Newtonsoft.Json;
 
 namespace AsaasClient.Models.Payment
