@@ -1,5 +1,5 @@
 ﻿using AsaasClient.Models.Common;
-using AsaasClient.Models.Enums;
+using AsaasClient.Models.Common.Enums;
 using AsaasClient.Models.Payment.Enums;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -66,13 +66,13 @@ namespace AsaasClient.Models.Payment.Base
         public decimal InterestValue { get; set; }
 
         [JsonProperty(PropertyName = "confirmedDate")]
-        public DateTime ConfirmedDate { get; set; }
+        public DateTime? ConfirmedDate { get; set; }
 
         [JsonProperty(PropertyName = "paymentDate")]
-        public DateTime PaymentDate { get; set; }
+        public DateTime? PaymentDate { get; set; }
 
         [JsonProperty(PropertyName = "clientPaymentDate")]
-        public DateTime ClientPaymentDate { get; set; }
+        public DateTime? ClientPaymentDate { get; set; }
 
         [JsonProperty(PropertyName = "invoiceUrl")]
         public string InvoiceUrl { get; set; }

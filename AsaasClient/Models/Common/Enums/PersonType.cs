@@ -1,4 +1,4 @@
-﻿namespace AsaasClient.Models.Enums
+﻿namespace AsaasClient.Models.Common.Enums
 {
     public enum PersonType
     {

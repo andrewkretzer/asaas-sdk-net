@@ -1,4 +1,5 @@
-﻿using AsaasClient.Models.Enums;
+﻿using System;
+using AsaasClient.Models.Common.Enums;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -10,7 +11,7 @@ namespace AsaasClient.Models.Customer.Base
         public string Id { get; set; }
 
         [JsonProperty(PropertyName = "dateCreated")]
-        public string DateCreated { get; set; }
+        public DateTime DateCreated { get; set; }
 
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
