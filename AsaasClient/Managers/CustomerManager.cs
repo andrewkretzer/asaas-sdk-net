@@ -1,5 +1,4 @@
 ﻿using AsaasClient.Core;
-using AsaasClient.Core.Extension;
 using AsaasClient.Core.Response;
 using AsaasClient.Models.Customer;
 using System;
