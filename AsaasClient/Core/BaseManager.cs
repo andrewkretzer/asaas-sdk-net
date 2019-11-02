@@ -27,7 +27,7 @@ namespace AsaasClient.Core
                 Encoding.UTF8,
                 MediaTypeNames.Application.Json);
 
-            var response = await httpClient.PostAsync(resource, content);
+            var response = await httpClient.PostAsync(BuildApiRoute(resource), content);
 
             return await BuildResponseObject<T>(response);
         }
@@ -37,7 +37,7 @@ namespace AsaasClient.Core
             using var httpClient = BuildHttpClient();
 
             resource += $"/{id}";
-            var response = await httpClient.GetAsync(resource);
+            var response = await httpClient.GetAsync(BuildApiRoute(resource));
 
             return await BuildResponseObject<T>(response);
         }
@@ -51,7 +51,7 @@ namespace AsaasClient.Core
             queryMap.Add("limit", limit);
 
             resource += BuildParameters(queryMap);
-            var response = await httpClient.GetAsync(resource);
+            var response = await httpClient.GetAsync(BuildApiRoute(resource));
 
             return await BuildResponseList<T>(response);
         }
@@ -61,7 +61,7 @@ namespace AsaasClient.Core
             using var httpClient = BuildHttpClient();
 
             resource += $"/{id}";
-            var response = await httpClient.GetAsync(resource);
+            var response = await httpClient.GetAsync(BuildApiRoute(resource));
 
             return await BuildResponseObject<T>(response);
         }
@@ -74,6 +74,11 @@ namespace AsaasClient.Core
             httpClient.Timeout = _settings.TimeOut;
 
             return httpClient;
+        }
+
+        private string BuildApiRoute(string resource)
+        {
+            return $"/api/v{_settings.ApiVersion}/{resource}";
         }
 
         private string BuildParameters(Map queryMap = null)
@@ -99,12 +104,12 @@ namespace AsaasClient.Core
         {
             if (_settings.AsaasEnvironment.IsProduction())
             {
-                return new Uri("https://www.asaas.com/api/v3");
+                return new Uri("https://www.asaas.com");
             }
 
             if (_settings.AsaasEnvironment.IsSandbox())
             {
-                return new Uri("https://sandbox.asaas.com/v3");
+                return new Uri("https://sandbox.asaas.com");
             }
 
             // Create custom exception ? AsaasEnvironmentNotSupportedException ?

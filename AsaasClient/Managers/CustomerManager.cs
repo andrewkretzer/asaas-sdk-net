@@ -20,7 +20,7 @@ namespace AsaasClient.Managers
             return responseObject;
         }
 
-        public async Task<ResponseObject<RetrievedCustomer>> FindById(string customerId)
+        public async Task<ResponseObject<RetrievedCustomer>> Find(string customerId)
         {
             if (string.IsNullOrWhiteSpace(customerId)) throw new ArgumentException("customerId is required");
 
@@ -29,16 +29,16 @@ namespace AsaasClient.Managers
             return responseObject;
         }
 
-        public async Task<ResponseList<RetrievedCustomer>> List(int offset, int limit, CustomerListFilter filter)
+        public async Task<ResponseList<RetrievedCustomer>> List(int offset, int limit, CustomerListFilter filter = null)
         {
             var queryMap = new Map();
 
             if (filter != null)
             {
-                if (filter.Names.IsNullOrEmpty()) queryMap.Add("name", filter.Names);
-                if (filter.Emails.IsNullOrEmpty()) queryMap.Add("email", filter.Emails);
-                if (filter.CpfCnpjs.IsNullOrEmpty()) queryMap.Add("cpfCnpj", filter.CpfCnpjs);
-                if (filter.ExternalReferences.IsNullOrEmpty()) queryMap.Add("externalReference", filter.ExternalReferences);
+                if (!string.IsNullOrEmpty(filter.Name)) queryMap.Add("name", filter.Name);
+                if (!string.IsNullOrEmpty(filter.Email)) queryMap.Add("email", filter.Email);
+                if (!string.IsNullOrEmpty(filter.CpfCnpj)) queryMap.Add("cpfCnpj", filter.CpfCnpj);
+                if (!string.IsNullOrEmpty(filter.ExternalReference)) queryMap.Add("externalReference", filter.ExternalReference);
             }
 
             var responseList = await GetListAsync<RetrievedCustomer>(CUSTOMERS_URL, offset, limit, queryMap);

@@ -18,6 +18,9 @@ namespace AsaasClient.Sample
             {
                 ResponseList<RetrievedCustomer> listResult = await asaasClient.Customer.List(0, 10);
 
+                ResponseObject<RetrievedCustomer> objectResult = await asaasClient.Customer.Find(listResult.Data[0].Id);
+
+                var teste = await asaasClient.Customer.Create(new CreateCustomerRequest());
 
                 Console.ReadLine();
             });

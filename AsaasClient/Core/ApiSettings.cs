@@ -1,12 +1,20 @@
-﻿using AsaasClient.Models.Enums;
-using System;
+﻿using System;
 
 namespace AsaasClient.Core
 {
     public class ApiSettings
     {
-        public string AccessToken { get; internal set; }
-        public AsaasEnvironment AsaasEnvironment { get; internal set; }
-        public TimeSpan TimeOut { get; internal set; } = TimeSpan.FromSeconds(30);
+        public string AccessToken { get; private set; }
+        public AsaasEnvironment AsaasEnvironment { get; private set; }
+        public int ApiVersion { get; private set; }
+        public TimeSpan TimeOut { get; private set; }
+
+        public ApiSettings(string accessToken, AsaasEnvironment asaasEnvironment)
+        {
+            AccessToken = accessToken;
+            AsaasEnvironment = asaasEnvironment;
+            ApiVersion = 3;
+            TimeOut = TimeSpan.FromSeconds(30);
+        }
     }
 }

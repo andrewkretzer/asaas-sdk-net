@@ -56,7 +56,7 @@ namespace AsaasClient.Models.Customer.Base
 
         [JsonProperty(PropertyName = "personType")]
         [JsonConverter(typeof(StringEnumConverter))]
-        public PersonType PersonType { get; set; }
+        public PersonType? PersonType { get; set; }
 
         [JsonProperty(PropertyName = "deleted")]
         public bool Deleted { get; set; }

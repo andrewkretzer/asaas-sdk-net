@@ -6,22 +6,20 @@ namespace AsaasClient
 {
     public class AsaasClient
     {
-        #region Endpoints
-        public Lazy<CustomerManager> Customer { get; }
-
-        public Lazy<PaymentManager> Payment { get; }
+        #region Lazy
+        private Lazy<CustomerManager> LazyCustomer { get; }
+        private Lazy<PaymentManager> LazyPayment { get; }
         #endregion
 
-        public AsaasClient(string accessToken, AsaasEnvironment asaasEnvironment)
-        {
-            var settings = new ApiSettings
-            {
-                AccessToken = accessToken,
-                AsaasEnvironment = asaasEnvironment
-            };
+        #region Managers
+        public CustomerManager Customer => LazyCustomer.Value;
+        public PaymentManager Payment => LazyPayment.Value;
+        #endregion
 
-            Customer = new Lazy<CustomerManager>(() => { return new CustomerManager(settings); }, true);
-            Payment = new Lazy<PaymentManager>(() => { return new PaymentManager(settings); }, true);
+        public AsaasClient(ApiSettings apiSettings)
+        {
+            LazyCustomer = new Lazy<CustomerManager>(() => new CustomerManager(apiSettings), true);
+            LazyPayment = new Lazy<PaymentManager>(() => new PaymentManager(apiSettings), true);
         }
     }
 }
