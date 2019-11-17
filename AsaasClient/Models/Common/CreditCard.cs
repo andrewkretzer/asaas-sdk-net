@@ -11,6 +11,6 @@ namespace AsaasClient.Models.Common
         public string Brand { get; set; }
 
         [JsonProperty(PropertyName = "creditCardToken")]
-        public string CreditCardToken { get; set; }
+        public string Token { get; set; }
     }
 }
