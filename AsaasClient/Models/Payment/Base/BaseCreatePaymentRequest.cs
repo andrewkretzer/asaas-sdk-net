@@ -11,6 +11,7 @@ namespace AsaasClient.Models.Payment.Base
         public string CustomerId { get; set; }
 
         [JsonProperty(PropertyName = "billingType")]
+        [JsonConverter(typeof(StringEnumConverter))]
         public BillingType BillingType { get; set; }
 
         [JsonProperty(PropertyName = "value")]
