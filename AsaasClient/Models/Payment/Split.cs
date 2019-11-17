@@ -8,7 +8,7 @@ namespace AsaasClient.Models.Payment
         public string WalletId { get; set; }
 
         [JsonProperty(PropertyName = "fixedValue")]
-        public string FixedValue { get; set; }
+        public decimal FixedValue { get; set; }
 
         [JsonProperty(PropertyName = "percentualValue")]
         public string PercentualValue { get; set; }
