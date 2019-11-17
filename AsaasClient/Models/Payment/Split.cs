@@ -11,6 +11,6 @@ namespace AsaasClient.Models.Payment
         public decimal FixedValue { get; set; }
 
         [JsonProperty(PropertyName = "percentualValue")]
-        public string PercentualValue { get; set; }
+        public decimal PercentualValue { get; set; }
     }
 }
