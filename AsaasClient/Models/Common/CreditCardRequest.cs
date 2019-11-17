@@ -17,6 +17,6 @@ namespace AsaasClient.Models.Common
         public string ExpiryYear { get; set; }
 
         [JsonProperty(PropertyName = "ccv")]
-        public string CCV { get; set; }
+        public string Ccv { get; set; }
     }
 }
