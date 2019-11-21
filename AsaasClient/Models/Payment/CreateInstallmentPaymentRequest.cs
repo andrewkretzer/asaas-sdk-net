@@ -2,7 +2,7 @@
 
 namespace AsaasClient.Models.Payment
 {
-    public class CreatePaymentRequest : BaseCreatePaymentRequest
+    public class CreateInstallmentPaymentRequest : BaseCreatePaymentRequest
     {
 
     }
