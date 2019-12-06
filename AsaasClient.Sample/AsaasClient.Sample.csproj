@@ -6,7 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AsaasClient\AsaasClient.csproj" />
+    <ProjectReference Include="..\AsaasClient.Core\AsaasClient.Core.csproj" />
+    <ProjectReference Include="..\AsaasClient.V3\AsaasClient.V3.csproj" />
   </ItemGroup>
 
 </Project>
