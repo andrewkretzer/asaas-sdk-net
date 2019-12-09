@@ -12,10 +12,12 @@ namespace AsaasClient.Core
     public class BaseManager
     {
         private readonly ApiSettings _settings;
+        private readonly int _apiVersion;
 
-        protected BaseManager(ApiSettings settings)
+        protected BaseManager(ApiSettings settings, int apiVersion)
         {
             _settings = settings;
+            _apiVersion = apiVersion;
         }
 
         protected async Task<ResponseObject<T>> PostAsync<T>(string resource, object payload)
@@ -78,7 +80,7 @@ namespace AsaasClient.Core
 
         private string BuildApiRoute(string resource)
         {
-            return $"/api/v{_settings.ApiVersion}/{resource}";
+            return $"/api/v{_apiVersion}/{resource}";
         }
 
         private string BuildParameters(Map queryMap = null)

@@ -14,4 +14,7 @@
     <Folder Include="Managers\" />
     <Folder Include="Models\Common\Enums\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AsaasClient.Core\AsaasClient.Core.csproj" />
+  </ItemGroup>
 </Project>
