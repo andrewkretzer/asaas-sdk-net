@@ -1,10 +1,28 @@
-﻿namespace AsaasClient.V3.Models.Customer
+﻿using AsaasClient.Core;
+
+namespace AsaasClient.V3.Models.Customer
 {
-    public class CustomerListFilter
+    public class CustomerListFilter : Map
     {
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string CpfCnpj { get; set; }
-        public string ExternalReference { get; set; }
+        public string Name
+        {
+            get => this["name"];
+            set => Add("name", value);
+        }
+        public string Email
+        {
+            get => this["email"];
+            set => Add("email", value);
+        }
+        public string CpfCnpj
+        {
+            get => this["cpfCnpj"];
+            set => Add("cpfCnpj", value);
+        }
+        public string ExternalReference
+        {
+            get => this["externalReference"];
+            set => Add("externalReference", value);
+        }
     }
 }

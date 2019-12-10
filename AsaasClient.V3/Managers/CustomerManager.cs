@@ -35,10 +35,7 @@ namespace AsaasClient.V3.Managers
 
             if (filter != null)
             {
-                if (!string.IsNullOrEmpty(filter.Name)) queryMap.Add("name", filter.Name);
-                if (!string.IsNullOrEmpty(filter.Email)) queryMap.Add("email", filter.Email);
-                if (!string.IsNullOrEmpty(filter.CpfCnpj)) queryMap.Add("cpfCnpj", filter.CpfCnpj);
-                if (!string.IsNullOrEmpty(filter.ExternalReference)) queryMap.Add("externalReference", filter.ExternalReference);
+                queryMap.AddRange(filter);
             }
 
             var responseList = await GetListAsync<RetrievedCustomer>(CUSTOMERS_URL, offset, limit, queryMap);
