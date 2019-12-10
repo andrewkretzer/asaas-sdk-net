@@ -19,9 +19,9 @@ namespace Sample
 
             Task.Run(async () =>
             {
-                ResponseList<RetrievedCustomer> listResult = await asaasApi.Customer.List(0, 10);
+                ResponseList<Customer> listResult = await asaasApi.Customer.List(0, 10);
 
-                ResponseObject<RetrievedCustomer> objectResult = await asaasApi.Customer.Find(listResult.Data[0].Id);
+                ResponseObject<Customer> objectResult = await asaasApi.Customer.Find(listResult.Data[0].Id);
 
                 var teste = await asaasApi.Customer.Create(new CreateCustomerRequest());
 

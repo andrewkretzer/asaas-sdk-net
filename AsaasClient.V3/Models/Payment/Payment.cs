@@ -4,10 +4,11 @@ using AsaasClient.V3.Models.Payment.Enums;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
+using System.Collections.Generic;
 
-namespace AsaasClient.V3.Models.Payment.Base
+namespace AsaasClient.V3.Models.Payment
 {
-    public class BasePaymentResponse
+    public class Payment
     {
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
@@ -91,5 +92,11 @@ namespace AsaasClient.V3.Models.Payment.Base
 
         [JsonProperty(PropertyName = "anticipated")]
         public bool Anticipated { get; set; }
+
+        [JsonProperty(PropertyName = "creditCard")]
+        public CreditCard CreditCard { get; set; }
+
+        [JsonProperty(PropertyName = "split")]
+        public List<Split> Split { get; set; }
     }
 }

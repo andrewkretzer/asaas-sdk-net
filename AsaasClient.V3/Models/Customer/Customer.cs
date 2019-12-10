@@ -3,9 +3,9 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
 
-namespace AsaasClient.V3.Models.Customer.Base
+namespace AsaasClient.V3.Models.Customer
 {
-    public abstract class BaseCustomerResponse
+    public abstract class Customer
     {
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }

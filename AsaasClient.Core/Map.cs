@@ -3,9 +3,9 @@ using System.Linq;
 
 namespace AsaasClient.Core
 {
-    public class Map : Dictionary<string, string>
+    public class Map : Dictionary<string, object>
     {
-        public void Add(string key, object value)
+        public new void Add(string key, object value)
         {
             base.Add(key, value.ToString());
         }
