@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace AsaasClient.Core
 {
@@ -14,6 +15,24 @@ namespace AsaasClient.Core
             foreach (var value in valueList)
             {
                 Add(key, value);
+            }
+        }
+
+        public void AddRange(Map map)
+        {
+            map.Keys.ToList().ForEach(key => Add(key, map[key]));
+        }
+
+        public new string this[string key]
+        {
+            get
+            {
+                if (ContainsKey(key))
+                {
+                    return this[key];
+                }
+
+                return null;
             }
         }
     }
