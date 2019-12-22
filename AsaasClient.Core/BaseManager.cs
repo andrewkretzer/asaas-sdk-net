@@ -21,11 +21,12 @@ namespace AsaasClient.Core
             _apiVersion = apiVersion;
         }
 
-        protected async Task<ResponseObject<T>> PostAsync<T>(string resource, Map parameters)
+        protected async Task<ResponseObject<T>> PostAsync<T>(string resource, RequestParameters parameters)
         {
             JObject jObject = new JObject();
 
-            parameters.Keys.ToList().ForEach(key => {
+            parameters.Keys.ToList().ForEach(key =>
+            {
                 jObject.Add(key, parameters[key]);
             });
 
@@ -56,15 +57,15 @@ namespace AsaasClient.Core
             return await BuildResponseObject<T>(response);
         }
 
-        protected async Task<ResponseList<T>> GetListAsync<T>(string resource, int offset, int limit, Map queryMap = null)
+        protected async Task<ResponseList<T>> GetListAsync<T>(string resource, int offset, int limit, RequestParameters parameters = null)
         {
             using var httpClient = BuildHttpClient();
 
-            if (queryMap == null) queryMap = new Map();
-            queryMap.Add("offset", offset);
-            queryMap.Add("limit", limit);
+            if (parameters == null) parameters = new RequestParameters();
+            parameters.Add("offset", offset);
+            parameters.Add("limit", limit);
 
-            resource += BuildParameters(queryMap);
+            resource += BuildParameters(parameters);
             var response = await httpClient.GetAsync(BuildApiRoute(resource));
 
             return await BuildResponseList<T>(response);
@@ -95,23 +96,27 @@ namespace AsaasClient.Core
             return $"/api/v{_apiVersion}/{resource}";
         }
 
-        private string BuildParameters(Map queryMap = null)
+        private string BuildParameters(RequestParameters parameters = null)
         {
-            if (queryMap == null || queryMap.Count == 0) return string.Empty;
+            if (parameters == null || parameters.Count == 0) return string.Empty;
 
-            string parameters = "?";
+            string queryString = "?";
 
-            foreach (var key in queryMap.Keys)
+            foreach (var key in parameters.Keys)
             {
-                parameters += $"{key}={Uri.EscapeDataString(queryMap[key])}";
-
-                if (key != queryMap.Keys.Last())
+                try
                 {
-                    parameters += "&";
+                    queryString += $"{key}={Uri.EscapeDataString(parameters[key])}";
+                } catch (Exception)
+                {
+                }
+                if (key != parameters.Keys.Last())
+                {
+                    queryString += "&";
                 }
             }
 
-            return parameters;
+            return queryString;
         }
 
         private Uri BuildBaseAddress()

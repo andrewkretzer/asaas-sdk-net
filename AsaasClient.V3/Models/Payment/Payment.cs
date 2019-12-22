@@ -61,10 +61,10 @@ namespace AsaasClient.V3.Models.Payment
         public DateTime OriginalDueDate { get; set; }
 
         [JsonProperty(PropertyName = "originalValue")]
-        public decimal OriginalValue { get; set; }
+        public decimal? OriginalValue { get; set; }
 
         [JsonProperty(PropertyName = "interestValue")]
-        public decimal InterestValue { get; set; }
+        public decimal? InterestValue { get; set; }
 
         [JsonProperty(PropertyName = "confirmedDate")]
         public DateTime? ConfirmedDate { get; set; }

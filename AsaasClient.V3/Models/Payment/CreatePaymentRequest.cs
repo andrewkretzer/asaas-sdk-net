@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace AsaasClient.V3.Models.Payment
 {
-    public abstract class CreatePaymentRequest
+    public class CreatePaymentRequest
     {
         [JsonProperty(PropertyName = "customer")]
         public string CustomerId { get; set; }
@@ -20,7 +20,7 @@ namespace AsaasClient.V3.Models.Payment
         public decimal Value { get; set; }
 
         [JsonProperty(PropertyName = "dueDate")]
-        public DateTime DueDate { get; set; }
+        public DateTime? DueDate { get; set; }
 
         [JsonProperty(PropertyName = "description")]
         public string Description { get; set; }

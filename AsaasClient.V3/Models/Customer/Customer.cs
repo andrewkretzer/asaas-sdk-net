@@ -5,7 +5,7 @@ using System;
 
 namespace AsaasClient.V3.Models.Customer
 {
-    public abstract class Customer
+    public class Customer
     {
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
@@ -63,7 +63,7 @@ namespace AsaasClient.V3.Models.Customer
         public bool Deleted { get; set; }
 
         [JsonProperty(PropertyName = "city")]
-        public long City { get; set; }
+        public long? CityId { get; set; }
 
         [JsonProperty(PropertyName = "state")]
         public string State { get; set; }

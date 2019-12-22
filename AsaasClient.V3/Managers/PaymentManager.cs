@@ -24,7 +24,7 @@ namespace AsaasClient.V3.Managers
 
         public async Task<ResponseList<Payment>> List(int offset, int limit, PaymentListFilter filter = null)
         {
-            var queryMap = new Map();
+            var queryMap = new RequestParameters();
 
             if (filter != null)
             {
@@ -81,7 +81,7 @@ namespace AsaasClient.V3.Managers
 
             var url = $"{PAYMENTS_URL}/{paymentId}/receiveInCash";
 
-            Map parameters = new Map
+            RequestParameters parameters = new RequestParameters
             {
                 { "paymentDate", paymentDate },
                 { "value", value },
