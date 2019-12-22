@@ -4,6 +4,7 @@ using AsaasClient.V3;
 using AsaasClient.V3.Models.Common;
 using AsaasClient.V3.Models.Customer;
 using AsaasClient.V3.Models.Payment;
+using AsaasClient.V3.Models.Payment.Enums;
 using System;
 using System.Threading.Tasks;
 
@@ -70,13 +71,26 @@ namespace Sample
             var paymentFilter = new PaymentListFilter
             {
                 CustomerId = customerSuccess.Data.Id,
-                PaymentDateGE = DateTime.Now
+                PaymentDateGE = DateTime.Now,
+                Status = PaymentStatus.CONFIRMED
             };
             paymentFilter.Add("my_custom_filter", "zezinho");
 
             paymentFilter.Add("my_custom_filter", "zezinho 2");
             paymentFilter.Add("my_custom_filter 2", DateTime.Now);
 
+
+            var asdasdasd = paymentFilter.PaymentDateGE;
+            var wkeoq = paymentFilter.SubscriptionId;
+
+
+            var qweqwe = paymentFilter.Status;
+
+            var oaskdo = paymentFilter.Anticipated;
+
+            paymentFilter.Anticipated = true;
+
+            var alalal = paymentFilter.Anticipated;
 
             paymentFilter.PaymentDateGE = null;
 

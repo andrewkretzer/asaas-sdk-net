@@ -105,7 +105,7 @@ namespace AsaasClient.Core
                 return default;
             }
 
-            if (typeof(T) == typeof(Enum))
+            if (typeof(T).IsEnum || typeof(T).IsNullableEnum())
             {
                 return EnumUtils.Parse<T>(this[key].ToString());
             }
