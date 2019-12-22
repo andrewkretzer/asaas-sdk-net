@@ -12,9 +12,9 @@ namespace AsaasClient.V3.Managers
 
         public PaymentManager(ApiSettings settings) : base(settings, 3) { }
 
-        public async Task<ResponseObject<CreatePaymentRequest>> Create(CreatePaymentRequest requestObj)
+        public async Task<ResponseObject<Payment>> Create(CreatePaymentRequest requestObj)
         {
-            return await PostAsync<CreatePaymentRequest>(PAYMENTS_URL, requestObj);
+            return await PostAsync<Payment>(PAYMENTS_URL, requestObj);
         }
 
         public async Task<ResponseObject<Payment>> Find(string id)
