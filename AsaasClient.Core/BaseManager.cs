@@ -104,12 +104,8 @@ namespace AsaasClient.Core
 
             foreach (var key in parameters.Keys)
             {
-                try
-                {
-                    queryString += $"{key}={Uri.EscapeDataString(parameters[key])}";
-                } catch (Exception)
-                {
-                }
+                queryString += $"{key}={Uri.EscapeDataString(parameters[key])}";
+
                 if (key != parameters.Keys.Last())
                 {
                     queryString += "&";
