@@ -122,5 +122,24 @@ namespace AsaasClient.Core
 
             return (T)(object)this[key];
         }
+
+        public string Build()
+        {
+            if (Count == 0) return string.Empty;
+
+            string queryString = "?";
+
+            foreach (var key in Keys)
+            {
+                queryString += $"{key}={Uri.EscapeDataString(this[key])}";
+
+                if (key != Keys.Last())
+                {
+                    queryString += "&";
+                }
+            }
+
+            return queryString;
+        }
     }
 }

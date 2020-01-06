@@ -65,7 +65,7 @@ namespace AsaasClient.Core
             parameters.Add("offset", offset);
             parameters.Add("limit", limit);
 
-            resource += BuildParameters(parameters);
+            resource += parameters.Build();
             var response = await httpClient.GetAsync(BuildApiRoute(resource));
 
             return await BuildResponseList<T>(response);
@@ -94,25 +94,6 @@ namespace AsaasClient.Core
         private string BuildApiRoute(string resource)
         {
             return $"/api/v{_apiVersion}/{resource}";
-        }
-
-        private string BuildParameters(RequestParameters parameters = null)
-        {
-            if (parameters == null || parameters.Count == 0) return string.Empty;
-
-            string queryString = "?";
-
-            foreach (var key in parameters.Keys)
-            {
-                queryString += $"{key}={Uri.EscapeDataString(parameters[key])}";
-
-                if (key != parameters.Keys.Last())
-                {
-                    queryString += "&";
-                }
-            }
-
-            return queryString;
         }
 
         private Uri BuildBaseAddress()
