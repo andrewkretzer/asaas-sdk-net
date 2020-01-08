@@ -4,9 +4,9 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
 
-namespace AsaasClient.V3.Models.Payment.Base
+namespace AsaasClient.V3.Models.Payment
 {
-    public abstract class BaseCreatePaymentRequest
+    public class UpdatePaymentRequest
     {
         [JsonProperty(PropertyName = "customer")]
         public string CustomerId { get; set; }
@@ -23,9 +23,6 @@ namespace AsaasClient.V3.Models.Payment.Base
 
         [JsonProperty(PropertyName = "description")]
         public string Description { get; set; }
-
-        [JsonProperty(PropertyName = "externalReference")]
-        public string ExternalReference { get; set; }
 
         [JsonProperty(PropertyName = "installmentCount")]
         public int InstallmentCount { get; set; }

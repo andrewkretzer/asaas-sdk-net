@@ -2,5 +2,5 @@
 
 namespace AsaasClient.V3.Models.Payment
 {
-    public class PaymentDeleted : BaseDeleted { }
+    public class DeletedPayment : BaseDeleted { }
 }

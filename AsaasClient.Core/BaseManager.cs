@@ -1,5 +1,6 @@
 ﻿using AsaasClient.Core.Response;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Linq;
 using System.Net.Http;
@@ -18,6 +19,17 @@ namespace AsaasClient.Core
         {
             _settings = settings;
             _apiVersion = apiVersion;
+        }
+
+        protected async Task<ResponseObject<T>> PostAsync<T>(string resource, Map parameters)
+        {
+            JObject jObject = new JObject();
+
+            parameters.Keys.ToList().ForEach(key => {
+                jObject.Add(key, parameters[key]);
+            });
+
+            return await PostAsync<T>(resource, jObject);
         }
 
         protected async Task<ResponseObject<T>> PostAsync<T>(string resource, object payload)
