@@ -100,7 +100,7 @@ namespace AsaasClient.Core
 
         public T Get<T>(string key)
         {
-            if (string.IsNullOrEmpty(this[key]))
+            if (string.IsNullOrWhiteSpace(this[key]))
             {
                 return default;
             }
