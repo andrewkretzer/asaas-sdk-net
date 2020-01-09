@@ -11,6 +11,11 @@ namespace AsaasClient.Core.Utils
                 return default;
             }
 
+            if (typeof(T).IsNullableEnum())
+            {
+                return (T) Enum.Parse(Nullable.GetUnderlyingType(typeof(T)), @enum);
+            }
+
             return (T)Enum.Parse(typeof(T), @enum);
         }
     }

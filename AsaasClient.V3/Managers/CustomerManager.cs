@@ -31,7 +31,7 @@ namespace AsaasClient.V3.Managers
 
         public async Task<ResponseList<Customer>> List(int offset, int limit, CustomerListFilter filter = null)
         {
-            var queryMap = new Map();
+            var queryMap = new RequestParameters();
 
             if (filter != null)
             {
