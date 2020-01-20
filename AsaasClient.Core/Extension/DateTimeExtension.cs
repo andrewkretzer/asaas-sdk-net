@@ -2,7 +2,7 @@
 
 namespace AsaasClient.Core.Extension
 {
-    public static class DateTimeExternsions
+    public static class DateTimeExtension
     {
         public static string ToApiRequest(this DateTime dateTime)
         {
