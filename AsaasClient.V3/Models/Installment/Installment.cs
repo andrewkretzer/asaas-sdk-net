@@ -35,5 +35,7 @@ namespace AsaasClient.V3.Models.Installment
         [JsonProperty(PropertyName = "customer")]
         public string CustomerId { get; set; }
 
+        [JsonProperty(PropertyName = "deleted")]
+        public bool Deleted { get; set; }
     }
 }
