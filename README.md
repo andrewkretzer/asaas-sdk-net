@@ -1,30 +1,31 @@
+
 # Asaas SDK for .NET
 
-<p align="center">
-<img src="https://img.shields.io/badge/Platform-.NET-lightgrey.svg" style="max-height: 300px;" alt="Platform: iOS">
+<p align="start">
+<img src="https://img.shields.io/badge/Platform-.NET-lightgrey.svg" style="max-height: 300px;">
 <img src="https://img.shields.io/badge/.NETCore-3.0-ff69b4.svg" style="max-height: 300px;">
 </p>
 
 The **Asaas SDK for .NET** enables .NET developers to easily work with [Asaas](https://asaasv3.docs.apiary.io) services.
 
 ## Documentation
-	
-## Implementing
 
-#### AsaasClient
+To make any requests, you must generate your Access Token in the Asaas environment you want to use.
+During the testing period we recommend using the [Sandbox](https://sandbox.asaas.com) environment provided by Asaas.
+For more information, access the authentication section of the [Asaas documentation](https://asaasv3.docs.apiary.io/#introduction/autenticacao)
+
+### First Step:
+
+Initialize an `ApiSettings` object with the Access Token provided by Asaas and the environment where it was generated. e.g:
 
 ```csharp
-using System;
+ApiSettings apiSettings = new ApiSettings("YOUR_ACCESS_TOKEN", AsaasEnvironment.SANDBOX);
+```
 
-namespace Example
-{
-    class Program
-    {
-        public void Main()
-        {
-        }
-    }
-}
+### Second Step
+
+```csharp
+AsaasApi asaasApi = new AsaasApi(apiSettings);
 ```
 
 ## Installation
