@@ -18,6 +18,9 @@ namespace AsaasClient.V3.Models.Invoice
         [JsonProperty(PropertyName = "customer")]
         public string CustomerId { get; set; }
 
+        [JsonProperty(PropertyName = "payment")]
+        public string PaymentId { get; set; }
+
         [JsonProperty(PropertyName = "installment")]
         public string InstallmentId { get; set; }
 
