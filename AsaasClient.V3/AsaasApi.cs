@@ -17,6 +17,7 @@ namespace AsaasClient.V3
         private Lazy<WebhookManager> LazyWebhook { get; }
         private Lazy<AsaasAccountManager> LazyAsaasAccount { get; }
         private Lazy<ReceivableAnticipationManager> LazyReceivableAnticipation { get; }
+        private Lazy<MyAccountManager> LazyMyAccount { get; }
         #endregion
 
         #region Managers
@@ -30,6 +31,7 @@ namespace AsaasClient.V3
         public WebhookManager Webhook => LazyWebhook.Value;
         public AsaasAccountManager AsaasAccount => LazyAsaasAccount.Value;
         public ReceivableAnticipationManager ReceivableAnticipation => LazyReceivableAnticipation.Value;
+        public MyAccountManager MyAccount => LazyMyAccount.Value;
         #endregion
 
         public AsaasApi(ApiSettings apiSettings)
@@ -44,6 +46,7 @@ namespace AsaasClient.V3
             LazyWebhook = new Lazy<WebhookManager>(() => new WebhookManager(apiSettings), true);
             LazyAsaasAccount = new Lazy<AsaasAccountManager>(() => new AsaasAccountManager(apiSettings), true);
             LazyReceivableAnticipation = new Lazy<ReceivableAnticipationManager>(() => new ReceivableAnticipationManager(apiSettings), true);
+            LazyMyAccount = new Lazy<MyAccountManager>(() => new MyAccountManager(apiSettings), true);
         }
     }
 }
