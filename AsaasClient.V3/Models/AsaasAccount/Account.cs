@@ -1,5 +1,4 @@
-﻿using AsaasClient.V3.Models.AsaasAccount.Enums;
-using AsaasClient.V3.Models.Common.Enums;
+﻿using AsaasClient.V3.Models.Common.Enums;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 

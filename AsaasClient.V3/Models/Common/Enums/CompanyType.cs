@@ -1,4 +1,4 @@
-﻿namespace AsaasClient.V3.Models.AsaasAccount.Enums
+﻿namespace AsaasClient.V3.Models.Common.Enums
 {
     public enum CompanyType
     {
