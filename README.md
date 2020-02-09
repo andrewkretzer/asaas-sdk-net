@@ -14,18 +14,26 @@ To make any requests, you must generate your Access Token in the Asaas environme
 During the testing period we recommend using the [Sandbox](https://sandbox.asaas.com) environment provided by Asaas.
 For more information, access the authentication section of the [Asaas documentation](https://asaasv3.docs.apiary.io/#introduction/autenticacao)
 
-### First Step:
-
-Initialize an `ApiSettings` object with the Access Token provided by Asaas and the environment where it was generated. e.g:
+### Example
 
 ```csharp
 ApiSettings apiSettings = new ApiSettings("YOUR_ACCESS_TOKEN", AsaasEnvironment.SANDBOX);
-```
 
-### Second Step
-
-```csharp
 AsaasApi asaasApi = new AsaasApi(apiSettings);
+
+ResponseObject<Customer> customerResponse = await asaasApi.Customer.Find("cus_13bFHumeyglN");
+
+if (customerResponse.StatusCode == HttpStatusCode.OK)
+{
+    ResponseObject<Payment> paymentResponse = await asaasApi.Payment.Create(new CreatePaymentRequest()
+    {
+        CustomerId = customerResponse.Data.Id,
+        BillingType = BillingType.BOLETO,
+        Value = 32.55M,
+        DueDate = DateTime.Parse("12/12/2020")
+    });
+}
+
 ```
 
 ## Installation
