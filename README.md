@@ -23,7 +23,7 @@ AsaasApi asaasApi = new AsaasApi(apiSettings);
 
 ResponseObject<Customer> customerResponse = await asaasApi.Customer.Find("cus_13bFHumeyglN");
 
-if (customerResponse.StatusCode == HttpStatusCode.OK)
+if (customerResponse.StatusCode.isOk())
 {
     ResponseObject<Payment> paymentResponse = await asaasApi.Payment.Create(new CreatePaymentRequest()
     {
