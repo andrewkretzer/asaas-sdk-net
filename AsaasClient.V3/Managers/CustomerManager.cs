@@ -24,7 +24,8 @@ namespace AsaasClient.V3.Managers
         {
             if (string.IsNullOrWhiteSpace(customerId)) throw new ArgumentException("customerId is required");
 
-            var responseObject = await GetAsync<Customer>(CUSTOMERS_URL, customerId);
+            var url = $"{CUSTOMERS_URL}/{customerId}";
+            var responseObject = await GetAsync<Customer>(url);
 
             return responseObject;
         }
