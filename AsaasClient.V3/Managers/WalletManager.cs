@@ -11,9 +11,9 @@ namespace AsaasClient.V3.Managers
 
         public WalletManager(ApiSettings settings) : base(settings, 3) { }
 
-        public async Task<ResponseList<Wallet>> List()
+        public async Task<ResponseList<Wallet>> List(int offset, int limit)
         {
-            var responseList = await GetListAsync<Wallet>(WALLET_URL, 0, 0);
+            var responseList = await GetListAsync<Wallet>(WALLET_URL, offset, limit);
 
             return responseList;
         }
