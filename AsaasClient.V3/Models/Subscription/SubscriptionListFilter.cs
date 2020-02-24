@@ -19,8 +19,8 @@ namespace AsaasClient.V3.Models.Subscription
 
         public bool? IncludeDeleted
         {
-            get => Get<bool?>("anticipated");
-            set => Add("anticipated", value);
+            get => Get<bool?>("includeDeleted");
+            set => Add("includeDeleted", value);
         }
     }
 }

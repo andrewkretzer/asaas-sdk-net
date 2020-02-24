@@ -21,7 +21,8 @@ namespace AsaasClient.V3.Managers
 
         public async Task<ResponseObject<Subscription>> Find(string subscriptionId)
         {
-            return await GetAsync<Subscription>(SUBSCRIPTIONS_URL, subscriptionId);
+            var url = $"{SUBSCRIPTIONS_URL}/{subscriptionId}";
+            return await GetAsync<Subscription>(url);
         }
 
         public async Task<ResponseList<Subscription>> List(int offset, int limit, SubscriptionListFilter filter = null)
@@ -101,7 +102,7 @@ namespace AsaasClient.V3.Managers
             if (string.IsNullOrWhiteSpace(subscriptionId)) throw new ArgumentException("subscriptionId is required");
 
             var url = $"{SUBSCRIPTIONS_URL}/{subscriptionId}/invoiceSettings";
-            var responseObject = await GetAsync<SubscriptionInvoiceSettings>(url, subscriptionId, false);
+            var responseObject = await GetAsync<SubscriptionInvoiceSettings>(url);
 
             return responseObject;
         }
