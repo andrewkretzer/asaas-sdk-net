@@ -25,9 +25,11 @@ ResponseObject<Customer> customerResponse = await asaasApi.Customer.Find("cus_13
 
 if (customerResponse.StatusCode.isOk())
 {
+    Customer customer = customerResponse.Data;
+
     ResponseObject<Payment> paymentResponse = await asaasApi.Payment.Create(new CreatePaymentRequest()
     {
-        CustomerId = customerResponse.Data.Id,
+        CustomerId = customer.Id,
         BillingType = BillingType.BOLETO,
         Value = 32.55M,
         DueDate = DateTime.Parse("12/12/2020")
