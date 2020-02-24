@@ -33,7 +33,7 @@ namespace AsaasClient.V3.Models.Subscription
 
         [JsonProperty(PropertyName = "cycle")]
         [JsonConverter(typeof(StringEnumConverter))]
-        public Cycle Cycle { get; set; }
+        public Cycle? Cycle { get; set; }
 
         [JsonProperty(PropertyName = "description")]
         public string Description { get; set; }
