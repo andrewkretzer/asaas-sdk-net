@@ -11,7 +11,7 @@ namespace AsaasClient.V3
         private Lazy<PaymentManager> LazyPayment { get; }
         private Lazy<InstallmentManager> LazyInstallment { get; }
         private Lazy<SubscriptionManager> LazySubscription { get; }
-        private Lazy<FinanceManager> LazyFinance{ get; }
+        private Lazy<FinanceManager> LazyFinance { get; }
         private Lazy<TransferManager> LazyTransfer { get; }
         private Lazy<WalletManager> LazyWallet { get; }
         #endregion

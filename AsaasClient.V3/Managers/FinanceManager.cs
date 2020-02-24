@@ -13,7 +13,7 @@ namespace AsaasClient.V3.Managers
         public async Task<ResponseObject<decimal>> Balance()
         {
             var url = $"{FINANCE_URL}/getCurrentBalance";
-            var responseObject = await GetAsync<decimal>(url, null, false);
+            var responseObject = await GetAsync<decimal>(url);
 
             return responseObject;
         }

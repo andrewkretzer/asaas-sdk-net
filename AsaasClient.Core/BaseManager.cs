@@ -47,11 +47,9 @@ namespace AsaasClient.Core
             return await BuildResponseObject<T>(response);
         }
 
-        protected async Task<ResponseObject<T>> GetAsync<T>(string resource, string id, bool buildResourceUrl = true)
+        protected async Task<ResponseObject<T>> GetAsync<T>(string resource)
         {
             using var httpClient = BuildHttpClient();
-
-            if (buildResourceUrl) resource += $"/{id}";
 
             var response = await httpClient.GetAsync(BuildApiRoute(resource));
 
