@@ -47,11 +47,10 @@ namespace AsaasClient.Core
             return await BuildResponseObject<T>(response);
         }
 
-        protected async Task<ResponseObject<T>> GetAsync<T>(string resource, string id)
+        protected async Task<ResponseObject<T>> GetAsync<T>(string resource)
         {
             using var httpClient = BuildHttpClient();
 
-            resource += $"/{id}";
             var response = await httpClient.GetAsync(BuildApiRoute(resource));
 
             return await BuildResponseObject<T>(response);
@@ -71,11 +70,12 @@ namespace AsaasClient.Core
             return await BuildResponseList<T>(response);
         }
 
-        protected async Task<ResponseObject<T>> DeleteAsync<T>(string resource, string id)
+        protected async Task<ResponseObject<T>> DeleteAsync<T>(string resource, string id, bool buildResourceUrl = true)
         {
             using var httpClient = BuildHttpClient();
 
-            resource += $"/{id}";
+            if (buildResourceUrl) resource += $"/{id}";
+
             var response = await httpClient.GetAsync(BuildApiRoute(resource));
 
             return await BuildResponseObject<T>(response);

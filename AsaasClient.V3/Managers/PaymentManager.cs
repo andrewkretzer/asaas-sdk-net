@@ -19,7 +19,8 @@ namespace AsaasClient.V3.Managers
 
         public async Task<ResponseObject<Payment>> Find(string id)
         {
-            return await GetAsync<Payment>(PAYMENTS_URL, id);
+            var url = $"{PAYMENTS_URL}/{id}";
+            return await GetAsync<Payment>(url);
         }
 
         public async Task<ResponseList<Payment>> List(int offset, int limit, PaymentListFilter filter = null)
