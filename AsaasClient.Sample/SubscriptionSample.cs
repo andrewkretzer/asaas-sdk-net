@@ -18,7 +18,7 @@ namespace AsaasClient.Sample
             this.asaasApi = asaasApi;
         }
 
-        public async Task<ResponseObject<Subscription>> failOnCreate()
+        public async Task<ResponseObject<Subscription>> FailOnCreate()
         {
             var request = new CreateSubscriptionRequest();
 
