@@ -30,7 +30,7 @@ namespace AsaasClient.V3.Models.Invoice
             set => Add("installment", value);
         }
 
-        public InvoiceStatus? InvoiceStatus
+        public InvoiceStatus? Status
         {
             get => Get<InvoiceStatus?>("status");
             set => Add("status", value);
