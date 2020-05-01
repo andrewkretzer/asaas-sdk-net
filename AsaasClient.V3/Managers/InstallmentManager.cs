@@ -14,7 +14,8 @@ namespace AsaasClient.V3.Managers
 
         public async Task<ResponseObject<Installment>> Find(string installmentId)
         {
-            return await GetAsync<Installment>(INSTALLMENTS_URL, installmentId);
+            var url = $"{INSTALLMENTS_URL}/{installmentId}";
+            return await GetAsync<Installment>(url);
         }
 
         public async Task<ResponseList<Installment>> List(int offset, int limit)
