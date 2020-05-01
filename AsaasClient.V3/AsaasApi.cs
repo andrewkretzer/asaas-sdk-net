@@ -15,6 +15,7 @@ namespace AsaasClient.V3
         private Lazy<TransferManager> LazyTransfer { get; }
         private Lazy<WalletManager> LazyWallet { get; }
         private Lazy<WebhookManager> LazyWebhook { get; }
+        private Lazy<AsaasAccountManager> LazyAsaasAccount { get; }
         #endregion
 
         #region Managers
@@ -26,6 +27,7 @@ namespace AsaasClient.V3
         public TransferManager Transfer => LazyTransfer.Value;
         public WalletManager Wallet => LazyWallet.Value;
         public WebhookManager Webhook => LazyWebhook.Value;
+        public AsaasAccountManager AsaasAccount => LazyAsaasAccount.Value;
         #endregion
 
         public AsaasApi(ApiSettings apiSettings)
@@ -38,6 +40,7 @@ namespace AsaasClient.V3
             LazyTransfer = new Lazy<TransferManager>(() => new TransferManager(apiSettings), true);
             LazyWallet = new Lazy<WalletManager>(() => new WalletManager(apiSettings), true);
             LazyWebhook = new Lazy<WebhookManager>(() => new WebhookManager(apiSettings), true);
+            LazyAsaasAccount = new Lazy<AsaasAccountManager>(() => new AsaasAccountManager(apiSettings), true);
         }
     }
 }
