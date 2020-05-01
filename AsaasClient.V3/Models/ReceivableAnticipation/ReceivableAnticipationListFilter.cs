@@ -5,7 +5,7 @@ namespace AsaasClient.V3.Models.ReceivableAnticipation
 {
     public class ReceivableAnticipationListFilter : RequestParameters
     {
-        public ReceivableAnticipationStatus? ReceivableAnticipationStatus
+        public ReceivableAnticipationStatus? Status
         {
             get => Get<ReceivableAnticipationStatus?>("status");
             set => Add("status", value);
