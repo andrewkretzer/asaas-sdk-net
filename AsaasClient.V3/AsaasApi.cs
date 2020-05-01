@@ -12,6 +12,8 @@ namespace AsaasClient.V3
         private Lazy<InstallmentManager> LazyInstallment { get; }
         private Lazy<SubscriptionManager> LazySubscription { get; }
         private Lazy<FinanceManager> LazyFinance { get; }
+        private Lazy<TransferManager> LazyTransfer { get; }
+        private Lazy<WalletManager> LazyWallet { get; }
         #endregion
 
         #region Managers
@@ -20,6 +22,8 @@ namespace AsaasClient.V3
         public InstallmentManager Installment => LazyInstallment.Value;
         public SubscriptionManager Subscription => LazySubscription.Value;
         public FinanceManager Finance => LazyFinance.Value;
+        public TransferManager Transfer => LazyTransfer.Value;
+        public WalletManager Wallet => LazyWallet.Value;
         #endregion
 
         public AsaasApi(ApiSettings apiSettings)
@@ -29,6 +33,8 @@ namespace AsaasClient.V3
             LazyInstallment = new Lazy<InstallmentManager>(() => new InstallmentManager(apiSettings), true);
             LazySubscription = new Lazy<SubscriptionManager>(() => new SubscriptionManager(apiSettings), true);
             LazyFinance = new Lazy<FinanceManager>(() => new FinanceManager(apiSettings), true);
+            LazyTransfer = new Lazy<TransferManager>(() => new TransferManager(apiSettings), true);
+            LazyWallet = new Lazy<WalletManager>(() => new WalletManager(apiSettings), true);
         }
     }
 }
