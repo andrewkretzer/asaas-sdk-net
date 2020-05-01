@@ -16,6 +16,7 @@ namespace AsaasClient.V3
         private Lazy<WalletManager> LazyWallet { get; }
         private Lazy<WebhookManager> LazyWebhook { get; }
         private Lazy<AsaasAccountManager> LazyAsaasAccount { get; }
+        private Lazy<ReceivableAnticipationManager> LazyReceivableAnticipation { get; }
         #endregion
 
         #region Managers
@@ -28,6 +29,7 @@ namespace AsaasClient.V3
         public WalletManager Wallet => LazyWallet.Value;
         public WebhookManager Webhook => LazyWebhook.Value;
         public AsaasAccountManager AsaasAccount => LazyAsaasAccount.Value;
+        public ReceivableAnticipationManager ReceivableAnticipation => LazyReceivableAnticipation.Value;
         #endregion
 
         public AsaasApi(ApiSettings apiSettings)
@@ -41,6 +43,7 @@ namespace AsaasClient.V3
             LazyWallet = new Lazy<WalletManager>(() => new WalletManager(apiSettings), true);
             LazyWebhook = new Lazy<WebhookManager>(() => new WebhookManager(apiSettings), true);
             LazyAsaasAccount = new Lazy<AsaasAccountManager>(() => new AsaasAccountManager(apiSettings), true);
+            LazyReceivableAnticipation = new Lazy<ReceivableAnticipationManager>(() => new ReceivableAnticipationManager(apiSettings), true);
         }
     }
 }
