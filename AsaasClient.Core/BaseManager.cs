@@ -2,8 +2,11 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +15,9 @@ namespace AsaasClient.Core
 {
     public class BaseManager
     {
+        private const string PRODUCTION_URL = "https://www.asaas.com";
+        private const string SANDBOX_URL = "https://sandbox.asaas.com";
+
         private readonly ApiSettings _settings;
         private readonly int _apiVersion;
 
@@ -19,6 +25,37 @@ namespace AsaasClient.Core
         {
             _settings = settings;
             _apiVersion = apiVersion;
+        }
+
+        protected async Task<ResponseObject<T>> PostAsync<T>(string resource, RequestParameters parameters, List<string> files)
+        {
+            using var httpClient = BuildHttpClient();
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-www-form-urlencoded"));
+
+            using var multipartContent = new MultipartFormDataContent();
+
+            parameters.Keys.ToList().ForEach(key =>
+            {
+                multipartContent.Add(new StringContent(parameters[key].ToString()), key);
+            });
+            
+            foreach (var path in files)
+            {
+                if (!File.Exists(path)) continue;
+
+                using FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+
+                using StreamContent streamContent = new StreamContent(fileStream);
+
+                ByteArrayContent fileContent = new ByteArrayContent(await streamContent.ReadAsByteArrayAsync());
+                fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
+
+                multipartContent.Add(fileContent, path, Path.GetFileName(path));
+            }
+
+            var response = await httpClient.PostAsync(BuildApiRoute(resource), multipartContent);
+
+            return await BuildResponseObject<T>(response);
         }
 
         protected async Task<ResponseObject<T>> PostAsync<T>(string resource, RequestParameters parameters)
@@ -47,9 +84,14 @@ namespace AsaasClient.Core
             return await BuildResponseObject<T>(response);
         }
 
-        protected async Task<ResponseObject<T>> GetAsync<T>(string resource)
+        protected async Task<ResponseObject<T>> GetAsync<T>(string resource, string id = null)
         {
             using var httpClient = BuildHttpClient();
+
+            if (!string.IsNullOrEmpty(id))
+            {
+                resource += $"/{id}";
+            }
 
             var response = await httpClient.GetAsync(BuildApiRoute(resource));
 
@@ -70,11 +112,14 @@ namespace AsaasClient.Core
             return await BuildResponseList<T>(response);
         }
 
-        protected async Task<ResponseObject<T>> DeleteAsync<T>(string resource, string id, bool buildResourceUrl = true)
+        protected async Task<ResponseObject<T>> DeleteAsync<T>(string resource, string id = null)
         {
             using var httpClient = BuildHttpClient();
 
-            if (buildResourceUrl) resource += $"/{id}";
+            if (!string.IsNullOrEmpty(id))
+            {
+                resource += $"/{id}";
+            }
 
             var response = await httpClient.GetAsync(BuildApiRoute(resource));
 
@@ -100,12 +145,12 @@ namespace AsaasClient.Core
         {
             if (_settings.AsaasEnvironment.IsProduction())
             {
-                return new Uri("https://www.asaas.com");
+                return new Uri(PRODUCTION_URL);
             }
 
             if (_settings.AsaasEnvironment.IsSandbox())
             {
-                return new Uri("https://sandbox.asaas.com");
+                return new Uri(SANDBOX_URL);
             }
 
             // Create custom exception ? AsaasEnvironmentNotSupportedException ?
