@@ -27,7 +27,7 @@ namespace AsaasClient.Core
             _apiVersion = apiVersion;
         }
 
-        protected async Task<ResponseObject<T>> PostAsync<T>(string resource, RequestParameters parameters, List<string> files)
+        protected async Task<ResponseObject<T>> PostAsync<T>(string resource, RequestParameters parameters, List<string> filePaths)
         {
             using var httpClient = BuildHttpClient();
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-www-form-urlencoded"));
@@ -39,10 +39,8 @@ namespace AsaasClient.Core
                 multipartContent.Add(new StringContent(parameters[key].ToString()), key);
             });
             
-            foreach (var path in files)
+            foreach (var path in filePaths)
             {
-                if (!File.Exists(path)) continue;
-
                 using FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
 
                 using StreamContent streamContent = new StreamContent(fileStream);
@@ -153,7 +151,6 @@ namespace AsaasClient.Core
                 return new Uri(SANDBOX_URL);
             }
 
-            // Create custom exception ? AsaasEnvironmentNotSupportedException ?
             throw new InvalidOperationException("AsaasEnvironment not supported");
         }
 

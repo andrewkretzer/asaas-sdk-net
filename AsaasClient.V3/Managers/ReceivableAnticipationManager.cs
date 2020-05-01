@@ -18,10 +18,10 @@ namespace AsaasClient.V3.Managers
             return responseObject;
         }
 
-        public async Task<ResponseObject<ReceivableAnticipation>> Simulate(SimulateReceivableAnticipationRequest requestObj)
+        public async Task<ResponseObject<SimulatedReceivableAnticipation>> Simulate(SimulateReceivableAnticipationRequest requestObj)
         {
             var url = $"{RECEIVABLE_ANTICIPATIONS_URL}/simulate";
-            var responseObject = await PostAsync<ReceivableAnticipation>(url, requestObj);
+            var responseObject = await PostAsync<SimulatedReceivableAnticipation>(url, requestObj);
 
             return responseObject;
         }

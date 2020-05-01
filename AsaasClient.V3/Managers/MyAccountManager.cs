@@ -14,7 +14,7 @@ namespace AsaasClient.V3.Managers
 
         public async Task<ResponseObject<MyAccount>> Find()
         {
-            var responseObject = await GetAsync<MyAccount>(MY_ACCOUNT_URL, null, false);
+            var responseObject = await GetAsync<MyAccount>(MY_ACCOUNT_URL);
 
             return responseObject;
         }
@@ -28,7 +28,7 @@ namespace AsaasClient.V3.Managers
 
         public async Task<ResponseObject<PaymentCheckoutConfig>> FindPaymentCheckoutConfig()
         {
-            var responseObject = await GetAsync<PaymentCheckoutConfig>(PAYMENT_CHECKOUT_CONFIG_URL, null, false);
+            var responseObject = await GetAsync<PaymentCheckoutConfig>(PAYMENT_CHECKOUT_CONFIG_URL);
 
             return responseObject;
         }

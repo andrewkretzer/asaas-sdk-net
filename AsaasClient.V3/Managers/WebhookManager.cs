@@ -36,7 +36,7 @@ namespace AsaasClient.V3.Managers
         public async Task<ResponseObject<Webhook>> FindInvoiceWebhook()
         {
             var url = $"{WEBHOOK_URL}/invoice";
-            var responseObject = await GetAsync<Webhook>(url, null, false);
+            var responseObject = await GetAsync<Webhook>(url);
 
             return responseObject;
         }
