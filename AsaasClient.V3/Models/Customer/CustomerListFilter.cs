@@ -27,5 +27,11 @@ namespace AsaasClient.V3.Models.Customer
             get => this["externalReference"];
             set => Add("externalReference", value);
         }
+
+        public string GroupName 
+        {
+            get => this["groupName"];
+            set => Add("groupName", value);
+        }
     }
 }

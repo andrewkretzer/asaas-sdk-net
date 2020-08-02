@@ -31,5 +31,8 @@ namespace AsaasClient.V3.Models.ReceivableAnticipation
 
         [JsonProperty(PropertyName = "value")]
         public decimal Value { get; set; }
+
+        [JsonProperty(PropertyName = "isDocumentationRequired")]
+        public bool IsDocumentationRequired { get; set; }
     }
 }

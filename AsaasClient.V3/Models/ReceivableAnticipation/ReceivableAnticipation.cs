@@ -26,6 +26,9 @@ namespace AsaasClient.V3.Models.ReceivableAnticipation
         [JsonProperty(PropertyName = "dueDate")]
         public DateTime DueDate { get; set; }
 
+        [JsonProperty(PropertyName = "requestDate")]
+        public DateTime RequestDate { get; set; }
+
         [JsonProperty(PropertyName = "anticipationDays")]
         public int AnticipationDays { get; set; }
 
