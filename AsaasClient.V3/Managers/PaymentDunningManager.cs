@@ -1,5 +1,6 @@
 ﻿using AsaasClient.Core;
 using AsaasClient.Core.Response;
+using AsaasClient.V3.Models.Common;
 using AsaasClient.V3.Models.PaymentDunning;
 using System;
 using System.Collections.Generic;
@@ -81,12 +82,12 @@ namespace AsaasClient.V3.Managers
             return responseList;
         }
 
-        public async Task<ResponseObject<PaymentDunning>> ResendDocument(string paymentDunningId, List<FileInfo> requestObj)
+        public async Task<ResponseObject<PaymentDunning>> ResendDocument(string paymentDunningId, List<AsaasFile> asaasFiles)
         {
             if (string.IsNullOrWhiteSpace(paymentDunningId)) throw new ArgumentException("paymentDunningId is required");
 
             var url = $"{PAYMENT_DUNNING_URL}/{paymentDunningId}/documents";
-            var responseObject = await PostAsync<PaymentDunning>(url, requestObj);
+            var responseObject = await PostMultipartFormDataContentAsync<PaymentDunning>(url, new { documents = asaasFiles });
 
             return responseObject;
         }
