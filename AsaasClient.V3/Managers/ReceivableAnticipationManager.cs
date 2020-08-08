@@ -14,7 +14,7 @@ namespace AsaasClient.V3.Managers
 
         public async Task<ResponseObject<ReceivableAnticipation>> Create(CreateReceivableAnticipationRequest requestObj)
         {
-            var responseObject = await PostAsync<ReceivableAnticipation>(RECEIVABLE_ANTICIPATIONS_URL, requestObj);
+            var responseObject = await PostMultipartFormDataContentAsync<ReceivableAnticipation>(RECEIVABLE_ANTICIPATIONS_URL, requestObj);
 
             return responseObject;
         }
