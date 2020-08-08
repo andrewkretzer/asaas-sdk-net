@@ -39,6 +39,7 @@ namespace AsaasClient.Core
             foreach (PropertyInfo prop in properties)
             {
                 string jsonPropertyName = prop.GetCustomAttribute<JsonPropertyAttribute>().PropertyName;
+                if (string.IsNullOrEmpty(jsonPropertyName)) jsonPropertyName = prop.Name;
 
                 if (prop.PropertyType.IsAssignableFrom(typeof(List<IAsaasFile>)))
                 {
