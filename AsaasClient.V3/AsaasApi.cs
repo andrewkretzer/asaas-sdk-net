@@ -19,6 +19,7 @@ namespace AsaasClient.V3
         private Lazy<ReceivableAnticipationManager> LazyReceivableAnticipation { get; }
         private Lazy<MyAccountManager> LazyMyAccount { get; }
         private Lazy<InvoiceManager> LazyInvoice { get; }
+        private Lazy<PaymentDunningManager> LazyPaymentDunning { get; }
         #endregion
 
         #region Managers
@@ -34,6 +35,7 @@ namespace AsaasClient.V3
         public ReceivableAnticipationManager ReceivableAnticipation => LazyReceivableAnticipation.Value;
         public MyAccountManager MyAccount => LazyMyAccount.Value;
         public InvoiceManager Invoice => LazyInvoice.Value;
+        public PaymentDunningManager PaymentDunning => LazyPaymentDunning.Value;
         #endregion
 
         public AsaasApi(ApiSettings apiSettings)
@@ -50,6 +52,7 @@ namespace AsaasClient.V3
             LazyReceivableAnticipation = new Lazy<ReceivableAnticipationManager>(() => new ReceivableAnticipationManager(apiSettings), true);
             LazyMyAccount = new Lazy<MyAccountManager>(() => new MyAccountManager(apiSettings), true);
             LazyInvoice = new Lazy<InvoiceManager>(() => new InvoiceManager(apiSettings), true);
+            LazyPaymentDunning = new Lazy<PaymentDunningManager>(() => new PaymentDunningManager(apiSettings), true);
         }
     }
 }
