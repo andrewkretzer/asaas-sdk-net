@@ -8,6 +8,7 @@ namespace AsaasClient.V3.Managers
     public class AsaasAccountManager : BaseManager
     {
         private const string ASAAS_ACCOUNT_URL = "/accounts";
+
         public AsaasAccountManager(ApiSettings settings) : base(settings, 3) { }
 
         public async Task<ResponseObject<Account>> Create(CreateAccountRequest requestObj)

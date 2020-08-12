@@ -9,6 +9,7 @@ namespace AsaasClient.V3.Managers
     public class ReceivableAnticipationManager : BaseManager
     {
         private const string RECEIVABLE_ANTICIPATIONS_URL = "/anticipations";
+
         public ReceivableAnticipationManager(ApiSettings settings) : base(settings, 3) { }
 
         public async Task<ResponseObject<ReceivableAnticipation>> Create(CreateReceivableAnticipationRequest requestObj)

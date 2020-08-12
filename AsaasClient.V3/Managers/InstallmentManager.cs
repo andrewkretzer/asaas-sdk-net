@@ -22,6 +22,7 @@ namespace AsaasClient.V3.Managers
         {
             return await GetListAsync<Installment>(INSTALLMENTS_URL, offset, limit);
         }
+
         public async Task<ResponseObject<DeletedInstallment>> Delete(string installmentId)
         {
             if (string.IsNullOrWhiteSpace(installmentId)) throw new ArgumentException("installmentId is required");

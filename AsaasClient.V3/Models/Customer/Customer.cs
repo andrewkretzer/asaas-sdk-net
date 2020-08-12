@@ -70,5 +70,8 @@ namespace AsaasClient.V3.Models.Customer
 
         [JsonProperty(PropertyName = "country")]
         public string Country { get; set; }
+
+        [JsonProperty(PropertyName = "observations")]
+        public string Observations { get; set; }
     }
 }

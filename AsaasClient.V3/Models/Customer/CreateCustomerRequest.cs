@@ -49,6 +49,9 @@ namespace AsaasClient.V3.Models.Customer
         [JsonProperty(PropertyName = "stateInscription")]
         public string StateInscription { get; set; }
 
+        [JsonProperty(PropertyName = "observations")]
+        public string Observations { get; set; }
+
         [JsonProperty(PropertyName = "groupName")]
         public string GroupName { get; set; }
     }

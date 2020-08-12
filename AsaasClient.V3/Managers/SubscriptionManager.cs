@@ -112,7 +112,7 @@ namespace AsaasClient.V3.Managers
             if (string.IsNullOrWhiteSpace(subscriptionId)) throw new ArgumentException("subscriptionId is required");
 
             var url = $"{SUBSCRIPTIONS_URL}/{subscriptionId}/invoiceSettings";
-            var responseObject = await DeleteAsync<DeletedInvoiceSettings>(url, subscriptionId, false);
+            var responseObject = await DeleteAsync<DeletedInvoiceSettings>(url, subscriptionId);
 
             return responseObject;
         }
