@@ -16,7 +16,7 @@ namespace AsaasClient.V3
         private Lazy<WalletManager> LazyWallet { get; }
         private Lazy<WebhookManager> LazyWebhook { get; }
         private Lazy<AsaasAccountManager> LazyAsaasAccount { get; }
-        private Lazy<ReceivableAnticipationManager> LazyReceivableAnticipation { get; }
+        private Lazy<AnticipationManager> LazyReceivableAnticipation { get; }
         private Lazy<MyAccountManager> LazyMyAccount { get; }
         private Lazy<InvoiceManager> LazyInvoice { get; }
         private Lazy<PaymentDunningManager> LazyPaymentDunning { get; }
@@ -33,7 +33,7 @@ namespace AsaasClient.V3
         public WalletManager Wallet => LazyWallet.Value;
         public WebhookManager Webhook => LazyWebhook.Value;
         public AsaasAccountManager AsaasAccount => LazyAsaasAccount.Value;
-        public ReceivableAnticipationManager ReceivableAnticipation => LazyReceivableAnticipation.Value;
+        public AnticipationManager ReceivableAnticipation => LazyReceivableAnticipation.Value;
         public MyAccountManager MyAccount => LazyMyAccount.Value;
         public InvoiceManager Invoice => LazyInvoice.Value;
         public PaymentDunningManager PaymentDunning => LazyPaymentDunning.Value;
@@ -51,7 +51,7 @@ namespace AsaasClient.V3
             LazyWallet = new Lazy<WalletManager>(() => new WalletManager(apiSettings), true);
             LazyWebhook = new Lazy<WebhookManager>(() => new WebhookManager(apiSettings), true);
             LazyAsaasAccount = new Lazy<AsaasAccountManager>(() => new AsaasAccountManager(apiSettings), true);
-            LazyReceivableAnticipation = new Lazy<ReceivableAnticipationManager>(() => new ReceivableAnticipationManager(apiSettings), true);
+            LazyReceivableAnticipation = new Lazy<AnticipationManager>(() => new AnticipationManager(apiSettings), true);
             LazyMyAccount = new Lazy<MyAccountManager>(() => new MyAccountManager(apiSettings), true);
             LazyInvoice = new Lazy<InvoiceManager>(() => new InvoiceManager(apiSettings), true);
             LazyPaymentDunning = new Lazy<PaymentDunningManager>(() => new PaymentDunningManager(apiSettings), true);
