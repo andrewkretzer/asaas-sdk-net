@@ -1,8 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using AsaasClient.V3.Models.Common;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
-namespace AsaasClient.V3.Models.ReceivableAnticipation
+namespace AsaasClient.V3.Models.Anticipation
 {
-    public class CreateReceivableAnticipationRequest
+    public class CreateAnticipationRequest
     {
         [JsonProperty(PropertyName = "agreementSignature")]
         public string AgreementSignature { get; set; }
@@ -14,6 +16,6 @@ namespace AsaasClient.V3.Models.ReceivableAnticipation
         public string PaymentId { get; set; }
 
         [JsonProperty(PropertyName = "documents")]
-        public string Documents { get; set; }
+        public List<AsaasFile> Documents { get; set; }
     }
 }

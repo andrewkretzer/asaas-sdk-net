@@ -1,13 +1,14 @@
-﻿using AsaasClient.Core.Response;
+﻿using AsaasClient.Core.Interfaces;
+using AsaasClient.Core.Response;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Mime;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,28 +28,43 @@ namespace AsaasClient.Core
             _apiVersion = apiVersion;
         }
 
-        protected async Task<ResponseObject<T>> PostAsync<T>(string resource, RequestParameters parameters, List<string> filePaths)
+        protected async Task<ResponseObject<T>> PostMultipartFormDataContentAsync<T>(string resource, object payload)
         {
             using var httpClient = BuildHttpClient();
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-www-form-urlencoded"));
 
             using var multipartContent = new MultipartFormDataContent();
 
-            parameters.Keys.ToList().ForEach(key =>
+            PropertyInfo[] properties = payload.GetType().GetProperties();
+            foreach (PropertyInfo prop in properties)
             {
-                multipartContent.Add(new StringContent(parameters[key].ToString()), key);
-            });
-            
-            foreach (var path in filePaths)
-            {
-                using FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                string jsonPropertyName = prop.GetCustomAttribute<JsonPropertyAttribute>().PropertyName;
+                if (string.IsNullOrEmpty(jsonPropertyName)) jsonPropertyName = prop.Name;
 
-                using StreamContent streamContent = new StreamContent(fileStream);
+                if (prop.PropertyType.IsAssignableFrom(typeof(List<IAsaasFile>)))
+                {
+                    List<IAsaasFile> asaasFiles = prop.GetValue(payload) as List<IAsaasFile>;
+                    foreach (IAsaasFile asaasFile in asaasFiles)
+                    {
+                        multipartContent.Add(BuildByteArrayContent(asaasFile), jsonPropertyName, asaasFile.FileName);
+                    }
+                    continue;
+                }
 
-                ByteArrayContent fileContent = new ByteArrayContent(await streamContent.ReadAsByteArrayAsync());
-                fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
+                if (prop.PropertyType == typeof(IAsaasFile))
+                {
+                    IAsaasFile asaasFile = prop.GetValue(payload) as IAsaasFile;
+                    multipartContent.Add(BuildByteArrayContent(asaasFile), jsonPropertyName, asaasFile.FileName);
+                    continue;
+                }
 
-                multipartContent.Add(fileContent, path, Path.GetFileName(path));
+                if (prop.PropertyType.IsClass && prop.PropertyType != typeof(string))
+                {
+                    multipartContent.Add(new StringContent(JsonConvert.SerializeObject(prop.GetValue(payload))), jsonPropertyName);
+                    continue;
+                }
+
+                multipartContent.Add(new StringContent(prop.GetValue(payload).ToString()), jsonPropertyName);
             }
 
             var response = await httpClient.PostAsync(BuildApiRoute(resource), multipartContent);
@@ -74,7 +90,7 @@ namespace AsaasClient.Core
 
             using var content = new StringContent(
                 JsonConvert.SerializeObject(payload),
-                Encoding.UTF8,
+                Encoding.UTF8,  
                 MediaTypeNames.Application.Json);
 
             var response = await httpClient.PostAsync(BuildApiRoute(resource), content);
@@ -166,6 +182,14 @@ namespace AsaasClient.Core
             string payload = await httpResponseMessage.Content.ReadAsStringAsync();
 
             return new ResponseList<T>(httpResponseMessage.StatusCode, payload);
+        }
+
+        private ByteArrayContent BuildByteArrayContent(IAsaasFile asaasFile)
+        {
+            ByteArrayContent fileContent = new ByteArrayContent(asaasFile.FileContent);
+            fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
+
+            return fileContent;
         }
     }
 }
