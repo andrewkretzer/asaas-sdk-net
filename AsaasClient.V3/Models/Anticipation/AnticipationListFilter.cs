@@ -1,9 +1,9 @@
 ﻿using AsaasClient.Core;
-using AsaasClient.V3.Models.ReceivableAnticipation.Enums;
+using AsaasClient.V3.Models.Anticipation.Enums;
 
-namespace AsaasClient.V3.Models.ReceivableAnticipation
+namespace AsaasClient.V3.Models.Anticipation
 {
-    public class ReceivableAnticipationListFilter : RequestParameters
+    public class AnticipationListFilter : RequestParameters
     {
         public string PaymentId
         {
@@ -17,9 +17,9 @@ namespace AsaasClient.V3.Models.ReceivableAnticipation
             set => Add("installment", value);
         }
 
-        public ReceivableAnticipationStatus? Status
+        public AnticipationStatus? Status
         {
-            get => Get<ReceivableAnticipationStatus?>("status");
+            get => Get<AnticipationStatus?>("status");
             set => Add("status", value);
         }
     }

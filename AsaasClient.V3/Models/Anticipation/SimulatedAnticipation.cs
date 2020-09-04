@@ -1,33 +1,21 @@
-﻿using AsaasClient.V3.Models.ReceivableAnticipation.Enums;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+﻿using Newtonsoft.Json;
 using System;
 
-namespace AsaasClient.V3.Models.ReceivableAnticipation
+namespace AsaasClient.V3.Models.Anticipation
 {
-    public class ReceivableAnticipation
+    public class SimulatedAnticipation
     {
-        [JsonProperty(PropertyName = "id")]
-        public string Id { get; set; }
-
         [JsonProperty(PropertyName = "installment")]
         public string InstallmentId { get; set; }
 
         [JsonProperty(PropertyName = "payment")]
         public string PaymentId { get; set; }
 
-        [JsonProperty(PropertyName = "status")]
-        [JsonConverter(typeof(StringEnumConverter))]
-        public ReceivableAnticipationStatus Status { get; set; }
-
         [JsonProperty(PropertyName = "anticipationDate")]
         public DateTime AnticipationDate { get; set; }
 
         [JsonProperty(PropertyName = "dueDate")]
         public DateTime DueDate { get; set; }
-
-        [JsonProperty(PropertyName = "requestDate")]
-        public DateTime RequestDate { get; set; }
 
         [JsonProperty(PropertyName = "anticipationDays")]
         public int AnticipationDays { get; set; }
@@ -44,7 +32,7 @@ namespace AsaasClient.V3.Models.ReceivableAnticipation
         [JsonProperty(PropertyName = "value")]
         public decimal Value { get; set; }
 
-        [JsonProperty(PropertyName = "denialObservation")]
-        public string DenialObservation { get; set; }
+        [JsonProperty(PropertyName = "isDocumentationRequired")]
+        public bool IsDocumentationRequired { get; set; }
     }
 }

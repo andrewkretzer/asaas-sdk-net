@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 
-namespace AsaasClient.V3.Models.ReceivableAnticipation
+namespace AsaasClient.V3.Models.Anticipation
 {
-    public class SimulateReceivableAnticipationRequest
+    public class SimulateAnticipationRequest
     {
         [JsonProperty(PropertyName = "installment")]
         public string InstallmentId { get; set; }
