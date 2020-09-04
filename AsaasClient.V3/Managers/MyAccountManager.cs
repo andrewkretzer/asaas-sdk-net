@@ -21,7 +21,7 @@ namespace AsaasClient.V3.Managers
 
         public async Task<ResponseObject<PaymentCheckoutConfig>> CreatePaymentCheckoutConfig(CreatePaymentCheckoutConfigRequest requestObj)
         {
-            var responseObject = await PostAsync<PaymentCheckoutConfig>(PAYMENT_CHECKOUT_CONFIG_URL, requestObj);
+            var responseObject = await PostMultipartFormDataContentAsync<PaymentCheckoutConfig>(PAYMENT_CHECKOUT_CONFIG_URL, requestObj);
 
             return responseObject;
         }
