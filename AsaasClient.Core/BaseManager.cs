@@ -46,11 +46,15 @@ namespace AsaasClient.Core
                     List<IAsaasFile> asaasFiles = prop.GetValue(payload) as List<IAsaasFile>;
                     foreach (IAsaasFile asaasFile in asaasFiles)
                     {
-                        ByteArrayContent fileContent = new ByteArrayContent(asaasFile.FileContent);
-                        fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
-
-                        multipartContent.Add(fileContent, jsonPropertyName, asaasFile.FileName);
+                        multipartContent.Add(BuildByteArrayContent(asaasFile), jsonPropertyName, asaasFile.FileName);
                     }
+                    continue;
+                }
+
+                if (prop.PropertyType == typeof(IAsaasFile))
+                {
+                    IAsaasFile asaasFile = prop.GetValue(payload) as IAsaasFile;
+                    multipartContent.Add(BuildByteArrayContent(asaasFile), jsonPropertyName, asaasFile.FileName);
                     continue;
                 }
 
@@ -178,6 +182,14 @@ namespace AsaasClient.Core
             string payload = await httpResponseMessage.Content.ReadAsStringAsync();
 
             return new ResponseList<T>(httpResponseMessage.StatusCode, payload);
+        }
+
+        private ByteArrayContent BuildByteArrayContent(IAsaasFile asaasFile)
+        {
+            ByteArrayContent fileContent = new ByteArrayContent(asaasFile.FileContent);
+            fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
+
+            return fileContent;
         }
     }
 }

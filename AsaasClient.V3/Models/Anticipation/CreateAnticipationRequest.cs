@@ -2,9 +2,9 @@
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace AsaasClient.V3.Models.ReceivableAnticipation
+namespace AsaasClient.V3.Models.Anticipation
 {
-    public class CreateReceivableAnticipationRequest
+    public class CreateAnticipationRequest
     {
         [JsonProperty(PropertyName = "agreementSignature")]
         public string AgreementSignature { get; set; }

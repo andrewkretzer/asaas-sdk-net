@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using AsaasClient.V3.Models.Common;
+using Newtonsoft.Json;
 
 namespace AsaasClient.V3.Models.MyAccount
 {
@@ -17,6 +18,6 @@ namespace AsaasClient.V3.Models.MyAccount
         public bool Enabled { get; set; }
 
         [JsonProperty(PropertyName = "logoFile")]
-        public string LogoFile { get; set; }
+        public AsaasFile LogoFile { get; set; }
     }
 }
