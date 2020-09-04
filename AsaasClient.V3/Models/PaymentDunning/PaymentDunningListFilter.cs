@@ -8,13 +8,13 @@ namespace AsaasClient.V3.Models.PaymentDunning
     {
         public PaymentDunningStatus? Status
         {
-            get => Get<PaymentDunningStatus>("status");
+            get => Get<PaymentDunningStatus?>("status");
             set => Add("status", value);
         }
 
         public PaymentDunningType? Type
         {
-            get => Get<PaymentDunningType>("type");
+            get => Get<PaymentDunningType?>("type");
             set => Add("type", value);
         }
 
