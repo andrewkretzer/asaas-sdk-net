@@ -1,10 +1,5 @@
-﻿using Newtonsoft.Json;
-
-namespace AsaasClient.V3.Models.Wallet
-{
-    public class Wallet
-    {
-        [JsonProperty(PropertyName = "id")]
+﻿namespace AsaasClient.V3.Models.Wallet {
+    public class Wallet {
         public string Id { get; set; }
     }
 }

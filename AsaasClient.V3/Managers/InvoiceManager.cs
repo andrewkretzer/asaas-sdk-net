@@ -80,7 +80,7 @@ namespace AsaasClient.V3.Managers
             };
 
             var url = $"{INVOICES_URL}/municipalServices";
-            var responseList = await GetListAsync<MunicipalService>(INVOICES_URL, 0, 0, queryMap);
+            var responseList = await GetListAsync<MunicipalService>(url, 0, 0, queryMap);
 
             return responseList;
         }

@@ -1,7 +1,10 @@
-﻿using AsaasClient.Core.Interfaces;
+﻿using AsaasClient.Core.Extension;
+using AsaasClient.Core.Interfaces;
 using AsaasClient.Core.Response;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,7 +42,7 @@ namespace AsaasClient.Core
             foreach (PropertyInfo prop in properties)
             {
                 string jsonPropertyName = prop.GetCustomAttribute<JsonPropertyAttribute>().PropertyName;
-                if (string.IsNullOrEmpty(jsonPropertyName)) jsonPropertyName = prop.Name;
+                if (string.IsNullOrEmpty(jsonPropertyName)) jsonPropertyName = prop.Name.FirstCharToLower();
 
                 if (prop.PropertyType.IsAssignableFrom(typeof(List<IAsaasFile>)))
                 {
@@ -55,12 +58,6 @@ namespace AsaasClient.Core
                 {
                     IAsaasFile asaasFile = prop.GetValue(payload) as IAsaasFile;
                     multipartContent.Add(BuildByteArrayContent(asaasFile), jsonPropertyName, asaasFile.FileName);
-                    continue;
-                }
-
-                if (prop.PropertyType.IsClass && prop.PropertyType != typeof(string))
-                {
-                    multipartContent.Add(new StringContent(JsonConvert.SerializeObject(prop.GetValue(payload))), jsonPropertyName);
                     continue;
                 }
 
@@ -89,8 +86,8 @@ namespace AsaasClient.Core
             using var httpClient = BuildHttpClient();
 
             using var content = new StringContent(
-                JsonConvert.SerializeObject(payload),
-                Encoding.UTF8,  
+                JsonConvert.SerializeObject(payload, BuildJsonSettings()),
+                Encoding.UTF8,
                 MediaTypeNames.Application.Json);
 
             var response = await httpClient.PostAsync(BuildApiRoute(resource), content);
@@ -148,6 +145,13 @@ namespace AsaasClient.Core
             httpClient.Timeout = _settings.TimeOut;
 
             return httpClient;
+        }
+
+        private JsonSerializerSettings BuildJsonSettings() {
+            var jsonSerializerSettings = new JsonSerializerSettings();
+            jsonSerializerSettings.Converters.Add(new StringEnumConverter());
+            jsonSerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            return jsonSerializerSettings;
         }
 
         private string BuildApiRoute(string resource)

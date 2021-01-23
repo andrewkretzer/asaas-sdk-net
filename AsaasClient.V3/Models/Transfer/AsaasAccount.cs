@@ -1,13 +1,7 @@
-﻿using Newtonsoft.Json;
-
-namespace AsaasClient.V3.Models.Transfer
-{
-    public class AsaasAccount
-    {
-        [JsonProperty(PropertyName = "name")]
+﻿namespace AsaasClient.V3.Models.Transfer {
+    public class AsaasAccount {
         public string Name { get; set; }
 
-        [JsonProperty(PropertyName = "cpfCnpj")]
         public string CpfCnpj { get; set; }
     }
 }
