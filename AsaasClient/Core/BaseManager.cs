@@ -149,6 +149,7 @@ namespace AsaasClient.Core
             var jsonSerializerSettings = new JsonSerializerSettings();
             jsonSerializerSettings.Converters.Add(new StringEnumConverter());
             jsonSerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            jsonSerializerSettings.NullValueHandling = NullValueHandling.Ignore;
             return jsonSerializerSettings;
         }
 

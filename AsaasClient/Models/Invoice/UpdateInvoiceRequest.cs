@@ -10,11 +10,11 @@ namespace AsaasClient.Models.Invoice
 
         public string Observations { get; set; }
 
-        public decimal Value { get; set; }
+        public decimal? Value { get; set; }
 
-        public decimal Deductions { get; set; }
+        public decimal? Deductions { get; set; }
 
-        public DateTime EffectiveDate { get; set; }
+        public DateTime? EffectiveDate { get; set; }
 
         public Taxes Taxes { get; set; }
     }
