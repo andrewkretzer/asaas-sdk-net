@@ -1,14 +1,14 @@
 ﻿using AsaasClient.Core;
 using AsaasClient.Core.Response;
-using AsaasClient.V3;
-using AsaasClient.V3.Models.Common;
-using AsaasClient.V3.Models.Customer;
-using AsaasClient.V3.Models.Payment;
-using AsaasClient.V3.Models.Payment.Enums;
+using AsaasClient.Models.Common;
+using AsaasClient.Models.Common.Enums;
+using AsaasClient.Models.Customer;
+using AsaasClient.Models.Payment;
+using AsaasClient.Models.Payment.Enums;
 using System;
 using System.Threading.Tasks;
 
-namespace Sample
+namespace AsaasClient.Sample
 {
     internal class Program
     {
@@ -35,7 +35,7 @@ namespace Sample
             // Senha: 12345678
             ApiSettings apiSettings = new ApiSettings("a4ac50ed5c79c52c59d5fab936e155fcad81ad1b17793ab678734b82dc3d34e5", AsaasEnvironment.SANDBOX);
 
-            AsaasApi asaasApi = new AsaasApi(apiSettings);
+            AsaasClient asaasApi = new AsaasClient(apiSettings);
 
             ResponseList<Customer> listResult = await asaasApi.Customer.List(0, 10);
 
@@ -61,7 +61,7 @@ namespace Sample
             var paymentSuccess = await asaasApi.Payment.Create(new CreatePaymentRequest()
             {
                 CustomerId = customerSuccess.Data.Id,
-                BillingType = AsaasClient.V3.Models.Common.Enums.BillingType.BOLETO,
+                BillingType = BillingType.BOLETO,
                 Value = 32.55M,
                 DueDate = DateTime.Parse("25/12/2019")
             });
@@ -100,7 +100,7 @@ namespace Sample
             var creditCardPayment = await asaasApi.Payment.Create(new CreatePaymentRequest()
             {
                 CustomerId = customerSuccess.Data.Id,
-                BillingType = AsaasClient.V3.Models.Common.Enums.BillingType.CREDIT_CARD,
+                BillingType = BillingType.CREDIT_CARD,
                 Value = 32.55M,
                 DueDate = DateTime.Parse("25/12/2019"),
                 CreditCard = new CreditCardRequest()
