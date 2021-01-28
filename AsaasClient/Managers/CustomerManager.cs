@@ -1,6 +1,7 @@
 ﻿using AsaasClient.Core;
 using AsaasClient.Core.Response;
 using AsaasClient.Models.Customer;
+using AsaasClient.Models.Customer;
 using System;
 using System.Threading.Tasks;
 
@@ -12,45 +13,43 @@ namespace AsaasClient.Managers
 
         public CustomerManager(ApiSettings settings) : base(settings) { }
 
-        public async Task<ResponseObject<CreatedCustomer>> Create(CreateCustomerRequest requestObj)
+        public async Task<ResponseObject<Customer>> Create(CreateCustomerRequest requestObj)
         {
-            var responseObject = await PostAsync<CreatedCustomer>(CUSTOMERS_URL, requestObj);
+            var responseObject = await PostAsync<Customer>(CUSTOMERS_URL, requestObj);
 
             return responseObject;
         }
 
-        public async Task<ResponseObject<RetrievedCustomer>> Find(string customerId)
-        {
-            if (string.IsNullOrWhiteSpace(customerId)) throw new ArgumentException("customerId is required");
-
-            var responseObject = await GetAsync<RetrievedCustomer>(CUSTOMERS_URL, customerId);
-
-            return responseObject;
-        }
-
-        public async Task<ResponseList<RetrievedCustomer>> List(int offset, int limit, CustomerListFilter filter = null)
-        {
-            var queryMap = new Map();
-
-            if (filter != null)
-            {
-                if (!string.IsNullOrEmpty(filter.Name)) queryMap.Add("name", filter.Name);
-                if (!string.IsNullOrEmpty(filter.Email)) queryMap.Add("email", filter.Email);
-                if (!string.IsNullOrEmpty(filter.CpfCnpj)) queryMap.Add("cpfCnpj", filter.CpfCnpj);
-                if (!string.IsNullOrEmpty(filter.ExternalReference)) queryMap.Add("externalReference", filter.ExternalReference);
-            }
-
-            var responseList = await GetListAsync<RetrievedCustomer>(CUSTOMERS_URL, offset, limit, queryMap);
-
-            return responseList;
-        }
-
-        public async Task<ResponseObject<UpdatedCustomer>> Update(string customerId, UpdateCustomerRequest requestObj)
+        public async Task<ResponseObject<Customer>> Find(string customerId)
         {
             if (string.IsNullOrWhiteSpace(customerId)) throw new ArgumentException("customerId is required");
 
             var url = $"{CUSTOMERS_URL}/{customerId}";
-            var responseObject = await PostAsync<UpdatedCustomer>(url, requestObj);
+            var responseObject = await GetAsync<Customer>(url);
+
+            return responseObject;
+        }
+
+        public async Task<ResponseList<Customer>> List(int offset, int limit, CustomerListFilter filter = null)
+        {
+            var queryMap = new RequestParameters();
+
+            if (filter != null)
+            {
+                queryMap.AddRange(filter);
+            }
+
+            var responseList = await GetListAsync<Customer>(CUSTOMERS_URL, offset, limit, queryMap);
+
+            return responseList;
+        }
+
+        public async Task<ResponseObject<Customer>> Update(string customerId, UpdateCustomerRequest requestObj)
+        {
+            if (string.IsNullOrWhiteSpace(customerId)) throw new ArgumentException("customerId is required");
+
+            var url = $"{CUSTOMERS_URL}/{customerId}";
+            var responseObject = await PostAsync<Customer>(url, requestObj);
 
             return responseObject;
         }
@@ -64,12 +63,12 @@ namespace AsaasClient.Managers
             return responseObject;
         }
 
-        public async Task<ResponseObject<RestoredCustomer>> Restore(string customerId)
+        public async Task<ResponseObject<Customer>> Restore(string customerId)
         {
             if (string.IsNullOrWhiteSpace(customerId)) throw new ArgumentException("customerId is required");
 
             var url = $"{CUSTOMERS_URL}/{customerId}/restore";
-            var responseObject = await PostAsync<RestoredCustomer>(url, new object());
+            var responseObject = await PostAsync<Customer>(url, new object());
 
             return responseObject;
         }
