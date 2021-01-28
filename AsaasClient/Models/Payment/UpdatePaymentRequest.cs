@@ -8,17 +8,17 @@ namespace AsaasClient.Models.Payment {
         [JsonProperty(PropertyName = "customer")]
         public string CustomerId { get; set; }
 
-        public BillingType BillingType { get; set; }
+        public BillingType? BillingType { get; set; }
 
-        public decimal Value { get; set; }
+        public decimal? Value { get; set; }
 
-        public DateTime DueDate { get; set; }
+        public DateTime? DueDate { get; set; }
 
         public string Description { get; set; }
 
-        public int InstallmentCount { get; set; }
+        public int? InstallmentCount { get; set; }
 
-        public decimal InstallmentValue { get; set; }
+        public decimal? InstallmentValue { get; set; }
 
         public Discount Discount { get; set; }
 
@@ -26,6 +26,6 @@ namespace AsaasClient.Models.Payment {
 
         public Fine Fine { get; set; }
 
-        public bool PostalService { get; set; }
+        public bool? PostalService { get; set; }
     }
 }

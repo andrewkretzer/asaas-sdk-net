@@ -1,10 +1,7 @@
 ﻿using AsaasClient.Models.Common.Enums;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
 
-namespace AsaasClient.Models.MyAccount
-{
+namespace AsaasClient.Models.MyAccount {
     public class MyAccount
     {
         public string Name { get; set; }
@@ -13,7 +10,7 @@ namespace AsaasClient.Models.MyAccount
 
         public string CpfCnpj { get; set; }
 
-        public CompanyType CompanyType { get; set; }
+        public CompanyType? CompanyType { get; set; }
 
         public string Phone { get; set; }
 
@@ -29,7 +26,7 @@ namespace AsaasClient.Models.MyAccount
 
         public string PostalCode { get; set; }
 
-        public PersonType PersonType { get; set; }
+        public PersonType? PersonType { get; set; }
 
         public City City { get; set; }
 
