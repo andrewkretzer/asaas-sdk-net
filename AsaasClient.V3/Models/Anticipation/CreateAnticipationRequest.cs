@@ -6,7 +6,6 @@ namespace AsaasClient.V3.Models.Anticipation
 {
     public class CreateAnticipationRequest
     {
-        [JsonProperty(PropertyName = "agreementSignature")]
         public string AgreementSignature { get; set; }
 
         [JsonProperty(PropertyName = "installment")]
@@ -15,7 +14,6 @@ namespace AsaasClient.V3.Models.Anticipation
         [JsonProperty(PropertyName = "payment")]
         public string PaymentId { get; set; }
 
-        [JsonProperty(PropertyName = "documents")]
         public List<AsaasFile> Documents { get; set; }
     }
 }
