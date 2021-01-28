@@ -1,6 +1,5 @@
 ﻿using AsaasClient.Models.Common.Enums;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
 
 namespace AsaasClient.Models.Installment

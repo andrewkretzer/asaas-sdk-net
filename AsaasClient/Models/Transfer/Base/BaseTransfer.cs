@@ -1,7 +1,8 @@
 ﻿using AsaasClient.Models.Transfer.Enums;
 using System;
 
-namespace AsaasClient.Models.Transfer.Base {
+namespace AsaasClient.Models.Transfer.Base
+{
     public abstract class BaseTransfer {
         public string Id { get; set; }
 

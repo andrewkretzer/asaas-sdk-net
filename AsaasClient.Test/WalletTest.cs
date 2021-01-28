@@ -3,7 +3,8 @@ using AsaasClient.Models.Wallet;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace AsaasClient.Test {
+namespace AsaasClient.Test
+{
     public class WalletTest : BaseTest {
 
         [Fact]

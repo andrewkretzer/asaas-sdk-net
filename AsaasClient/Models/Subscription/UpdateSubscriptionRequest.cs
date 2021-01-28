@@ -3,7 +3,8 @@ using AsaasClient.Models.Common.Enums;
 using AsaasClient.Models.Subscription.Enums;
 using System;
 
-namespace AsaasClient.Models.Subscription {
+namespace AsaasClient.Models.Subscription
+{
     public class UpdateSubscriptionRequest {
         public BillingType? BillingType { get; set; }
 

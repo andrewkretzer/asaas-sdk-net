@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace AsaasClient.Models.Common.Base
+﻿namespace AsaasClient.Models.Common.Base
 {
     public abstract class BaseDeleted
     {

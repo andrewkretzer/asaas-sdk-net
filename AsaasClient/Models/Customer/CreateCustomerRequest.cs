@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace AsaasClient.Models.Customer
+﻿namespace AsaasClient.Models.Customer
 {
     public class CreateCustomerRequest
     {

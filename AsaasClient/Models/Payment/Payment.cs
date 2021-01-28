@@ -2,7 +2,6 @@
 using AsaasClient.Models.Common.Enums;
 using AsaasClient.Models.Payment.Enums;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 

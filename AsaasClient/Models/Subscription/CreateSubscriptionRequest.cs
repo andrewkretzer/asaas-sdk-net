@@ -4,7 +4,8 @@ using AsaasClient.Models.Subscription.Enums;
 using Newtonsoft.Json;
 using System;
 
-namespace AsaasClient.Models.Subscription {
+namespace AsaasClient.Models.Subscription
+{
     public class CreateSubscriptionRequest {
         [JsonProperty(PropertyName = "customer")]
         public string CustomerId { get; set; }

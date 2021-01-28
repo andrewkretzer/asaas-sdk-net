@@ -33,7 +33,8 @@ namespace AsaasClient.Managers
         {
             if (string.IsNullOrWhiteSpace(invoiceId)) throw new ArgumentException("invoiceId is required");
 
-            var responseObject = await GetAsync<Invoice>(INVOICES_URL, invoiceId);
+            var url = $"{INVOICES_URL}/{invoiceId}";
+            var responseObject = await GetAsync<Invoice>(url);
 
             return responseObject;
         }
@@ -41,11 +42,7 @@ namespace AsaasClient.Managers
         public async Task<ResponseList<Invoice>> List(int offset, int limit, InvoiceListFilter filter = null)
         {
             var queryMap = new RequestParameters();
-
-            if (filter != null)
-            {
-                queryMap.AddRange(filter);
-            }
+            if (filter != null) queryMap.AddRange(filter);
 
             var responseList = await GetListAsync<Invoice>(INVOICES_URL, offset, limit, queryMap);
 
@@ -57,7 +54,7 @@ namespace AsaasClient.Managers
             if (string.IsNullOrWhiteSpace(invoiceId)) throw new ArgumentException("invoiceId is required");
 
             var url = $"{INVOICES_URL}/{invoiceId}/authorize";
-            var responseObject = await PostAsync<Invoice>(url, new object());
+            var responseObject = await PostAsync<Invoice>(url, new RequestParameters());
 
             return responseObject;
         }
@@ -67,7 +64,7 @@ namespace AsaasClient.Managers
             if (string.IsNullOrWhiteSpace(invoiceId)) throw new ArgumentException("invoiceId is required");
 
             var url = $"{INVOICES_URL}/{invoiceId}/cancel";
-            var responseObject = await PostAsync<Invoice>(url, new object());
+            var responseObject = await PostAsync<Invoice>(url, new RequestParameters());
 
             return responseObject;
         }

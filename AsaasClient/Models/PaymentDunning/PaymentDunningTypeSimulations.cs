@@ -1,6 +1,4 @@
 ﻿using AsaasClient.Models.PaymentDunning.Enums;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
 
 namespace AsaasClient.Models.PaymentDunning

@@ -1,4 +1,5 @@
-﻿namespace AsaasClient.Models.Wallet {
+﻿namespace AsaasClient.Models.Wallet
+{
     public class Wallet {
         public string Id { get; set; }
     }

@@ -28,11 +28,7 @@ namespace AsaasClient.Managers
         public async Task<ResponseList<Subscription>> List(int offset, int limit, SubscriptionListFilter filter = null)
         {
             var queryMap = new RequestParameters();
-
-            if (filter != null)
-            {
-                queryMap.AddRange(filter);
-            }
+            if (filter != null) queryMap.AddRange(filter);
 
             var responseList = await GetListAsync<Subscription>(SUBSCRIPTIONS_URL, offset, limit, queryMap);
 
@@ -53,7 +49,8 @@ namespace AsaasClient.Managers
         {
             if (string.IsNullOrWhiteSpace(subscriptionId)) throw new ArgumentException("subscriptionId is required");
 
-            var responseObject = await DeleteAsync<DeletedSubscription>(SUBSCRIPTIONS_URL, subscriptionId);
+            var url = $"{SUBSCRIPTIONS_URL}/{subscriptionId}";
+            var responseObject = await DeleteAsync<DeletedSubscription>(url);
 
             return responseObject;
         }
@@ -65,11 +62,7 @@ namespace AsaasClient.Managers
             if (string.IsNullOrWhiteSpace(subscriptionId)) throw new ArgumentException("subscriptionId is required");
 
             var queryMap = new RequestParameters();
-
-            if (filter != null)
-            {
-                queryMap.AddRange(filter);
-            }
+            if (filter != null) queryMap.AddRange(filter);
 
             var url = $"{SUBSCRIPTIONS_URL}/{subscriptionId}/invoices";
             var responseList = await GetListAsync<Invoice>(url, offset, limit, queryMap);
@@ -112,7 +105,7 @@ namespace AsaasClient.Managers
             if (string.IsNullOrWhiteSpace(subscriptionId)) throw new ArgumentException("subscriptionId is required");
 
             var url = $"{SUBSCRIPTIONS_URL}/{subscriptionId}/invoiceSettings";
-            var responseObject = await DeleteAsync<DeletedInvoiceSettings>(url, subscriptionId);
+            var responseObject = await DeleteAsync<DeletedInvoiceSettings>(url);
 
             return responseObject;
         }

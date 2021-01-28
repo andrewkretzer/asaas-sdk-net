@@ -3,7 +3,8 @@ using AsaasClient.Models.PaymentDunning.Enums;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace AsaasClient.Models.PaymentDunning {
+namespace AsaasClient.Models.PaymentDunning
+{
     public class CreatePaymentDunningRequest {
 
         [JsonProperty(PropertyName = "payment")]

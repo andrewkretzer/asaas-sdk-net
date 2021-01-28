@@ -3,7 +3,8 @@ using AsaasClient.Core.Response.Base;
 using System.Net;
 using Xunit;
 
-namespace AsaasClient.Test {
+namespace AsaasClient.Test
+{
     public abstract class BaseTest {
 
         protected AsaasClient AsaasClient;

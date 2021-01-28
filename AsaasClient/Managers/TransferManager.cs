@@ -15,11 +15,7 @@ namespace AsaasClient.Managers
         public async Task<ResponseList<BaseTransfer>> List(int offset, int limit, TransferListFilter filter = null)
         {
             var queryMap = new RequestParameters();
-
-            if (filter != null)
-            {
-                queryMap.AddRange(filter);
-            }
+            if (filter != null) queryMap.AddRange(filter);
 
             var responseList = await GetListAsync<BaseTransfer>(TRANSFERS_URL, offset, limit, queryMap);
 

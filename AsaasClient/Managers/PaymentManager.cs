@@ -26,11 +26,7 @@ namespace AsaasClient.Managers
         public async Task<ResponseList<Payment>> List(int offset, int limit, PaymentListFilter filter = null)
         {
             var queryMap = new RequestParameters();
-
-            if (filter != null)
-            {
-                queryMap.AddRange(filter);
-            }
+            if (filter != null) queryMap.AddRange(filter);
 
             var responseList = await GetListAsync<Payment>(PAYMENTS_URL, offset, limit, queryMap);
 
@@ -51,7 +47,8 @@ namespace AsaasClient.Managers
         {
             if (string.IsNullOrWhiteSpace(paymentId)) throw new ArgumentException("paymentId is required");
 
-            var responseObject = await DeleteAsync<DeletedPayment>(PAYMENTS_URL, paymentId);
+            var url = $"{PAYMENTS_URL}/{paymentId}";
+            var responseObject = await DeleteAsync<DeletedPayment>(url);
 
             return responseObject;
         }
@@ -61,7 +58,7 @@ namespace AsaasClient.Managers
             if (string.IsNullOrWhiteSpace(paymentId)) throw new ArgumentException("paymentId is required");
 
             var url = $"{PAYMENTS_URL}/{paymentId}/restore";
-            var responseObject = await PostAsync<Payment>(url, new object());
+            var responseObject = await PostAsync<Payment>(url, new RequestParameters());
 
             return responseObject;
         }
@@ -71,7 +68,7 @@ namespace AsaasClient.Managers
             if (string.IsNullOrWhiteSpace(paymentId)) throw new ArgumentException("paymentId is required");
 
             var url = $"{PAYMENTS_URL}/{paymentId}/refund";
-            var responseObject = await PostAsync<Payment>(url, new object());
+            var responseObject = await PostAsync<Payment>(url, new RequestParameters());
 
             return responseObject;
         }

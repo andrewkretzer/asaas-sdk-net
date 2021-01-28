@@ -1,7 +1,6 @@
 ﻿using AsaasClient.Core;
 using AsaasClient.Core.Response;
 using AsaasClient.Models.Customer;
-using AsaasClient.Models.Customer;
 using System;
 using System.Threading.Tasks;
 
@@ -33,11 +32,7 @@ namespace AsaasClient.Managers
         public async Task<ResponseList<Customer>> List(int offset, int limit, CustomerListFilter filter = null)
         {
             var queryMap = new RequestParameters();
-
-            if (filter != null)
-            {
-                queryMap.AddRange(filter);
-            }
+            if (filter != null) queryMap.AddRange(filter);
 
             var responseList = await GetListAsync<Customer>(CUSTOMERS_URL, offset, limit, queryMap);
 
@@ -68,7 +63,7 @@ namespace AsaasClient.Managers
             if (string.IsNullOrWhiteSpace(customerId)) throw new ArgumentException("customerId is required");
 
             var url = $"{CUSTOMERS_URL}/{customerId}/restore";
-            var responseObject = await PostAsync<Customer>(url, new object());
+            var responseObject = await PostAsync<Customer>(url, new RequestParameters());
 
             return responseObject;
         }

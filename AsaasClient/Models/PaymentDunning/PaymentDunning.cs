@@ -2,7 +2,8 @@
 using Newtonsoft.Json;
 using System;
 
-namespace AsaasClient.Models.PaymentDunning {
+namespace AsaasClient.Models.PaymentDunning
+{
     public class PaymentDunning {
 
         public string Id { get; set; }

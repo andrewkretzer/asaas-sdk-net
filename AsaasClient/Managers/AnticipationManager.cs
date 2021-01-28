@@ -39,11 +39,7 @@ namespace AsaasClient.Managers
         public async Task<ResponseList<Anticipation>> List(int offset, int limit, AnticipationListFilter filter = null)
         {
             var queryMap = new RequestParameters();
-
-            if (filter != null)
-            {
-                queryMap.AddRange(filter);
-            }
+            if (filter != null) queryMap.AddRange(filter);
 
             var responseList = await GetListAsync<Anticipation>(ANTICIPATIONS_URL, offset, limit, queryMap);
 

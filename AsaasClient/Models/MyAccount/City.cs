@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace AsaasClient.Models.MyAccount
+﻿namespace AsaasClient.Models.MyAccount
 {
     public class City
     {

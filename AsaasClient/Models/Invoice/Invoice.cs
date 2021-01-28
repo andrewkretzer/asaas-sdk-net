@@ -1,7 +1,6 @@
 ﻿using AsaasClient.Models.Common;
 using AsaasClient.Models.Invoice.Enums;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
 
 namespace AsaasClient.Models.Invoice
