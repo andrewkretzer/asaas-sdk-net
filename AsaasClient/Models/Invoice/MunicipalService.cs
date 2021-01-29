@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace AsaasClient.Models.Invoice
+﻿namespace AsaasClient.Models.Invoice
 {
     public class MunicipalService
     {

@@ -1,10 +1,10 @@
 using AsaasClient.Core.Response;
 using AsaasClient.Models.Webhook;
-using System.Net;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace AsaasClient.Test {
+namespace AsaasClient.Test
+{
     public class WebhookTest : BaseTest {
 
         [Fact]

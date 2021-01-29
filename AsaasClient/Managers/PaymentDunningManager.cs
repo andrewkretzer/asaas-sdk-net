@@ -4,7 +4,6 @@ using AsaasClient.Models.Common;
 using AsaasClient.Models.PaymentDunning;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
 
 namespace AsaasClient.Managers
@@ -43,11 +42,7 @@ namespace AsaasClient.Managers
         public async Task<ResponseList<PaymentDunning>> List(int offset, int limit, PaymentDunningListFilter filter = null)
         {
             var queryMap = new RequestParameters();
-
-            if (filter != null)
-            {
-                queryMap.AddRange(filter);
-            }
+            if (filter != null) queryMap.AddRange(filter);
 
             var responseList = await GetListAsync<PaymentDunning>(PAYMENT_DUNNING_URL, offset, limit, queryMap);
 
@@ -59,7 +54,7 @@ namespace AsaasClient.Managers
             if (string.IsNullOrWhiteSpace(paymentDunningId)) throw new ArgumentException("paymentDunningId is required");
 
             var url = $"{PAYMENT_DUNNING_URL}/{paymentDunningId}/history";
-            var responseList = await GetListAsync<PaymentDunningEventHistory>(url, offset, limit, new RequestParameters());
+            var responseList = await GetListAsync<PaymentDunningEventHistory>(url, offset, limit);
 
             return responseList;
         }
@@ -69,7 +64,7 @@ namespace AsaasClient.Managers
             if (string.IsNullOrWhiteSpace(paymentDunningId)) throw new ArgumentException("paymentDunningId is required");
 
             var url = $"{PAYMENT_DUNNING_URL}/{paymentDunningId}/partialPayments";
-            var responseList = await GetListAsync<PaymentDunningPartialPayments>(url, offset, limit, new RequestParameters());
+            var responseList = await GetListAsync<PaymentDunningPartialPayments>(url, offset, limit);
 
             return responseList;
         }
@@ -77,7 +72,7 @@ namespace AsaasClient.Managers
         public async Task<ResponseList<PaymentDunningPaymentAvailable>> ListPaymentsAvailableForDunning(int offset, int limit)
         {
             var url = $"{PAYMENT_DUNNING_URL}/paymentsAvailableForDunning";
-            var responseList = await GetListAsync<PaymentDunningPaymentAvailable>(url, offset, limit, new RequestParameters());
+            var responseList = await GetListAsync<PaymentDunningPaymentAvailable>(url, offset, limit);
 
             return responseList;
         }

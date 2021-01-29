@@ -27,7 +27,8 @@ namespace AsaasClient.Managers
         {
             if (string.IsNullOrWhiteSpace(installmentId)) throw new ArgumentException("installmentId is required");
 
-            var responseObject = await DeleteAsync<DeletedInstallment>(INSTALLMENTS_URL, installmentId);
+            var url = $"{INSTALLMENTS_URL}/{installmentId}";
+            var responseObject = await DeleteAsync<DeletedInstallment>(url);
 
             return responseObject;
         }
@@ -37,7 +38,7 @@ namespace AsaasClient.Managers
             if (string.IsNullOrWhiteSpace(installmentId)) throw new ArgumentException("installmentId is required");
 
             var url = $"{INSTALLMENTS_URL}/{installmentId}/refund";
-            var responseObject = await PostAsync<Installment>(url, new object());
+            var responseObject = await PostAsync<Installment>(url, new RequestParameters());
 
             return responseObject;
         }

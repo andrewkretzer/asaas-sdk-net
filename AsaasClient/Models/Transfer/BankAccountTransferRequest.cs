@@ -1,4 +1,5 @@
-﻿namespace AsaasClient.Models.Transfer {
+﻿namespace AsaasClient.Models.Transfer
+{
     public class BankAccountTransferRequest {
         public decimal Value { get; set; }
 

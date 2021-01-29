@@ -1,4 +1,5 @@
-﻿namespace AsaasClient.Models.Transfer {
+﻿namespace AsaasClient.Models.Transfer
+{
     public class Bank {
         public string Code { get; set; }
     }

@@ -23,11 +23,7 @@ namespace AsaasClient.Managers
         public async Task<ResponseList<FinancialTransaction>> ListTransactions(int offset, int limit, FinancialTransactionListFilter filter = null)
         {
             var queryMap = new RequestParameters();
-
-            if (filter != null)
-            {
-                queryMap.AddRange(filter);
-            }
+            if (filter != null) queryMap.AddRange(filter);
 
             var responseList = await GetListAsync<FinancialTransaction>(FINANCE_TRANSACTIONS_URL, offset, limit, queryMap);
 

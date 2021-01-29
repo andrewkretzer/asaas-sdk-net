@@ -39,7 +39,7 @@ namespace AsaasClient.Managers
 
         public async Task<ResponseList<BillPayment>> List(int offset, int limit)
         {
-            var responseList = await GetListAsync<BillPayment>(BILL_PAYMENT_URL, offset, limit, new RequestParameters());
+            var responseList = await GetListAsync<BillPayment>(BILL_PAYMENT_URL, offset, limit);
 
             return responseList;
         }

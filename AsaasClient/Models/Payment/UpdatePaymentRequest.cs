@@ -3,7 +3,8 @@ using AsaasClient.Models.Common.Enums;
 using Newtonsoft.Json;
 using System;
 
-namespace AsaasClient.Models.Payment {
+namespace AsaasClient.Models.Payment
+{
     public class UpdatePaymentRequest {
         [JsonProperty(PropertyName = "customer")]
         public string CustomerId { get; set; }

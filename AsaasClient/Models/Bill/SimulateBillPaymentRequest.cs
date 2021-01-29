@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace AsaasClient.Models.Bill
+﻿namespace AsaasClient.Models.Bill
 {
     public class SimulateBillPaymentRequest
     {

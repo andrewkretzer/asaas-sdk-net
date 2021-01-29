@@ -1,4 +1,5 @@
-﻿namespace AsaasClient.Models.Webhook {
+﻿namespace AsaasClient.Models.Webhook
+{
     public class WebhookRequest {
         public string Url { get; set; }
 

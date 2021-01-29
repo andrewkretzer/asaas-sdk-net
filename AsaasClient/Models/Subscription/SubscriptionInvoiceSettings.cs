@@ -1,7 +1,8 @@
 ﻿using AsaasClient.Models.Common;
 using AsaasClient.Models.Subscription.Enums;
 
-namespace AsaasClient.Models.Subscription {
+namespace AsaasClient.Models.Subscription
+{
     public class SubscriptionInvoiceSettings {
         public string MunicipalServiceId { get; set; }
 

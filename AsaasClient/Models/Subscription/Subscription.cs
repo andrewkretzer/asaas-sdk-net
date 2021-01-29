@@ -4,7 +4,8 @@ using AsaasClient.Models.Subscription.Enums;
 using Newtonsoft.Json;
 using System;
 
-namespace AsaasClient.Models.Subscription {
+namespace AsaasClient.Models.Subscription
+{
     public class Subscription {
         public string Id { get; set; }
 

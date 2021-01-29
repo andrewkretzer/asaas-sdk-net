@@ -1,7 +1,6 @@
 ﻿using AsaasClient.Models.Common;
 using AsaasClient.Models.Common.Enums;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 

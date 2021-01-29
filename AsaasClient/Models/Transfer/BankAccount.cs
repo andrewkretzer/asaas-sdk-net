@@ -1,7 +1,8 @@
 ﻿using AsaasClient.Models.Transfer.Enums;
 using System;
 
-namespace AsaasClient.Models.Transfer {
+namespace AsaasClient.Models.Transfer
+{
     public class BankAccount {
         public Bank Bank { get; set; }
 

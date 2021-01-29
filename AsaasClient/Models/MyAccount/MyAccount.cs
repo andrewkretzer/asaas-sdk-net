@@ -1,7 +1,8 @@
 ﻿using AsaasClient.Models.Common.Enums;
 using System;
 
-namespace AsaasClient.Models.MyAccount {
+namespace AsaasClient.Models.MyAccount
+{
     public class MyAccount
     {
         public string Name { get; set; }

@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace AsaasClient.Models.Common
+﻿namespace AsaasClient.Models.Common
 {
     public class Fine
     {

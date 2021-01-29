@@ -1,5 +1,4 @@
 ﻿using AsaasClient.Models.Common;
-using Newtonsoft.Json;
 
 namespace AsaasClient.Models.MyAccount
 {
