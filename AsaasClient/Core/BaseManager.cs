@@ -130,7 +130,7 @@ namespace AsaasClient.Core
                 resource += $"/{id}";
             }
 
-            var response = await httpClient.GetAsync(BuildApiRoute(resource));
+            var response = await httpClient.DeleteAsync(BuildApiRoute(resource));
 
             return await BuildResponseObject<T>(response);
         }
@@ -149,7 +149,6 @@ namespace AsaasClient.Core
             var jsonSerializerSettings = new JsonSerializerSettings();
             jsonSerializerSettings.Converters.Add(new StringEnumConverter());
             jsonSerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            jsonSerializerSettings.NullValueHandling = NullValueHandling.Ignore;
             return jsonSerializerSettings;
         }
 

@@ -24,7 +24,7 @@
 
         public string ExternalReference { get; set; }
 
-        public string NotificationDisabled { get; set; }
+        public bool NotificationDisabled { get; set; }
 
         public string AdditionalEmails { get; set; }
 
@@ -33,5 +33,25 @@
         public string StateInscription { get; set; }
 
         public string Observations { get; set; }
+
+        public UpdateCustomerRequest(Customer customer)
+        {
+            Name = customer.Name;
+            CpfCnpj = customer.CpfCnpj;
+            Email = customer.Email;
+            Phone = customer.Phone;
+            MobilePhone = customer.MobilePhone;
+            Address = customer.Address;
+            AddressNumber = customer.AddressNumber;
+            Complement = customer.Complement;
+            Province = customer.Province;
+            PostalCode = customer.PostalCode;
+            ExternalReference = customer.ExternalReference;
+            NotificationDisabled = customer.NotificationDisabled;
+            AdditionalEmails = customer.AdditionalEmails;
+            MunicipalInscription = customer.MunicipalInscription;
+            StateInscription = customer.StateInscription;
+            Observations = customer.Observations;
+        }
     }
 }

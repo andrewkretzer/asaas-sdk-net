@@ -1,5 +1,6 @@
 ﻿using AsaasClient.Models.Common.Enums;
 using System;
+using System.Collections.Generic;
 
 namespace AsaasClient.Models.Customer
 {
@@ -37,6 +38,8 @@ namespace AsaasClient.Models.Customer
 
         public string MunicipalInscription { get; set; }
 
+        public string StateInscription { get; set; }
+
         public PersonType? PersonType { get; set; }
 
         public bool Deleted { get; set; }
@@ -48,5 +51,9 @@ namespace AsaasClient.Models.Customer
         public string Country { get; set; }
 
         public string Observations { get; set; }
+
+        public bool ForeignCustomer { get; set; }
+
+        public List<CustomerGroup> Groups { get; set; }
     }
 }

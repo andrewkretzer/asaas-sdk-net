@@ -1,4 +1,5 @@
 ﻿using AsaasClient.Core;
+using AsaasClient.Core.Response;
 using AsaasClient.Core.Response.Base;
 using System.Net;
 using Xunit;
@@ -18,5 +19,6 @@ namespace AsaasClient.Test
         protected void ValidateResponseStatus(BaseResponse baseResponse) {
             Assert.Equal(HttpStatusCode.OK, baseResponse.StatusCode);
         }
+
     }
 }
