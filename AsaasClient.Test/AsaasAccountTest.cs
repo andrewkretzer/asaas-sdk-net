@@ -1,8 +1,6 @@
 ﻿using AsaasClient.Core.Response;
 using AsaasClient.Models.AsaasAccount;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -60,7 +58,24 @@ namespace AsaasClient.Test
         private async Task TestList()
         {
             ResponseList<Account> responseList = await AsaasClient.AsaasAccount.List(0, 15);
+            ValidateResponseStatus(responseList);
             Assert.NotEmpty(responseList.Data);
+
+            Assert.NotNull(responseList.Data[0].Name);
+            Assert.NotNull(responseList.Data[0].Email);
+            Assert.NotNull(responseList.Data[0].CpfCnpj);
+            Assert.NotNull(responseList.Data[0].Phone);
+            Assert.NotNull(responseList.Data[0].MobilePhone);
+            Assert.NotNull(responseList.Data[0].PostalCode);
+            Assert.NotNull(responseList.Data[0].Province);
+            Assert.NotNull(responseList.Data[0].Address);
+            Assert.NotNull(responseList.Data[0].AddressNumber);
+            Assert.NotNull(responseList.Data[0].CompanyType);
+            Assert.NotNull(responseList.Data[0].Complement);
+            Assert.NotNull(responseList.Data[0].LoginEmail);
+            Assert.NotNull(responseList.Data[0].WalletId);
+            Assert.Null(responseList.Data[0].ApiKey);
+
         }
     }
 }
