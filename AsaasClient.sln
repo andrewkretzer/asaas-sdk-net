@@ -4,8 +4,6 @@ VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsaasClient", "AsaasClient\AsaasClient.csproj", "{F67FEE8D-9974-460A-9713-8A450100C5EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsaasClient.Test", "AsaasClient.Test\AsaasClient.Test.csproj", "{B989DF25-B6C1-4E6E-8CEB-6238B23C077B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -16,10 +14,6 @@ Global
 		{F67FEE8D-9974-460A-9713-8A450100C5EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F67FEE8D-9974-460A-9713-8A450100C5EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F67FEE8D-9974-460A-9713-8A450100C5EB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B989DF25-B6C1-4E6E-8CEB-6238B23C077B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B989DF25-B6C1-4E6E-8CEB-6238B23C077B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B989DF25-B6C1-4E6E-8CEB-6238B23C077B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B989DF25-B6C1-4E6E-8CEB-6238B23C077B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
