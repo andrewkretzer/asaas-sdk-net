@@ -2,7 +2,7 @@
 
 namespace AsaasClient.Core.Utils
 {
-    public static class ObjectUtils
+    internal static class ObjectUtils
     {
         public static T Cast<T>(this object obj)
         {

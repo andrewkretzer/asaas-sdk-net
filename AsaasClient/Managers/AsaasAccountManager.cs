@@ -7,22 +7,18 @@ namespace AsaasClient.Managers
 {
     public class AsaasAccountManager : BaseManager
     {
-        private const string ASAAS_ACCOUNT_URL = "/accounts";
+        private const string AsaasAccountRoute = "/accounts";
 
         public AsaasAccountManager(ApiSettings settings) : base(settings) { }
 
         public async Task<ResponseObject<Account>> Create(CreateAccountRequest requestObj)
         {
-            var responseObject = await PostAsync<Account>(ASAAS_ACCOUNT_URL, requestObj);
-
-            return responseObject;
+            return await PostAsync<Account>(AsaasAccountRoute, requestObj);
         }
 
         public async Task<ResponseList<Account>> List(int offset, int limit)
         {
-            var responseList = await GetListAsync<Account>(ASAAS_ACCOUNT_URL, offset, limit);
-
-            return responseList;
+            return await GetListAsync<Account>(AsaasAccountRoute, offset, limit);
         }
     }
 }

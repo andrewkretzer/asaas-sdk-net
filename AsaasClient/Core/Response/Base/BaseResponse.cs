@@ -7,13 +7,13 @@ namespace AsaasClient.Core.Response.Base
 {
     public abstract class BaseResponse
     {
-        public HttpStatusCode StatusCode { get; private set; }
+        public HttpStatusCode StatusCode { get; }
 
-        public List<Error> Errors { get; private set; } = new List<Error>();
+        public List<Error> Errors { get; private set; } = new();
 
-        public string AsaasResponse { get; private set; }
+        public string AsaasResponse { get; }
 
-        public BaseResponse(HttpStatusCode httpStatusCode, string content)
+        protected BaseResponse(HttpStatusCode httpStatusCode, string content)
         {
             StatusCode = httpStatusCode;
             AsaasResponse = content;

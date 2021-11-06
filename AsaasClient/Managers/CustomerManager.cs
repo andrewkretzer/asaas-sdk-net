@@ -8,25 +8,20 @@ namespace AsaasClient.Managers
 {
     public class CustomerManager : BaseManager
     {
-        private const string CUSTOMERS_URL = "/customers";
+        private const string CustomersRoute = "/customers";
 
         public CustomerManager(ApiSettings settings) : base(settings) { }
 
         public async Task<ResponseObject<Customer>> Create(CreateCustomerRequest requestObj)
         {
-            var responseObject = await PostAsync<Customer>(CUSTOMERS_URL, requestObj);
-
-            return responseObject;
+            return await PostAsync<Customer>(CustomersRoute, requestObj);
         }
 
         public async Task<ResponseObject<Customer>> Find(string customerId)
         {
-            if (string.IsNullOrWhiteSpace(customerId)) throw new ArgumentException("customerId is required");
+            var route = $"{CustomersRoute}/{customerId}";
 
-            var url = $"{CUSTOMERS_URL}/{customerId}";
-            var responseObject = await GetAsync<Customer>(url);
-
-            return responseObject;
+            return await GetAsync<Customer>(route);
         }
 
         public async Task<ResponseList<Customer>> List(int offset, int limit, CustomerListFilter filter = null)
@@ -34,38 +29,26 @@ namespace AsaasClient.Managers
             var queryMap = new RequestParameters();
             if (filter != null) queryMap.AddRange(filter);
 
-            var responseList = await GetListAsync<Customer>(CUSTOMERS_URL, offset, limit, queryMap);
-
-            return responseList;
+            return await GetListAsync<Customer>(CustomersRoute, offset, limit, queryMap);
         }
 
         public async Task<ResponseObject<Customer>> Update(string customerId, UpdateCustomerRequest requestObj)
         {
-            if (string.IsNullOrWhiteSpace(customerId)) throw new ArgumentException("customerId is required");
+            var route = $"{CustomersRoute}/{customerId}";
 
-            var url = $"{CUSTOMERS_URL}/{customerId}";
-            var responseObject = await PostAsync<Customer>(url, requestObj);
-
-            return responseObject;
+            return await PostAsync<Customer>(route, requestObj);
         }
 
         public async Task<ResponseObject<DeletedCustomer>> Delete(string customerId)
         {
-            if (string.IsNullOrWhiteSpace(customerId)) throw new ArgumentException("customerId is required");
-
-            var responseObject = await DeleteAsync<DeletedCustomer>(CUSTOMERS_URL, customerId);
-
-            return responseObject;
+            return await DeleteAsync<DeletedCustomer>(CustomersRoute, customerId);
         }
 
         public async Task<ResponseObject<Customer>> Restore(string customerId)
         {
-            if (string.IsNullOrWhiteSpace(customerId)) throw new ArgumentException("customerId is required");
+            var route = $"{CustomersRoute}/{customerId}/restore";
 
-            var url = $"{CUSTOMERS_URL}/{customerId}/restore";
-            var responseObject = await PostAsync<Customer>(url, new RequestParameters());
-
-            return responseObject;
+            return await PostAsync<Customer>(route, new RequestParameters());
         }
     }
 }

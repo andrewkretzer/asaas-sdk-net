@@ -7,17 +7,16 @@ namespace AsaasClient.Managers
 {
     public class FinanceManager : BaseManager
     {
-        private const string FINANCE_URL = "/finance";
-        private const string FINANCE_TRANSACTIONS_URL = "/financialTransactions";
+        private const string FinanceRoute = "/finance";
+        private const string FinanceTransactionsRoute = "/financialTransactions";
 
         public FinanceManager(ApiSettings settings) : base(settings) { }
 
         public async Task<ResponseObject<decimal>> Balance()
         {
-            var url = $"{FINANCE_URL}/getCurrentBalance";
-            var responseObject = await GetAsync<decimal>(url);
+            const string route = $"{FinanceRoute}/getCurrentBalance";
 
-            return responseObject;
+            return await GetAsync<decimal>(route);
         }
 
         public async Task<ResponseList<FinancialTransaction>> ListTransactions(int offset, int limit, FinancialTransactionListFilter filter = null)
@@ -25,9 +24,7 @@ namespace AsaasClient.Managers
             var queryMap = new RequestParameters();
             if (filter != null) queryMap.AddRange(filter);
 
-            var responseList = await GetListAsync<FinancialTransaction>(FINANCE_TRANSACTIONS_URL, offset, limit, queryMap);
-
-            return responseList;
+            return await GetListAsync<FinancialTransaction>(FinanceTransactionsRoute, offset, limit, queryMap);
         }
     }
 }

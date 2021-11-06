@@ -8,50 +8,39 @@ namespace AsaasClient.Managers
 {
     public class BillPaymentManager : BaseManager
     {
-        private const string BILL_PAYMENT_URL = "/bill";
+        private const string BillPaymentRoute = "/bill";
 
         public BillPaymentManager(ApiSettings settings) : base(settings) { }
 
         public async Task<ResponseObject<BillPayment>> Create(CreateBillPaymentRequest requestObj)
         {
-            var responseObject = await PostAsync<BillPayment>(BILL_PAYMENT_URL, requestObj);
-
-            return responseObject;
+            return await PostAsync<BillPayment>(BillPaymentRoute, requestObj);
         }
 
         public async Task<ResponseObject<SimulatedBillPayment>> Simulate(SimulateBillPaymentRequest requestObj)
         {
-            var url = $"{BILL_PAYMENT_URL}/simulate";
-            var responseObject = await PostAsync<SimulatedBillPayment>(url, requestObj);
+            const string simulateRoute = $"{BillPaymentRoute}/simulate";
 
-            return responseObject;
+            return await PostAsync<SimulatedBillPayment>(simulateRoute, requestObj);
         }
 
         public async Task<ResponseObject<BillPayment>> Find(string billPaymentId)
         {
-            if (string.IsNullOrWhiteSpace(billPaymentId)) throw new ArgumentException("billPaymentId is required");
+            var route = $"{BillPaymentRoute}/{billPaymentId}";
 
-            var url = $"{BILL_PAYMENT_URL}/{billPaymentId}";
-            var responseObject = await GetAsync<BillPayment>(url);
-
-            return responseObject;
+            return await GetAsync<BillPayment>(route);
         }
 
         public async Task<ResponseList<BillPayment>> List(int offset, int limit)
         {
-            var responseList = await GetListAsync<BillPayment>(BILL_PAYMENT_URL, offset, limit);
-
-            return responseList;
+            return await GetListAsync<BillPayment>(BillPaymentRoute, offset, limit);
         }
 
         public async Task<ResponseObject<BillPayment>> Cancel(string billPaymentId)
         {
-            if (string.IsNullOrWhiteSpace(billPaymentId)) throw new ArgumentException("billPaymentId is required");
+            var route = $"{BillPaymentRoute}/{billPaymentId}/cancel";
 
-            var url = $"{BILL_PAYMENT_URL}/{billPaymentId}/cancel";
-            var responseObject = await PostAsync<BillPayment>(url, new RequestParameters());
-
-            return responseObject;
+            return await PostAsync<BillPayment>(route, new RequestParameters());
         }
     }
 }

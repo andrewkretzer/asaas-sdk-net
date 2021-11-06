@@ -10,33 +10,27 @@ namespace AsaasClient.Managers
 {
     public class PaymentDunningManager : BaseManager
     {
-        private const string PAYMENT_DUNNING_URL = "/paymentDunnings";
+        private const string PaymentDunningRoute = "/paymentDunnings";
 
         public PaymentDunningManager(ApiSettings settings) : base(settings) { }
 
         public async Task<ResponseObject<PaymentDunning>> Create(CreatePaymentDunningRequest requestObj)
         {
-            var responseObject = await PostMultipartFormDataContentAsync<PaymentDunning>(PAYMENT_DUNNING_URL, requestObj);
-
-            return responseObject;
+            return await PostMultipartFormDataContentAsync<PaymentDunning>(PaymentDunningRoute, requestObj);
         }
 
         public async Task<ResponseObject<SimulatedPaymentDunning>> Simulate(SimulatePaymentDunningRequest requestObj)
         {
-            var url = $"{PAYMENT_DUNNING_URL}/simulate";
-            var responseObject = await PostAsync<SimulatedPaymentDunning>(url, requestObj);
+            const string route = $"{PaymentDunningRoute}/simulate";
 
-            return responseObject;
+            return await PostAsync<SimulatedPaymentDunning>(route, requestObj);
         }
 
         public async Task<ResponseObject<PaymentDunning>> Find(string paymentDunningId)
         {
-            if (string.IsNullOrWhiteSpace(paymentDunningId)) throw new ArgumentException("paymentDunningId is required");
+            var route = $"{PaymentDunningRoute}/{paymentDunningId}";
 
-            var url = $"{PAYMENT_DUNNING_URL}/{paymentDunningId}";
-            var responseObject = await GetAsync<PaymentDunning>(url);
-
-            return responseObject;
+            return await GetAsync<PaymentDunning>(route);
         }
 
         public async Task<ResponseList<PaymentDunning>> List(int offset, int limit, PaymentDunningListFilter filter = null)
@@ -44,57 +38,42 @@ namespace AsaasClient.Managers
             var queryMap = new RequestParameters();
             if (filter != null) queryMap.AddRange(filter);
 
-            var responseList = await GetListAsync<PaymentDunning>(PAYMENT_DUNNING_URL, offset, limit, queryMap);
-
-            return responseList;
+            return await GetListAsync<PaymentDunning>(PaymentDunningRoute, offset, limit, queryMap);
         }
 
         public async Task<ResponseList<PaymentDunningEventHistory>> ListEventHistory(string paymentDunningId, int offset, int limit)
         {
-            if (string.IsNullOrWhiteSpace(paymentDunningId)) throw new ArgumentException("paymentDunningId is required");
+            var route = $"{PaymentDunningRoute}/{paymentDunningId}/history";
 
-            var url = $"{PAYMENT_DUNNING_URL}/{paymentDunningId}/history";
-            var responseList = await GetListAsync<PaymentDunningEventHistory>(url, offset, limit);
-
-            return responseList;
+            return await GetListAsync<PaymentDunningEventHistory>(route, offset, limit);
         }
 
         public async Task<ResponseList<PaymentDunningPartialPayments>> ListPartialPaymentsReceived(string paymentDunningId, int offset, int limit)
         {
-            if (string.IsNullOrWhiteSpace(paymentDunningId)) throw new ArgumentException("paymentDunningId is required");
+            var route = $"{PaymentDunningRoute}/{paymentDunningId}/partialPayments";
 
-            var url = $"{PAYMENT_DUNNING_URL}/{paymentDunningId}/partialPayments";
-            var responseList = await GetListAsync<PaymentDunningPartialPayments>(url, offset, limit);
-
-            return responseList;
+            return await GetListAsync<PaymentDunningPartialPayments>(route, offset, limit);
         }
 
         public async Task<ResponseList<PaymentDunningPaymentAvailable>> ListPaymentsAvailableForDunning(int offset, int limit)
         {
-            var url = $"{PAYMENT_DUNNING_URL}/paymentsAvailableForDunning";
-            var responseList = await GetListAsync<PaymentDunningPaymentAvailable>(url, offset, limit);
+            const string route = $"{PaymentDunningRoute}/paymentsAvailableForDunning";
 
-            return responseList;
+            return await GetListAsync<PaymentDunningPaymentAvailable>(route, offset, limit);
         }
 
         public async Task<ResponseObject<PaymentDunning>> ResendDocument(string paymentDunningId, List<AsaasFile> asaasFiles)
         {
-            if (string.IsNullOrWhiteSpace(paymentDunningId)) throw new ArgumentException("paymentDunningId is required");
+            var route = $"{PaymentDunningRoute}/{paymentDunningId}/documents";
 
-            var url = $"{PAYMENT_DUNNING_URL}/{paymentDunningId}/documents";
-            var responseObject = await PostMultipartFormDataContentAsync<PaymentDunning>(url, new { documents = asaasFiles });
-
-            return responseObject;
+            return await PostMultipartFormDataContentAsync<PaymentDunning>(route, new { documents = asaasFiles });
         }
 
         public async Task<ResponseObject<PaymentDunning>> Cancel(string paymentDunningId)
         {
-            if (string.IsNullOrWhiteSpace(paymentDunningId)) throw new ArgumentException("paymentDunningId is required");
+            var route = $"{PaymentDunningRoute}/{paymentDunningId}/cancel";
 
-            var url = $"{PAYMENT_DUNNING_URL}/{paymentDunningId}/cancel";
-            var responseObject = await PostAsync<PaymentDunning>(url, new RequestParameters());
-
-            return responseObject;
+            return await PostAsync<PaymentDunning>(route, new RequestParameters());
         }
     }
 }

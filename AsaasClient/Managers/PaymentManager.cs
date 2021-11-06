@@ -8,19 +8,19 @@ namespace AsaasClient.Managers
 {
     public class PaymentManager : BaseManager
     {
-        private const string PAYMENTS_URL = "/payments";
+        private const string PaymentsRoute = "/payments";
 
         public PaymentManager(ApiSettings settings) : base(settings) { }
 
         public async Task<ResponseObject<Payment>> Create(CreatePaymentRequest requestObj)
         {
-            return await PostAsync<Payment>(PAYMENTS_URL, requestObj);
+            return await PostAsync<Payment>(PaymentsRoute, requestObj);
         }
 
         public async Task<ResponseObject<Payment>> Find(string id)
         {
-            var url = $"{PAYMENTS_URL}/{id}";
-            return await GetAsync<Payment>(url);
+            var route = $"{PaymentsRoute}/{id}";
+            return await GetAsync<Payment>(route);
         }
 
         public async Task<ResponseList<Payment>> List(int offset, int limit, PaymentListFilter filter = null)
@@ -28,56 +28,38 @@ namespace AsaasClient.Managers
             var queryMap = new RequestParameters();
             if (filter != null) queryMap.AddRange(filter);
 
-            var responseList = await GetListAsync<Payment>(PAYMENTS_URL, offset, limit, queryMap);
-
-            return responseList;
+            return await GetListAsync<Payment>(PaymentsRoute, offset, limit, queryMap);
         }
 
         public async Task<ResponseObject<Payment>> Update(string paymentId, UpdatePaymentRequest requestObj)
         {
-            if (string.IsNullOrWhiteSpace(paymentId)) throw new ArgumentException("paymentId is required");
+            var route = $"{PaymentsRoute}/{paymentId}";
 
-            var url = $"{PAYMENTS_URL}/{paymentId}";
-            var responseObject = await PostAsync<Payment>(url, requestObj);
-
-            return responseObject;
+            return await PostAsync<Payment>(route, requestObj);
         }
 
         public async Task<ResponseObject<DeletedPayment>> Delete(string paymentId)
         {
-            if (string.IsNullOrWhiteSpace(paymentId)) throw new ArgumentException("paymentId is required");
-
-            var url = $"{PAYMENTS_URL}/{paymentId}";
-            var responseObject = await DeleteAsync<DeletedPayment>(url);
-
-            return responseObject;
+            var route = $"{PaymentsRoute}/{paymentId}";
+            return await DeleteAsync<DeletedPayment>(route);
         }
 
         public async Task<ResponseObject<Payment>> Restore(string paymentId)
         {
-            if (string.IsNullOrWhiteSpace(paymentId)) throw new ArgumentException("paymentId is required");
+            var route = $"{PaymentsRoute}/{paymentId}/restore";
 
-            var url = $"{PAYMENTS_URL}/{paymentId}/restore";
-            var responseObject = await PostAsync<Payment>(url, new RequestParameters());
-
-            return responseObject;
+            return await PostAsync<Payment>(route, new RequestParameters());
         }
 
         public async Task<ResponseObject<Payment>> Refund(string paymentId)
         {
-            if (string.IsNullOrWhiteSpace(paymentId)) throw new ArgumentException("paymentId is required");
-
-            var url = $"{PAYMENTS_URL}/{paymentId}/refund";
-            var responseObject = await PostAsync<Payment>(url, new RequestParameters());
-
-            return responseObject;
+            var route = $"{PaymentsRoute}/{paymentId}/refund";
+            return await PostAsync<Payment>(route, new RequestParameters());
         }
 
         public async Task<ResponseObject<Payment>> ReceiveInCash(string paymentId, DateTime paymentDate, decimal value, bool notifyCustomer)
         {
-            if (string.IsNullOrWhiteSpace(paymentId)) throw new ArgumentException("paymentId is required");
-
-            var url = $"{PAYMENTS_URL}/{paymentId}/receiveInCash";
+            var route = $"{PaymentsRoute}/{paymentId}/receiveInCash";
 
             RequestParameters parameters = new RequestParameters
             {
@@ -86,9 +68,7 @@ namespace AsaasClient.Managers
                 { "notifyCustomer", notifyCustomer }
             };
 
-            var responseObject = await PostAsync<Payment>(url, parameters);
-
-            return responseObject;
+            return await PostAsync<Payment>(route, parameters);
         }
     }
 }

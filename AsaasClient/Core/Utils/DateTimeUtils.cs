@@ -2,7 +2,7 @@
 
 namespace AsaasClient.Core.Utils
 {
-    public static class DateTimeUtils
+    internal static class DateTimeUtils
     {
 
         public static DateTime? Parse(string date)

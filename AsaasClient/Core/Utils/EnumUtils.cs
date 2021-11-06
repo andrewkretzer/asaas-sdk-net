@@ -2,7 +2,7 @@
 
 namespace AsaasClient.Core.Utils
 {
-    public static class EnumUtils
+    internal static class EnumUtils
     {
         public static T Parse<T>(string @enum)
         {

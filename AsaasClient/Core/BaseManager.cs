@@ -19,8 +19,8 @@ namespace AsaasClient.Core
 {
     public class BaseManager
     {
-        private const string PRODUCTION_URL = "https://www.asaas.com";
-        private const string SANDBOX_URL = "https://sandbox.asaas.com";
+        private const string ProductionUrl = "https://www.asaas.com";
+        private const string SandboxUrl = "https://sandbox.asaas.com";
 
         private readonly ApiSettings _settings;
 
@@ -111,7 +111,7 @@ namespace AsaasClient.Core
         {
             using var httpClient = BuildHttpClient();
 
-            if (parameters == null) parameters = new RequestParameters();
+            parameters ??= new RequestParameters();
             parameters.Add("offset", offset);
             parameters.Add("limit", limit);
 
@@ -162,12 +162,12 @@ namespace AsaasClient.Core
         {
             if (_settings.AsaasEnvironment.IsProduction())
             {
-                return new Uri(PRODUCTION_URL);
+                return new Uri(ProductionUrl);
             }
 
             if (_settings.AsaasEnvironment.IsSandbox())
             {
-                return new Uri(SANDBOX_URL);
+                return new Uri(SandboxUrl);
             }
 
             throw new InvalidOperationException("AsaasEnvironment not supported");

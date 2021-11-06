@@ -9,15 +9,15 @@ namespace AsaasClient.Core.Response
 {
     public class ResponseList<T> : BaseResponse
     {
-        public bool HasMore { get; private set; }
+        public bool HasMore { get; }
 
-        public int TotalCount { get; private set; }
+        public int TotalCount { get; }
 
-        public int Limit { get; private set; }
+        public int Limit { get; }
 
-        public int Offset { get; private set; }
+        public int Offset { get; }
 
-        public List<T> Data { get; private set; }
+        public List<T> Data { get; }
 
         public ResponseList(HttpStatusCode httpStatusCode, string content) : base(httpStatusCode, content)
         {

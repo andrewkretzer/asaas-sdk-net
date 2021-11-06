@@ -7,38 +7,32 @@ namespace AsaasClient.Managers
 {
     public class WebhookManager : BaseManager
     {
-        private const string WEBHOOK_URL = "/webhook";
+        private const string WebhookRoute = "/webhook";
 
         public WebhookManager(ApiSettings settings) : base(settings) { }
 
         public async Task<ResponseObject<Webhook>> CreateOrUpdatePaymentWebhook(WebhookRequest requestObj)
         {
-            var responseObject = await PostAsync<Webhook>(WEBHOOK_URL, requestObj);
-
-            return responseObject;
+            return await PostAsync<Webhook>(WebhookRoute, requestObj);
         }
 
         public async Task<ResponseObject<Webhook>> FindPaymentWebhook()
         {
-            var responseObject = await GetAsync<Webhook>(WEBHOOK_URL, null);
-
-            return responseObject;
+            return await GetAsync<Webhook>(WebhookRoute);
         }
 
         public async Task<ResponseObject<Webhook>> CreateOrUpdateInvoiceWebhook(WebhookRequest requestObj)
         {
-            var url = $"{WEBHOOK_URL}/invoice";
-            var responseObject = await PostAsync<Webhook>(url, requestObj);
+            const string route = $"{WebhookRoute}/invoice";
 
-            return responseObject;
+            return await PostAsync<Webhook>(route, requestObj);
         }
 
         public async Task<ResponseObject<Webhook>> FindInvoiceWebhook()
         {
-            var url = $"{WEBHOOK_URL}/invoice";
-            var responseObject = await GetAsync<Webhook>(url);
+            const string route = $"{WebhookRoute}/invoice";
 
-            return responseObject;
+            return await GetAsync<Webhook>(route);
         }
     }
 }

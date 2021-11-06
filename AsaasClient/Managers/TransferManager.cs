@@ -8,7 +8,7 @@ namespace AsaasClient.Managers
 {
     public class TransferManager : BaseManager
     {
-        private const string TRANSFERS_URL = "/transfers";
+        private const string TransfersRoute = "/transfers";
 
         public TransferManager(ApiSettings settings) : base(settings) { }
 
@@ -17,23 +17,17 @@ namespace AsaasClient.Managers
             var queryMap = new RequestParameters();
             if (filter != null) queryMap.AddRange(filter);
 
-            var responseList = await GetListAsync<BaseTransfer>(TRANSFERS_URL, offset, limit, queryMap);
-
-            return responseList;
+            return await GetListAsync<BaseTransfer>(TransfersRoute, offset, limit, queryMap);
         }
 
         public async Task<ResponseObject<AsaasAccountTransfer>> Execute(AsaasAccountTransferRequest requestObj)
         {
-            var responseObject = await PostAsync<AsaasAccountTransfer>(TRANSFERS_URL, requestObj);
-
-            return responseObject;
+            return await PostAsync<AsaasAccountTransfer>(TransfersRoute, requestObj);
         }
 
         public async Task<ResponseObject<BankAccountTransfer>> Execute(BankAccountTransferRequest requestObj)
         {
-            var responseObject = await PostAsync<BankAccountTransfer>(TRANSFERS_URL, requestObj);
-
-            return responseObject;
+            return await PostAsync<BankAccountTransfer>(TransfersRoute, requestObj);
         }
     }
 }

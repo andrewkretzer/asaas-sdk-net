@@ -4,9 +4,9 @@ namespace AsaasClient.Core
 {
     public class ApiSettings
     {
-        public string AccessToken { get; private set; }
-        public AsaasEnvironment AsaasEnvironment { get; private set; }
-        public TimeSpan TimeOut { get; private set; }
+        public string AccessToken { get; }
+        public AsaasEnvironment AsaasEnvironment { get; }
+        public TimeSpan TimeOut { get; set; }
 
         public ApiSettings(string accessToken, AsaasEnvironment asaasEnvironment)
         {

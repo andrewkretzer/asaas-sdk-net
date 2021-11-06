@@ -8,35 +8,25 @@ namespace AsaasClient.Managers
 {
     public class InvoiceManager : BaseManager
     {
-        private const string INVOICES_URL = "/invoices";
+        private const string InvoicesRoute = "/invoices";
 
         public InvoiceManager(ApiSettings settings) : base(settings) { }
 
         public async Task<ResponseObject<Invoice>> Schedule(CreateInvoiceRequest requestObj)
         {
-            var responseObject = await PostAsync<Invoice>(INVOICES_URL, requestObj);
-
-            return responseObject;
+            return await PostAsync<Invoice>(InvoicesRoute, requestObj);
         }
 
         public async Task<ResponseObject<Invoice>> Update(string invoiceId, UpdateInvoiceRequest requestObj)
         {
-            if (string.IsNullOrWhiteSpace(invoiceId)) throw new ArgumentException("invoiceId is required");
-
-            var url = $"{INVOICES_URL}/{invoiceId}";
-            var responseObject = await PostAsync<Invoice>(url, requestObj);
-
-            return responseObject;
+            var route = $"{InvoicesRoute}/{invoiceId}";
+            return await PostAsync<Invoice>(route, requestObj);
         }
 
         public async Task<ResponseObject<Invoice>> Find(string invoiceId)
         {
-            if (string.IsNullOrWhiteSpace(invoiceId)) throw new ArgumentException("invoiceId is required");
-
-            var url = $"{INVOICES_URL}/{invoiceId}";
-            var responseObject = await GetAsync<Invoice>(url);
-
-            return responseObject;
+            var route = $"{InvoicesRoute}/{invoiceId}";
+            return await GetAsync<Invoice>(route);
         }
 
         public async Task<ResponseList<Invoice>> List(int offset, int limit, InvoiceListFilter filter = null)
@@ -44,29 +34,20 @@ namespace AsaasClient.Managers
             var queryMap = new RequestParameters();
             if (filter != null) queryMap.AddRange(filter);
 
-            var responseList = await GetListAsync<Invoice>(INVOICES_URL, offset, limit, queryMap);
-
-            return responseList;
+            return await GetListAsync<Invoice>(InvoicesRoute, offset, limit, queryMap);
         }
 
         public async Task<ResponseObject<Invoice>> Authorize(string invoiceId)
         {
-            if (string.IsNullOrWhiteSpace(invoiceId)) throw new ArgumentException("invoiceId is required");
+            var route = $"{InvoicesRoute}/{invoiceId}/authorize";
 
-            var url = $"{INVOICES_URL}/{invoiceId}/authorize";
-            var responseObject = await PostAsync<Invoice>(url, new RequestParameters());
-
-            return responseObject;
+            return await PostAsync<Invoice>(route, new RequestParameters());
         }
 
         public async Task<ResponseObject<Invoice>> Cancel(string invoiceId)
         {
-            if (string.IsNullOrWhiteSpace(invoiceId)) throw new ArgumentException("invoiceId is required");
-
-            var url = $"{INVOICES_URL}/{invoiceId}/cancel";
-            var responseObject = await PostAsync<Invoice>(url, new RequestParameters());
-
-            return responseObject;
+            var route = $"{InvoicesRoute}/{invoiceId}/cancel";
+            return await PostAsync<Invoice>(route, new RequestParameters());
         }
 
         public async Task<ResponseList<MunicipalService>> ListMunicipalServices(string serviceDescription)
@@ -76,10 +57,9 @@ namespace AsaasClient.Managers
                 { "description", serviceDescription }
             };
 
-            var url = $"{INVOICES_URL}/municipalServices";
-            var responseList = await GetListAsync<MunicipalService>(url, 0, 0, queryMap);
+            const string route = $"{InvoicesRoute}/municipalServices";
 
-            return responseList;
+            return await GetListAsync<MunicipalService>(route, 0, 0, queryMap);
         }
     }
 }

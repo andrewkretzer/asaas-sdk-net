@@ -7,30 +7,24 @@ namespace AsaasClient.Managers
 {
     public class MyAccountManager : BaseManager
     {
-        private const string MY_ACCOUNT_URL = "/myAccount";
-        private const string PAYMENT_CHECKOUT_CONFIG_URL = MY_ACCOUNT_URL + "/paymentCheckoutConfig";
+        private const string MyAccountRoute = "/myAccount";
+        private const string PaymentCheckoutConfigRoute = MyAccountRoute + "/paymentCheckoutConfig";
 
         public MyAccountManager(ApiSettings settings) : base(settings) { }
 
         public async Task<ResponseObject<MyAccount>> Find()
         {
-            var responseObject = await GetAsync<MyAccount>(MY_ACCOUNT_URL);
-
-            return responseObject;
+            return await GetAsync<MyAccount>(MyAccountRoute);
         }
 
         public async Task<ResponseObject<PaymentCheckoutConfig>> CreatePaymentCheckoutConfig(CreatePaymentCheckoutConfigRequest requestObj)
         {
-            var responseObject = await PostMultipartFormDataContentAsync<PaymentCheckoutConfig>(PAYMENT_CHECKOUT_CONFIG_URL, requestObj);
-
-            return responseObject;
+            return await PostMultipartFormDataContentAsync<PaymentCheckoutConfig>(PaymentCheckoutConfigRoute, requestObj);
         }
 
         public async Task<ResponseObject<PaymentCheckoutConfig>> FindPaymentCheckoutConfig()
         {
-            var responseObject = await GetAsync<PaymentCheckoutConfig>(PAYMENT_CHECKOUT_CONFIG_URL);
-
-            return responseObject;
+            return await GetAsync<PaymentCheckoutConfig>(PaymentCheckoutConfigRoute);
         }
     }
 }

@@ -9,20 +9,20 @@ namespace AsaasClient.Managers
 {
     public class SubscriptionManager : BaseManager
     {
-        private const string SUBSCRIPTIONS_URL = "/subscriptions";
+        private const string SubscriptionsRoute = "/subscriptions";
 
         #region Basic Resources
         public SubscriptionManager(ApiSettings settings) : base(settings) { }
 
         public async Task<ResponseObject<Subscription>> Create(CreateSubscriptionRequest requestObj)
         {
-            return await PostAsync<Subscription>(SUBSCRIPTIONS_URL, requestObj);
+            return await PostAsync<Subscription>(SubscriptionsRoute, requestObj);
         }
 
         public async Task<ResponseObject<Subscription>> Find(string subscriptionId)
         {
-            var url = $"{SUBSCRIPTIONS_URL}/{subscriptionId}";
-            return await GetAsync<Subscription>(url);
+            var route = $"{SubscriptionsRoute}/{subscriptionId}";
+            return await GetAsync<Subscription>(route);
         }
 
         public async Task<ResponseList<Subscription>> List(int offset, int limit, SubscriptionListFilter filter = null)
@@ -30,84 +30,59 @@ namespace AsaasClient.Managers
             var queryMap = new RequestParameters();
             if (filter != null) queryMap.AddRange(filter);
 
-            var responseList = await GetListAsync<Subscription>(SUBSCRIPTIONS_URL, offset, limit, queryMap);
-
-            return responseList;
+            return await GetListAsync<Subscription>(SubscriptionsRoute, offset, limit, queryMap);
         }
 
         public async Task<ResponseObject<Subscription>> Update(string subscriptionId, UpdateSubscriptionRequest requestObj)
         {
-            if (string.IsNullOrWhiteSpace(subscriptionId)) throw new ArgumentException("subscriptionId is required");
-
-            var url = $"{SUBSCRIPTIONS_URL}/{subscriptionId}";
-            var responseObject = await PostAsync<Subscription>(url, requestObj);
-
-            return responseObject;
+            var route = $"{SubscriptionsRoute}/{subscriptionId}";
+            return await PostAsync<Subscription>(route, requestObj);
         }
 
         public async Task<ResponseObject<DeletedSubscription>> Delete(string subscriptionId)
         {
-            if (string.IsNullOrWhiteSpace(subscriptionId)) throw new ArgumentException("subscriptionId is required");
+            var route = $"{SubscriptionsRoute}/{subscriptionId}";
 
-            var url = $"{SUBSCRIPTIONS_URL}/{subscriptionId}";
-            var responseObject = await DeleteAsync<DeletedSubscription>(url);
-
-            return responseObject;
+            return await DeleteAsync<DeletedSubscription>(route);
         }
         #endregion
 
         #region Invoice
         public async Task<ResponseList<Invoice>> ListInvoice(string subscriptionId, int offset, int limit, SubscriptionInvoiceListFilter filter = null)
         {
-            if (string.IsNullOrWhiteSpace(subscriptionId)) throw new ArgumentException("subscriptionId is required");
-
             var queryMap = new RequestParameters();
             if (filter != null) queryMap.AddRange(filter);
 
-            var url = $"{SUBSCRIPTIONS_URL}/{subscriptionId}/invoices";
-            var responseList = await GetListAsync<Invoice>(url, offset, limit, queryMap);
+            var route = $"{SubscriptionsRoute}/{subscriptionId}/invoices";
 
-            return responseList;
+            return await GetListAsync<Invoice>(route, offset, limit, queryMap);
         }
 
         public async Task<ResponseObject<SubscriptionInvoiceSettings>> CreateInvoiceSettings(string subscriptionId, CreateInvoiceSettingsRequest requestObj)
         {
-            if (string.IsNullOrWhiteSpace(subscriptionId)) throw new ArgumentException("subscriptionId is required");
+            var route = $"{SubscriptionsRoute}/{subscriptionId}/invoiceSettings";
 
-            var url = $"{SUBSCRIPTIONS_URL}/{subscriptionId}/invoiceSettings";
-            var responseObject = await PostAsync<SubscriptionInvoiceSettings>(url, requestObj);
-
-            return responseObject;
+            return await PostAsync<SubscriptionInvoiceSettings>(route, requestObj);
         }
 
         public async Task<ResponseObject<SubscriptionInvoiceSettings>> UpdateInvoiceSettings(string subscriptionId, UpdateInvoiceSettingsRequest requestObj)
         {
-            if (string.IsNullOrWhiteSpace(subscriptionId)) throw new ArgumentException("subscriptionId is required");
-
-            var url = $"{SUBSCRIPTIONS_URL}/{subscriptionId}/invoiceSettings";
-            var responseObject = await PostAsync<SubscriptionInvoiceSettings>(url, requestObj);
-
-            return responseObject;
+            var route = $"{SubscriptionsRoute}/{subscriptionId}/invoiceSettings";
+            return await PostAsync<SubscriptionInvoiceSettings>(route, requestObj);
         }
 
         public async Task<ResponseObject<SubscriptionInvoiceSettings>> FindInvoiceSettings(string subscriptionId)
         {
-            if (string.IsNullOrWhiteSpace(subscriptionId)) throw new ArgumentException("subscriptionId is required");
+            var route = $"{SubscriptionsRoute}/{subscriptionId}/invoiceSettings";
 
-            var url = $"{SUBSCRIPTIONS_URL}/{subscriptionId}/invoiceSettings";
-            var responseObject = await GetAsync<SubscriptionInvoiceSettings>(url);
-
-            return responseObject;
+            return await GetAsync<SubscriptionInvoiceSettings>(route);
         }
 
         public async Task<ResponseObject<DeletedInvoiceSettings>> DeleteInvoiceSettings(string subscriptionId)
         {
-            if (string.IsNullOrWhiteSpace(subscriptionId)) throw new ArgumentException("subscriptionId is required");
+            var route = $"{SubscriptionsRoute}/{subscriptionId}/invoiceSettings";
 
-            var url = $"{SUBSCRIPTIONS_URL}/{subscriptionId}/invoiceSettings";
-            var responseObject = await DeleteAsync<DeletedInvoiceSettings>(url);
-
-            return responseObject;
+            return await DeleteAsync<DeletedInvoiceSettings>(route);
         }
         #endregion
     }
