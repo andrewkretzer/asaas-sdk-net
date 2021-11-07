@@ -23,14 +23,14 @@ namespace AsaasClient.Managers
 
         public async Task<ResponseObject<Webhook>> CreateOrUpdateInvoiceWebhook(WebhookRequest requestObj)
         {
-            const string route = $"{WebhookRoute}/invoice";
+            var route = $"{WebhookRoute}/invoice";
 
             return await PostAsync<Webhook>(route, requestObj);
         }
 
         public async Task<ResponseObject<Webhook>> FindInvoiceWebhook()
         {
-            const string route = $"{WebhookRoute}/invoice";
+            var route = $"{WebhookRoute}/invoice";
 
             return await GetAsync<Webhook>(route);
         }
