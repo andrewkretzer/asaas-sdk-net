@@ -19,7 +19,7 @@ namespace AsaasClient.Managers
 
         public async Task<ResponseObject<SimulatedAnticipation>> Simulate(SimulateAnticipationRequest requestObj)
         {
-            const string route = $"{AnticipationsRoute}/simulate";
+            var route = $"{AnticipationsRoute}/simulate";
 
             return await PostAsync<SimulatedAnticipation>(route, requestObj);
         }

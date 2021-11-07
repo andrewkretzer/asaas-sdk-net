@@ -130,7 +130,7 @@ namespace AsaasClient.Core
                 resource += $"/{id}";
             }
 
-            var response = await httpClient.GetAsync(BuildApiRoute(resource));
+            var response = await httpClient.DeleteAsync(BuildApiRoute(resource));
 
             return await BuildResponseObject<T>(response);
         }

@@ -19,7 +19,7 @@ namespace AsaasClient.Managers
 
         public async Task<ResponseObject<SimulatedBillPayment>> Simulate(SimulateBillPaymentRequest requestObj)
         {
-            const string simulateRoute = $"{BillPaymentRoute}/simulate";
+            var simulateRoute = $"{BillPaymentRoute}/simulate";
 
             return await PostAsync<SimulatedBillPayment>(simulateRoute, requestObj);
         }

@@ -21,7 +21,7 @@ namespace AsaasClient.Managers
 
         public async Task<ResponseObject<SimulatedPaymentDunning>> Simulate(SimulatePaymentDunningRequest requestObj)
         {
-            const string route = $"{PaymentDunningRoute}/simulate";
+            var route = $"{PaymentDunningRoute}/simulate";
 
             return await PostAsync<SimulatedPaymentDunning>(route, requestObj);
         }
@@ -57,7 +57,7 @@ namespace AsaasClient.Managers
 
         public async Task<ResponseList<PaymentDunningPaymentAvailable>> ListPaymentsAvailableForDunning(int offset, int limit)
         {
-            const string route = $"{PaymentDunningRoute}/paymentsAvailableForDunning";
+            var route = $"{PaymentDunningRoute}/paymentsAvailableForDunning";
 
             return await GetListAsync<PaymentDunningPaymentAvailable>(route, offset, limit);
         }

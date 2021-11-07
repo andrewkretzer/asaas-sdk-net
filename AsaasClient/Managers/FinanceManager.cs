@@ -14,7 +14,7 @@ namespace AsaasClient.Managers
 
         public async Task<ResponseObject<decimal>> Balance()
         {
-            const string route = $"{FinanceRoute}/getCurrentBalance";
+            var route = $"{FinanceRoute}/getCurrentBalance";
 
             return await GetAsync<decimal>(route);
         }

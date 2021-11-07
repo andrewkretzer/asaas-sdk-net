@@ -24,7 +24,7 @@
 
         public string ExternalReference { get; set; }
 
-        public string NotificationDisabled { get; set; }
+        public bool NotificationDisabled { get; set; }
 
         public string AdditionalEmails { get; set; }
 

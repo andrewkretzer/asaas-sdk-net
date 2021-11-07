@@ -57,7 +57,7 @@ namespace AsaasClient.Managers
                 { "description", serviceDescription }
             };
 
-            const string route = $"{InvoicesRoute}/municipalServices";
+            var route = $"{InvoicesRoute}/municipalServices";
 
             return await GetListAsync<MunicipalService>(route, 0, 0, queryMap);
         }
