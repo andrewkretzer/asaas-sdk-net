@@ -3,6 +3,14 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
         <LangVersion>9</LangVersion>
+        <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+        <PackageId>Asaas.SDK</PackageId>
+        <Authors>Douglas Giovanella, Andrew Kretzer</Authors>
+        <Description>SDK para integração com as APIs do Asaas.com</Description>
+        <PackageProjectUrl>https://github.com/andrewkretzer/asaas-sdk-net</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/andrewkretzer/asaas-sdk-net</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>asaas, sdk, asaasApi, asaassdk</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
