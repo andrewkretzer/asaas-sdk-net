@@ -23,7 +23,7 @@ AsaasApi asaasApi = new AsaasApi(apiSettings);
 
 ResponseObject<Customer> customerResponse = await asaasApi.Customer.Find("cus_13bFHumeyglN");
 
-if (customerResponse.StatusCode.isOk())
+if (customerResponse.WasSucessfull())
 {
     Customer customer = customerResponse.Data;
 
@@ -35,23 +35,19 @@ if (customerResponse.StatusCode.isOk())
         DueDate = DateTime.Parse("12/12/2020")
     });
 }
-
 ```
 
 ## Installation
 
-### [NuGet](https://www.nuget.org/packages/AsaasSDK/)
+### [NuGet](https://www.nuget.org/packages/Asaas.SDK/)
 
 To install this library via NuGet via NuGet console, use:
 ```
-Install-Package AsaasSDK
-```
-and via Package Manager, simply search:
-```
-AsaasSDK
+Install-Package Asaas.SDK
 ```
 
 ## Contributors
+ * Andrew Kretzer [Github](https://github.com/andrewkretzer)
  * Douglas Giovanella [Github](https://github.com/DouglasGiovanella)
 
 ## License
