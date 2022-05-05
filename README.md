@@ -23,7 +23,7 @@ AsaasApi asaasApi = new AsaasApi(apiSettings);
 
 ResponseObject<Customer> customerResponse = await asaasApi.Customer.Find("cus_13bFHumeyglN");
 
-if (customerResponse.StatusCode.isOk())
+if (customerResponse.WasSucessfull())
 {
     Customer customer = customerResponse.Data;
 
@@ -35,7 +35,6 @@ if (customerResponse.StatusCode.isOk())
         DueDate = DateTime.Parse("12/12/2020")
     });
 }
-
 ```
 
 ## Installation
