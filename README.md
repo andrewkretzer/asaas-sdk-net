@@ -40,18 +40,15 @@ if (customerResponse.StatusCode.isOk())
 
 ## Installation
 
-### [NuGet](https://www.nuget.org/packages/AsaasSDK/)
+### [NuGet](https://www.nuget.org/packages/Asaas.SDK/)
 
 To install this library via NuGet via NuGet console, use:
 ```
-Install-Package AsaasSDK
-```
-and via Package Manager, simply search:
-```
-AsaasSDK
+Install-Package Asaas.SDK
 ```
 
 ## Contributors
+ * Andrew Kretzer [Github](https://github.com/andrewkretzer)
  * Douglas Giovanella [Github](https://github.com/DouglasGiovanella)
 
 ## License
