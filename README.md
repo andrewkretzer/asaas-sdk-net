@@ -21,11 +21,15 @@ ApiSettings apiSettings = new ApiSettings("YOUR_ACCESS_TOKEN", AsaasEnvironment.
 
 AsaasApi asaasApi = new AsaasApi(apiSettings);
 
-ResponseObject<Customer> customerResponse = await asaasApi.Customer.Find("cus_13bFHumeyglN");
-
-if (customerResponse.WasSucessfull())
+ResponseObject<Customer> createdCustomerResponse = await asaasApi.Customer.Create(new CreateCustomerRequest
 {
-    Customer customer = customerResponse.Data;
+    Name = "João da Silva",
+    CpfCnpj = "01020558075"
+});
+
+if (createdCustomerResponse.WasSucessfull())
+{
+    Customer customer = createdCustomerResponse.Data;
 
     ResponseObject<Payment> paymentResponse = await asaasApi.Payment.Create(new CreatePaymentRequest()
     {
