@@ -28,5 +28,7 @@ namespace AsaasClient.Core.Response.Base
 
             Errors = JsonConvert.DeserializeObject<List<Error>>(jObject.GetValue("errors").ToString());
         }
+
+        public bool WasSucessfull() => StatusCode == HttpStatusCode.OK;
     }
 }

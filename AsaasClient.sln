@@ -1,10 +1,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29418.71
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsaasClient", "AsaasClient\AsaasClient.csproj", "{F67FEE8D-9974-460A-9713-8A450100C5EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsaasClient.Tests", "AsaasClient.Tests\AsaasClient.Tests.csproj", "{D4FEA0FC-2513-47FB-AD0A-1B14CF1E7B9E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsaasClient.Sample", "AsaasClient.Sample\AsaasClient.Sample.csproj", "{3CFF8BB1-D8B5-42D8-B22F-667BAAF8D4D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,10 +16,10 @@ Global
 		{F67FEE8D-9974-460A-9713-8A450100C5EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F67FEE8D-9974-460A-9713-8A450100C5EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F67FEE8D-9974-460A-9713-8A450100C5EB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D4FEA0FC-2513-47FB-AD0A-1B14CF1E7B9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D4FEA0FC-2513-47FB-AD0A-1B14CF1E7B9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D4FEA0FC-2513-47FB-AD0A-1B14CF1E7B9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D4FEA0FC-2513-47FB-AD0A-1B14CF1E7B9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CFF8BB1-D8B5-42D8-B22F-667BAAF8D4D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CFF8BB1-D8B5-42D8-B22F-667BAAF8D4D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CFF8BB1-D8B5-42D8-B22F-667BAAF8D4D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CFF8BB1-D8B5-42D8-B22F-667BAAF8D4D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

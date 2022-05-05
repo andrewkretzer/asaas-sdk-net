@@ -4,7 +4,7 @@ using System;
 
 namespace AsaasClient
 {
-    public class AsaasClient
+    public class AsaasApi
     {
         #region Lazy
         private Lazy<CustomerManager> LazyCustomer { get; }
@@ -40,7 +40,7 @@ namespace AsaasClient
         public BillPaymentManager BillPayment => LazyBillPayment.Value;
         #endregion
 
-        public AsaasClient(ApiSettings apiSettings)
+        public AsaasApi(ApiSettings apiSettings)
         {
             LazyCustomer = new Lazy<CustomerManager>(() => new CustomerManager(apiSettings), true);
             LazyPayment = new Lazy<PaymentManager>(() => new PaymentManager(apiSettings), true);
