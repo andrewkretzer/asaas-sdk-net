@@ -45,7 +45,7 @@ if (createdCustomerResponse.WasSucessfull())
 
 ### [NuGet](https://www.nuget.org/packages/Asaas.SDK/)
 
-To install this library via NuGet via NuGet console, use:
+To install this library via NuGet console, use:
 ```
 Install-Package Asaas.SDK
 ```
