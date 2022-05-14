@@ -5,7 +5,9 @@
 <img src="https://img.shields.io/badge/Platform-.NET-lightgrey.svg" style="max-height: 300px;">
 </p>
 
-The **Asaas SDK for .NET** enables .NET developers to easily work with [Asaas](https://asaasv3.docs.apiary.io) services.
+The **Asaas SDK for .NET** enables .NET developers to easily work with [Asaas](https://www.asaas.com) services.
+
+This is a **unficial** SDK, feel free to contribute or report any issues ou improvements :)
 
 ## Documentation
 
