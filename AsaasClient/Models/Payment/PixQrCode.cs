@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace AsaasClient.Models.Common
+namespace AsaasClient.Models.Payment
 {
     public class PixQRCode
     {

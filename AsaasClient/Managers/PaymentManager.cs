@@ -1,6 +1,5 @@
 ﻿using AsaasClient.Core;
 using AsaasClient.Core.Response;
-using AsaasClient.Models.Common;
 using AsaasClient.Models.Payment;
 using System;
 using System.Threading.Tasks;
@@ -75,13 +74,13 @@ namespace AsaasClient.Managers
         {
             var route = $"{PaymentsRoute}/{paymentId}/identificationField";
 
-            return await PostAsync<BankSlipCode>(route, new RequestParameters());
+            return await GetAsync<BankSlipCode>(route);
         }
         public async Task<ResponseObject<PixQRCode>> GetPixQrCode(string paymentId)
         {
             var route = $"{PaymentsRoute}/{paymentId}/pixQrCode";
 
-            return await PostAsync<PixQRCode>(route, new RequestParameters());
+            return await GetAsync<PixQRCode>(route);
         }
     }
 }
