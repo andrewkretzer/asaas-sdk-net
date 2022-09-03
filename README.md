@@ -7,7 +7,7 @@
 
 The **Asaas SDK for .NET** enables .NET developers to easily work with [Asaas](https://www.asaas.com) services.
 
-This is a **unficial** SDK, feel free to contribute or report any issues ou improvements :)
+This is a **unofficial** SDK, feel free to contribute or report any issues :)
 
 ## Documentation
 
