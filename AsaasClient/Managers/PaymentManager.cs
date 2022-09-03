@@ -70,5 +70,17 @@ namespace AsaasClient.Managers
 
             return await PostAsync<Payment>(route, parameters);
         }
+        public async Task<ResponseObject<BankSlipCode>> GetBankSlipBarCode(string paymentId)
+        {
+            var route = $"{PaymentsRoute}/{paymentId}/identificationField";
+
+            return await GetAsync<BankSlipCode>(route);
+        }
+        public async Task<ResponseObject<PixQRCode>> GetPixQrCode(string paymentId)
+        {
+            var route = $"{PaymentsRoute}/{paymentId}/pixQrCode";
+
+            return await GetAsync<PixQRCode>(route);
+        }
     }
 }
