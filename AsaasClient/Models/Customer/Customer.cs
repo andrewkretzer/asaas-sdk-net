@@ -41,7 +41,7 @@ namespace AsaasClient.Models.Customer
 
         public bool Deleted { get; set; }
 
-        public long? CityId { get; set; }
+        public long? City { get; set; }
 
         public string State { get; set; }
 
