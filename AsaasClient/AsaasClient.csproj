@@ -11,6 +11,7 @@
         <RepositoryUrl>https://github.com/andrewkretzer/asaas-sdk-net</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>asaas, sdk, asaasApi, asaassdk</PackageTags>
+        <Version>1.0.2</Version>
     </PropertyGroup>
 
     <ItemGroup>
