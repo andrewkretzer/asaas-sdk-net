@@ -1,8 +1,6 @@
 name-template: 'Release v$RESOLVED_VERSION'
 tag-template: 'v$RESOLVED_VERSION'
 version-template: '$MAJOR.$MINOR'
-exclude-labels:
-  - 'hotfix'
 filter-by-commitsh: true
 version-resolver:
   major:
