@@ -1,0 +1,22 @@
+name-template: 'Release v$RESOLVED_VERSION'
+tag-template: 'v$RESOLVED_VERSION'
+version-template: '$MAJOR.$MINOR'
+exclude-labels:
+  - 'hotfix'
+filter-by-commitsh: true
+version-resolver:
+  major:
+    labels:
+      - 'major'
+  minor:
+    labels:
+      - 'minor'
+  patch:
+    labels:
+      - 'patch'
+  default: 'major'
+no-changes-template: 'Em desenvolvimento ![loading](https://www.asaas.com/assets/loading.gif)'
+change-template: '#$NUMBER | $TITLE @$AUTHOR'
+template: |
+  ## Alterações
+  $CHANGES
