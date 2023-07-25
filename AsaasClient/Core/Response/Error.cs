@@ -1,12 +1,13 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
+
 namespace AsaasClient.Core.Response
 {
     public class Error
     {
-        [JsonProperty(PropertyName = "code")]
+        [JsonPropertyName("code")]
         public string Code { get; internal set; }
 
-        [JsonProperty(PropertyName = "description")]
+        [JsonPropertyName( "description")]
         public string Description { get; internal set; }
     }
 }

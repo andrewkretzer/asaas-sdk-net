@@ -1,7 +1,6 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net;
+using System.Text.Json;
 
 namespace AsaasClient.Core.Response.Base
 {
@@ -24,9 +23,13 @@ namespace AsaasClient.Core.Response.Base
         {
             if (StatusCode != HttpStatusCode.BadRequest) return;
 
-            JObject jObject = JObject.Parse(AsaasResponse);
+            using JsonDocument document = JsonDocument.Parse(AsaasResponse);
+            JsonElement root = document.RootElement;
 
-            Errors = JsonConvert.DeserializeObject<List<Error>>(jObject.GetValue("errors").ToString());
+            if (root.TryGetProperty("errors", out JsonElement errorsElement))
+            {
+                Errors = JsonSerializer.Deserialize<List<Error>>(errorsElement.GetRawText());
+            }
         }
 
         public bool WasSucessfull() => StatusCode == HttpStatusCode.OK;

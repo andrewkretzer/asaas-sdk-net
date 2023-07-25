@@ -1,16 +1,16 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace AsaasClient.Models.Payment
 {
     public class BankSlipCode
     {
-        [JsonProperty(PropertyName = "identificationField")]
+        [JsonPropertyName( "identificationField")]
         public string IdentificationField { get; set; }
 
-        [JsonProperty(PropertyName = "nossoNumero")]
+        [JsonPropertyName( "nossoNumero")]
         public string NossoNumero { get; set; }
 
-        [JsonProperty(PropertyName = "barCode")]
+        [JsonPropertyName( "barCode")]
         public string BarCode { get; set; }
     }
 }

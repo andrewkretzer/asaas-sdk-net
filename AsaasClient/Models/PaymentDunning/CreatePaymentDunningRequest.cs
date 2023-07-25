@@ -1,13 +1,13 @@
 ﻿using AsaasClient.Models.Common;
 using AsaasClient.Models.PaymentDunning.Enums;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using System.Collections.Generic;
 
 namespace AsaasClient.Models.PaymentDunning
 {
     public class CreatePaymentDunningRequest {
 
-        [JsonProperty(PropertyName = "payment")]
+        [JsonPropertyName( "payment")]
         public string PaymentId { get; set; }
 
         public PaymentDunningType Type { get; set; }

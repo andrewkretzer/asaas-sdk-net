@@ -1,13 +1,13 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace AsaasClient.Models.Anticipation
 {
     public class SimulateAnticipationRequest
     {
-        [JsonProperty(PropertyName = "installment")]
+        [JsonPropertyName( "installment")]
         public string InstallmentId { get; set; }
 
-        [JsonProperty(PropertyName = "payment")]
+        [JsonPropertyName( "payment")]
         public string PaymentId { get; set; }
     }
 }

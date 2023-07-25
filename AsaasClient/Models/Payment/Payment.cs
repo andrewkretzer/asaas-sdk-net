@@ -1,7 +1,7 @@
 ﻿using AsaasClient.Models.Common;
 using AsaasClient.Models.Common.Enums;
 using AsaasClient.Models.Payment.Enums;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using System;
 using System.Collections.Generic;
 
@@ -13,13 +13,13 @@ namespace AsaasClient.Models.Payment
 
         public DateTime DateCreated { get; set; }
 
-        [JsonProperty(PropertyName = "customer")]
+        [JsonPropertyName( "customer")]
         public string CustomerId { get; set; }
 
-        [JsonProperty(PropertyName = "subscription")]
+        [JsonPropertyName( "subscription")]
         public string SubscriptionId { get; set; }
 
-        [JsonProperty(PropertyName = "installment")]
+        [JsonPropertyName( "installment")]
         public string InstallmentId { get; set; }
 
         public DateTime DueDate { get; set; }

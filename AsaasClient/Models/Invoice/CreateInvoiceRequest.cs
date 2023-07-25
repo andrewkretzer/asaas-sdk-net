@@ -1,18 +1,18 @@
 ﻿using AsaasClient.Models.Common;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using System;
 
 namespace AsaasClient.Models.Invoice
 {
     public class CreateInvoiceRequest
     {
-        [JsonProperty(PropertyName = "payment")]
+        [JsonPropertyName( "payment")]
         public string PaymentId { get; set; }
 
-        [JsonProperty(PropertyName = "installment")]
+        [JsonPropertyName( "installment")]
         public string InstallmentId { get; set; }
 
-        [JsonProperty(PropertyName = "customer")]
+        [JsonPropertyName( "customer")]
         public string CustomerId { get; set; }
 
         public string ServiceDescription { get; set; }

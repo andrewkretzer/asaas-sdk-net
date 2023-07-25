@@ -1,5 +1,5 @@
 ﻿using AsaasClient.Models.Anticipation.Enums;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using System;
 
 namespace AsaasClient.Models.Anticipation
@@ -8,10 +8,10 @@ namespace AsaasClient.Models.Anticipation
     {
         public string Id { get; set; }
 
-        [JsonProperty(PropertyName = "installment")]
+        [JsonPropertyName( "installment")]
         public string InstallmentId { get; set; }
 
-        [JsonProperty(PropertyName = "payment")]
+        [JsonPropertyName( "payment")]
         public string PaymentId { get; set; }
 
         public AnticipationStatus Status { get; set; }

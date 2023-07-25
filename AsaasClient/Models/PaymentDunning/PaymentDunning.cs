@@ -1,5 +1,5 @@
 ﻿using AsaasClient.Models.PaymentDunning.Enums;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using System;
 
 namespace AsaasClient.Models.PaymentDunning
@@ -14,7 +14,7 @@ namespace AsaasClient.Models.PaymentDunning
 
         public PaymentDunningType Type { get; set; }
 
-        [JsonProperty(PropertyName = "payment")]
+        [JsonPropertyName( "payment")]
         public string PaymentId { get; set; }
 
         public DateTime RequestDate { get; set; }

@@ -4,7 +4,25 @@ using System;
 
 namespace AsaasClient
 {
-    public class AsaasApi
+    public interface IAsaasService
+    {
+        CustomerManager Customer { get; }
+        PaymentManager Payment { get; }
+        InstallmentManager Installment { get; }
+        SubscriptionManager Subscription { get; }
+        FinanceManager Finance { get; }
+        TransferManager Transfer { get; }
+        WalletManager Wallet { get; }
+        WebhookManager Webhook { get; }
+        AsaasAccountManager AsaasAccount { get; }
+        AnticipationManager ReceivableAnticipation { get; }
+        MyAccountManager MyAccount { get; }
+        InvoiceManager Invoice { get; }
+        PaymentDunningManager PaymentDunning { get; }
+        BillPaymentManager BillPayment { get; }
+    }
+
+    public class AsaasApi : IAsaasService
     {
         #region Lazy
         private Lazy<CustomerManager> LazyCustomer { get; }
@@ -40,6 +58,8 @@ namespace AsaasClient
         public BillPaymentManager BillPayment => LazyBillPayment.Value;
         #endregion
 
+
+
         public AsaasApi(ApiSettings apiSettings)
         {
             LazyCustomer = new Lazy<CustomerManager>(() => new CustomerManager(apiSettings), true);
@@ -58,4 +78,5 @@ namespace AsaasClient
             LazyBillPayment = new Lazy<BillPaymentManager>(() => new BillPaymentManager(apiSettings), true);
         }
     }
+
 }

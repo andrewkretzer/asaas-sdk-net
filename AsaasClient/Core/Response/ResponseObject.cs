@@ -1,5 +1,4 @@
 ﻿using AsaasClient.Core.Response.Base;
-using Newtonsoft.Json;
 using System.Net;
 
 namespace AsaasClient.Core.Response
@@ -12,7 +11,7 @@ namespace AsaasClient.Core.Response
         {
             if (httpStatusCode != HttpStatusCode.OK) return;
 
-            Data = JsonConvert.DeserializeObject<T>(content);
+            Data = System.Text.Json.JsonSerializer.Deserialize<T>(content);
         }
     }
 }

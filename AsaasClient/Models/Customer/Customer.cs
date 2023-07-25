@@ -1,5 +1,5 @@
 ﻿using AsaasClient.Models.Common.Enums;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using System;
 
 namespace AsaasClient.Models.Customer
@@ -42,7 +42,7 @@ namespace AsaasClient.Models.Customer
 
         public bool Deleted { get; set; }
 
-        [JsonProperty(PropertyName = "city")]
+        [JsonPropertyName( "city")]
         public long? CityId { get; set; }
 
         public string State { get; set; }

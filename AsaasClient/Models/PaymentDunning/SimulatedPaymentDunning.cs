@@ -1,9 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace AsaasClient.Models.PaymentDunning
 {
     public class SimulatedPaymentDunning {
-        [JsonProperty(PropertyName = "payment")]
+        [JsonPropertyName( "payment")]
         public string PaymentId { get; set; }
 
         public decimal Value { get; set; }

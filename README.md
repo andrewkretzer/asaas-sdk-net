@@ -42,6 +42,56 @@ if (createdCustomerResponse.WasSucessfull())
 }
 ```
 
+### ASP.NET 
+
+To use the Asaas SDK in your ASP.NET application, follow the steps below
+
+1. Modify the `appsettings.json` file to include Asaas settings:
+
+```json
+"ASAAS": {
+    "AccessToken": "$aact_ssssssssssssssssssssss", // Replace with your AccessToken
+    "BaseUrl": "https://sandbox.asaas.com" // Base URL of the Asaas environment (can be sandbox or production) --> Production: https://asaas.com
+}
+```
+
+2. Add the Asaas service in your service configuration method:
+
+```csharp
+
+var builder = WebApplication.CreateBuilder(args);
+// Add Assass Service
+builder.Services.AddAsaas(builder.Configuration);
+
+var app = builder.Build();
+
+app.MapGet("/pay", async ([FromServices] IAsaasService asaasService) =>
+{
+
+    ResponseObject<Customer> customerResponse = await asaasService.Customer.Find("cus_13bFHumeyglN");
+
+    if (customerResponse.WasSucessfull())
+    {
+        Customer customer = customerResponse.Data;
+
+        ResponseObject<Payment> paymentResponse = await asaasService.Payment.Create(new CreatePaymentRequest()
+        {
+            CustomerId = customer.Id,
+            BillingType = BillingType.BOLETO,
+            Value = 32.55M,
+            DueDate = DateTime.Parse("12/12/2020")
+        });
+
+        return Results.Ok(paymentResponse);
+    }
+
+    return Results.BadRequest(customerResponse);
+
+})
+
+app.Run();
+```
+
 ## Installation
 
 ### [NuGet](https://www.nuget.org/packages/Asaas.SDK/)

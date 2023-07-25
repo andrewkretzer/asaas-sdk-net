@@ -1,6 +1,6 @@
 ﻿using AsaasClient.Models.Common;
 using AsaasClient.Models.Common.Enums;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using System;
 using System.Collections.Generic;
 
@@ -8,7 +8,7 @@ namespace AsaasClient.Models.Payment
 {
     public class CreatePaymentRequest
     {
-        [JsonProperty(PropertyName = "customer")]
+        [JsonPropertyName( "customer")]
         public string CustomerId { get; set; }
 
         public BillingType BillingType { get; set; }
