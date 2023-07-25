@@ -5,6 +5,7 @@ using AsaasClient.Models.Common.Enums;
 using AsaasClient.Models.Customer;
 using AsaasClient.Models.Payment;
 
+
 ApiSettings apiSettings = new ApiSettings("YOUR_ACCESS_TOKEN", AsaasEnvironment.SANDBOX);
 
 AsaasApi asaasApi = new AsaasApi(apiSettings);
@@ -23,3 +24,4 @@ if (customerResponse.WasSucessfull())
         DueDate = DateTime.Parse("12/12/2020")
     });
 }
+

@@ -1,5 +1,5 @@
 ﻿using AsaasClient.Models.Common.Enums;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using System;
 
 namespace AsaasClient.Models.Installment
@@ -22,7 +22,7 @@ namespace AsaasClient.Models.Installment
 
         public DateTime ExpirationDay { get; set; }
 
-        [JsonProperty(PropertyName = "customer")]
+        [JsonPropertyName( "customer")]
         public string CustomerId { get; set; }
 
         public bool Deleted { get; set; }

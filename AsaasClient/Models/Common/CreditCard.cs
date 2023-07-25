@@ -1,16 +1,16 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace AsaasClient.Models.Common
 {
     public class CreditCard
     {
-        [JsonProperty(PropertyName = "creditCardNumber")]
+        [JsonPropertyName( "creditCardNumber")]
         public string Number { get; set; }
 
-        [JsonProperty(PropertyName = "creditCardBrand")]
+        [JsonPropertyName( "creditCardBrand")]
         public string Brand { get; set; }
 
-        [JsonProperty(PropertyName = "creditCardToken")]
+        [JsonPropertyName( "creditCardToken")]
         public string Token { get; set; }
     }
 }

@@ -1,9 +1,7 @@
 ﻿using AsaasClient.Core.Response.Base;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Text.Json;
 
 namespace AsaasClient.Core.Response
 {
@@ -23,13 +21,18 @@ namespace AsaasClient.Core.Response
         {
             if (httpStatusCode != HttpStatusCode.OK) return;
 
-            JObject listObject = JObject.Parse(content);
-            
-            HasMore = listObject.GetValue("hasMore").ToObject<bool>();
-            TotalCount = listObject.GetValue("totalCount").ToObject<int>();
-            Limit = listObject.GetValue("limit").ToObject<int>();
-            Offset = listObject.GetValue("offset").ToObject<int>();
-            Data = JsonConvert.DeserializeObject<List<T>>(listObject.GetValue("data").ToString());
+            using JsonDocument document = JsonDocument.Parse(content);
+            JsonElement root = document.RootElement;
+
+            HasMore = root.GetProperty("hasMore").GetBoolean();
+            TotalCount = root.GetProperty("totalCount").GetInt32();
+            Limit = root.GetProperty("limit").GetInt32();
+            Offset = root.GetProperty("offset").GetInt32();
+
+            if (root.TryGetProperty("data", out JsonElement dataElement))
+            {
+                Data = JsonSerializer.Deserialize<List<T>>(dataElement.GetRawText());
+            }
         }
     }
 }

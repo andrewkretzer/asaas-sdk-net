@@ -1,13 +1,13 @@
 ﻿using AsaasClient.Models.Common;
 using AsaasClient.Models.Common.Enums;
 using AsaasClient.Models.Subscription.Enums;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using System;
 
 namespace AsaasClient.Models.Subscription
 {
     public class CreateSubscriptionRequest {
-        [JsonProperty(PropertyName = "customer")]
+        [JsonPropertyName( "customer")]
         public string CustomerId { get; set; }
 
         public BillingType BillingType { get; set; }

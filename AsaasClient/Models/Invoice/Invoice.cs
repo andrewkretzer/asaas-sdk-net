@@ -1,6 +1,6 @@
 ﻿using AsaasClient.Models.Common;
 using AsaasClient.Models.Invoice.Enums;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using System;
 
 namespace AsaasClient.Models.Invoice
@@ -11,13 +11,13 @@ namespace AsaasClient.Models.Invoice
 
         public InvoiceStatus Status { get; set; }
 
-        [JsonProperty(PropertyName = "customer")]
+        [JsonPropertyName( "customer")]
         public string CustomerId { get; set; }
 
-        [JsonProperty(PropertyName = "payment")]
+        [JsonPropertyName( "payment")]
         public string PaymentId { get; set; }
 
-        [JsonProperty(PropertyName = "installment")]
+        [JsonPropertyName( "installment")]
         public string InstallmentId { get; set; }
 
         public string Type { get; set; }

@@ -1,17 +1,17 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using System;
 
 namespace AsaasClient.Models.Payment
 {
     public class PixQRCode
     {
-        [JsonProperty(PropertyName = "encodedImage")]
+        [JsonPropertyName( "encodedImage")]
         public string EncodedImage { get; set; }
 
-        [JsonProperty(PropertyName = "payload")]
+        [JsonPropertyName( "payload")]
         public string Payload { get; set; }
 
-        [JsonProperty(PropertyName = "expirationDate")]
+        [JsonPropertyName( "expirationDate")]
         public DateTime ExpirationDate { get; set; }
     }
 }
