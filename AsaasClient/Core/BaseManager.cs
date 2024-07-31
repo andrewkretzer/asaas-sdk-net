@@ -19,7 +19,7 @@ namespace AsaasClient.Core
 {
     public class BaseManager
     {
-        private const string ProductionUrl = "https://www.asaas.com";
+        private const string ProductionUrl = "https://api.asaas.com";
         private const string SandboxUrl = "https://sandbox.asaas.com";
 
         private readonly ApiSettings _settings;
@@ -155,6 +155,11 @@ namespace AsaasClient.Core
 
         private string BuildApiRoute(string resource)
         {
+            if (_settings.AsaasEnvironment.IsProduction())
+            {
+                return $"/v3/{resource}";
+            }
+
             return $"/api/v3/{resource}";
         }
 
